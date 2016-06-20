@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Happy Git and GitHub for the useR</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Using Git and GitHub with R, Rstudio, and R Markdown">
+  <meta name="generator" content="bookdown 0.0.73 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Happy Git and GitHub for the useR" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Using Git and GitHub with R, Rstudio, and R Markdown" />
+  <meta name="github-repo" content="jennybc/happy-git-with-r" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Happy Git and GitHub for the useR" />
+  <meta name="twitter:site" content="@jennybryan" />
+  <meta name="twitter:description" content="Using Git and GitHub with R, Rstudio, and R Markdown" />
+  
+
+<meta name="author" content="Jenny Bryan and the STAT 545 TAs">
+
+<meta name="date" content="2016-06-20">
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="git-client.html">
+<link rel="next" href="credential-caching.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Happy Git and GitHub for the useR</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>What’s going on here</a></li>
+<li class="chapter" data-level="1" data-path="why-git-why-github.html"><a href="why-git-why-github.html"><i class="fa fa-check"></i><b>1</b> Why Git? Why GitHub?</a><ul>
+<li class="chapter" data-level="1.1" data-path="why-git-why-github.html"><a href="why-git-why-github.html#why-git"><i class="fa fa-check"></i><b>1.1</b> Why Git?</a></li>
+<li class="chapter" data-level="1.2" data-path="why-git-why-github.html"><a href="why-git-why-github.html#why-github"><i class="fa fa-check"></i><b>1.2</b> Why GitHub?</a></li>
+<li class="chapter" data-level="1.3" data-path="why-git-why-github.html"><a href="why-git-why-github.html#is-it-going-to-hurt"><i class="fa fa-check"></i><b>1.3</b> Is it going to hurt?</a></li>
+<li class="chapter" data-level="1.4" data-path="why-git-why-github.html"><a href="why-git-why-github.html#what-is-the-payoff"><i class="fa fa-check"></i><b>1.4</b> What is the payoff?</a></li>
+<li class="chapter" data-level="1.5" data-path="why-git-why-github.html"><a href="why-git-why-github.html#who-can-do-what"><i class="fa fa-check"></i><b>1.5</b> Who can do what?</a></li>
+<li class="chapter" data-level="1.6" data-path="why-git-why-github.html"><a href="why-git-why-github.html#special-features-of-github"><i class="fa fa-check"></i><b>1.6</b> Special features of GitHub</a></li>
+<li class="chapter" data-level="1.7" data-path="why-git-why-github.html"><a href="why-git-why-github.html#whats-special-about-using-r-and-with-git-and-github"><i class="fa fa-check"></i><b>1.7</b> What’s special about using R and with Git and GitHub?</a></li>
+<li class="chapter" data-level="1.8" data-path="why-git-why-github.html"><a href="why-git-why-github.html#audience-and-pre-reqs"><i class="fa fa-check"></i><b>1.8</b> Audience and pre-reqs</a></li>
+<li class="chapter" data-level="1.9" data-path="why-git-why-github.html"><a href="why-git-why-github.html#what-this-is-not"><i class="fa fa-check"></i><b>1.9</b> What this is NOT</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="contrib.html"><a href="contrib.html"><i class="fa fa-check"></i><b>2</b> Contributors</a></li>
+<li class="chapter" data-level="3" data-path="workshops.html"><a href="workshops.html"><i class="fa fa-check"></i><b>3</b> Workshops</a><ul>
+<li class="chapter" data-level="3.1" data-path="workshops.html"><a href="workshops.html#user-2016-stanford"><i class="fa fa-check"></i><b>3.1</b> useR! 2016 Stanford</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="workshops.html"><a href="workshops.html#logistics"><i class="fa fa-check"></i><b>3.1.1</b> Logistics</a></li>
+<li class="chapter" data-level="3.1.2" data-path="workshops.html"><a href="workshops.html#pre-tutorial-set-up"><i class="fa fa-check"></i><b>3.1.2</b> Pre-tutorial set-up</a></li>
+<li class="chapter" data-level="3.1.3" data-path="workshops.html"><a href="workshops.html#what-we-will-do"><i class="fa fa-check"></i><b>3.1.3</b> What we will do</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="workshops.html"><a href="workshops.html#csama-2016-statistical-data-analysis-for-genome-biology"><i class="fa fa-check"></i><b>3.2</b> CSAMA 2016: Statistical Data Analysis for Genome Biology</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="workshops.html"><a href="workshops.html#logistics-1"><i class="fa fa-check"></i><b>3.2.1</b> Logistics</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Installation</b></span></li>
+<li class="chapter" data-level="4" data-path="installation-pain.html"><a href="installation-pain.html"><i class="fa fa-check"></i><b>4</b> Installation pain</a><ul>
+<li class="chapter" data-level="4.1" data-path="installation-pain.html"><a href="installation-pain.html#success-and-operating-systems"><i class="fa fa-check"></i><b>4.1</b> Success and operating systems</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="github-acct.html"><a href="github-acct.html"><i class="fa fa-check"></i><b>5</b> Register a GitHub account</a><ul>
+<li class="chapter" data-level="5.1" data-path="github-acct.html"><a href="github-acct.html#username-advice"><i class="fa fa-check"></i><b>5.1</b> Username advice</a></li>
+<li class="chapter" data-level="5.2" data-path="github-acct.html"><a href="github-acct.html#free-private-repos"><i class="fa fa-check"></i><b>5.2</b> Free private repos</a></li>
+<li class="chapter" data-level="5.3" data-path="github-acct.html"><a href="github-acct.html#pay-for-private-repos"><i class="fa fa-check"></i><b>5.3</b> Pay for private repos</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="install-r-rstudio.html"><a href="install-r-rstudio.html"><i class="fa fa-check"></i><b>6</b> Install or upgrade R and RStudio</a><ul>
+<li class="chapter" data-level="6.1" data-path="install-r-rstudio.html"><a href="install-r-rstudio.html#more-about-r-and-rstudio"><i class="fa fa-check"></i><b>6.1</b> More about R and RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="install-git.html"><a href="install-git.html"><i class="fa fa-check"></i><b>7</b> Install Git</a><ul>
+<li class="chapter" data-level="7.1" data-path="install-git.html"><a href="install-git.html#git-already-installed"><i class="fa fa-check"></i><b>7.1</b> Git already installed?</a></li>
+<li class="chapter" data-level="7.2" data-path="install-git.html"><a href="install-git.html#windows"><i class="fa fa-check"></i><b>7.2</b> Windows</a></li>
+<li class="chapter" data-level="7.3" data-path="install-git.html"><a href="install-git.html#mac-os"><i class="fa fa-check"></i><b>7.3</b> Mac OS</a></li>
+<li class="chapter" data-level="7.4" data-path="install-git.html"><a href="install-git.html#linux"><i class="fa fa-check"></i><b>7.4</b> Linux</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="hello-git.html"><a href="hello-git.html"><i class="fa fa-check"></i><b>8</b> Introduce yourself to Git</a><ul>
+<li class="chapter" data-level="8.1" data-path="hello-git.html"><a href="hello-git.html#more-about-git-config"><i class="fa fa-check"></i><b>8.1</b> More about <code>git config</code></a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="git-client.html"><a href="git-client.html"><i class="fa fa-check"></i><b>9</b> Install a Git client</a><ul>
+<li class="chapter" data-level="9.1" data-path="git-client.html"><a href="git-client.html#what-and-why"><i class="fa fa-check"></i><b>9.1</b> What and why</a></li>
+<li class="chapter" data-level="9.2" data-path="git-client.html"><a href="git-client.html#recommended-git-clients"><i class="fa fa-check"></i><b>9.2</b> Recommended Git clients</a></li>
+</ul></li>
+<li class="part"><span><b>Connect Git, GitHub, RStudio</b></span></li>
+<li class="chapter" data-level="10" data-path="push-pull-github.html"><a href="push-pull-github.html"><i class="fa fa-check"></i><b>10</b> Connect to GitHub</a><ul>
+<li class="chapter" data-level="10.1" data-path="push-pull-github.html"><a href="push-pull-github.html#make-a-repo-on-github"><i class="fa fa-check"></i><b>10.1</b> Make a repo on GitHub</a></li>
+<li class="chapter" data-level="10.2" data-path="push-pull-github.html"><a href="push-pull-github.html#clone-the-repo-to-your-local-computer"><i class="fa fa-check"></i><b>10.2</b> Clone the repo to your local computer</a></li>
+<li class="chapter" data-level="10.3" data-path="push-pull-github.html"><a href="push-pull-github.html#make-a-local-change-commit-and-push"><i class="fa fa-check"></i><b>10.3</b> Make a local change, commit, and push</a></li>
+<li class="chapter" data-level="10.4" data-path="push-pull-github.html"><a href="push-pull-github.html#confirm-the-local-change-propagated-to-the-github-remote"><i class="fa fa-check"></i><b>10.4</b> Confirm the local change propagated to the GitHub remote</a></li>
+<li class="chapter" data-level="10.5" data-path="push-pull-github.html"><a href="push-pull-github.html#am-i-really-going-to-type-github-username-and-password-on-each-push"><i class="fa fa-check"></i><b>10.5</b> Am I really going to type GitHub username and password on each push?</a></li>
+<li class="chapter" data-level="10.6" data-path="push-pull-github.html"><a href="push-pull-github.html#clean-up"><i class="fa fa-check"></i><b>10.6</b> Clean up</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="credential-caching.html"><a href="credential-caching.html"><i class="fa fa-check"></i><b>11</b> Cache credentials for HTTPS</a><ul>
+<li class="chapter" data-level="11.1" data-path="credential-caching.html"><a href="credential-caching.html#get-a-test-repository"><i class="fa fa-check"></i><b>11.1</b> Get a test repository</a></li>
+<li class="chapter" data-level="11.2" data-path="credential-caching.html"><a href="credential-caching.html#verify-that-your-git-is-new-enough-to-have-a-credential-helper"><i class="fa fa-check"></i><b>11.2</b> Verify that your Git is new enough to have a credential helper</a></li>
+<li class="chapter" data-level="11.3" data-path="credential-caching.html"><a href="credential-caching.html#turn-on-the-credential-helper"><i class="fa fa-check"></i><b>11.3</b> Turn on the credential helper</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="credential-caching.html"><a href="credential-caching.html#trigger-a-username-password-challenge"><i class="fa fa-check"></i><b>11.3.1</b> Trigger a username / password challenge</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="ssh-keys.html"><a href="ssh-keys.html"><i class="fa fa-check"></i><b>12</b> Set up keys for SSH</a></li>
+<li class="chapter" data-level="13" data-path="connect-rstudio-to-git-and-github.html"><a href="connect-rstudio-to-git-and-github.html"><i class="fa fa-check"></i><b>13</b> Connect RStudio to Git and GitHub</a><ul>
+<li class="chapter" data-level="13.1" data-path="connect-rstudio-to-git-and-github.html"><a href="connect-rstudio-to-git-and-github.html#prerequisites"><i class="fa fa-check"></i><b>13.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="13.2" data-path="connect-rstudio-to-git-and-github.html"><a href="connect-rstudio-to-git-and-github.html#step-1-make-a-new-repo-on-github"><i class="fa fa-check"></i><b>13.2</b> Step 1: Make a new repo on GitHub</a></li>
+<li class="chapter" data-level="13.3" data-path="connect-rstudio-to-git-and-github.html"><a href="connect-rstudio-to-git-and-github.html#step-2-clone-the-new-github-repository-to-your-computer-via-rstudio"><i class="fa fa-check"></i><b>13.3</b> Step 2: Clone the new GitHub repository to your computer via RStudio</a></li>
+<li class="chapter" data-level="13.4" data-path="connect-rstudio-to-git-and-github.html"><a href="connect-rstudio-to-git-and-github.html#step-2-plan-b-connect-a-local-rstudio-project-to-a-github-repo"><i class="fa fa-check"></i><b>13.4</b> Step 2 plan B: Connect a local RStudio project to a GitHub repo</a></li>
+<li class="chapter" data-level="13.5" data-path="connect-rstudio-to-git-and-github.html"><a href="connect-rstudio-to-git-and-github.html#step-3-make-local-changes-save-commit"><i class="fa fa-check"></i><b>13.5</b> Step 3: Make local changes, save, commit</a></li>
+<li class="chapter" data-level="13.6" data-path="connect-rstudio-to-git-and-github.html"><a href="connect-rstudio-to-git-and-github.html#step-4-push-your-local-changes-online-to-github"><i class="fa fa-check"></i><b>13.6</b> Step 4: Push your local changes online to GitHub</a></li>
+<li class="chapter" data-level="13.7" data-path="connect-rstudio-to-git-and-github.html"><a href="connect-rstudio-to-git-and-github.html#the-end"><i class="fa fa-check"></i><b>13.7</b> The end</a></li>
+<li class="chapter" data-level="13.8" data-path="connect-rstudio-to-git-and-github.html"><a href="connect-rstudio-to-git-and-github.html#what-if-this-doesnt-work"><i class="fa fa-check"></i><b>13.8</b> What if this doesn’t work?</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="rstudio-see-git.html"><a href="rstudio-see-git.html"><i class="fa fa-check"></i><b>14</b> Detect Git from RStudio</a><ul>
+<li class="chapter" data-level="14.1" data-path="rstudio-see-git.html"><a href="rstudio-see-git.html#do-you-have-a-problem"><i class="fa fa-check"></i><b>14.1</b> Do you have a problem?</a></li>
+<li class="chapter" data-level="14.2" data-path="rstudio-see-git.html"><a href="rstudio-see-git.html#find-git-yourself"><i class="fa fa-check"></i><b>14.2</b> Find Git yourself</a></li>
+<li class="chapter" data-level="14.3" data-path="rstudio-see-git.html"><a href="rstudio-see-git.html#tell-rstudio-where-to-find-git"><i class="fa fa-check"></i><b>14.3</b> Tell RStudio where to find Git</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="troubleshooting.html"><a href="troubleshooting.html"><i class="fa fa-check"></i><b>15</b> RStudio, Git, GitHub Hell</a><ul>
+<li class="chapter" data-level="15.1" data-path="troubleshooting.html"><a href="troubleshooting.html#i-think-i-have-installed-git-but-damn-if-i-can-find-it"><i class="fa fa-check"></i><b>15.1</b> I think I have installed Git but damn if I can find it</a></li>
+<li class="chapter" data-level="15.2" data-path="troubleshooting.html"><a href="troubleshooting.html#dysfunctional-path"><i class="fa fa-check"></i><b>15.2</b> Dysfunctional PATH</a></li>
+<li class="chapter" data-level="15.3" data-path="troubleshooting.html"><a href="troubleshooting.html#pushpull-buttons-greyed-out-in-rstudio"><i class="fa fa-check"></i><b>15.3</b> Push/Pull buttons greyed out in RStudio</a></li>
+<li class="chapter" data-level="15.4" data-path="troubleshooting.html"><a href="troubleshooting.html#i-have-no-idea-if-my-local-repo-and-my-remote-repo-are-connected."><i class="fa fa-check"></i><b>15.4</b> I have no idea if my local repo and my remote repo are connected.</a></li>
+<li class="chapter" data-level="15.5" data-path="troubleshooting.html"><a href="troubleshooting.html#push-fail-at-the-rstudio-level"><i class="fa fa-check"></i><b>15.5</b> Push fail at the RStudio level</a></li>
+<li class="chapter" data-level="15.6" data-path="troubleshooting.html"><a href="troubleshooting.html#push-rejected-i.e.fail-at-the-gitgithub-level"><i class="fa fa-check"></i><b>15.6</b> Push rejected, i.e. fail at the Git/GitHub level</a></li>
+<li class="chapter" data-level="15.7" data-path="troubleshooting.html"><a href="troubleshooting.html#rstudio-is-not-making-certain-files-available-for-stagingcommiting"><i class="fa fa-check"></i><b>15.7</b> RStudio is not making certain files available for staging/commiting</a></li>
+<li class="chapter" data-level="15.8" data-path="troubleshooting.html"><a href="troubleshooting.html#i-hear-you-have-some-git-repo-inside-your-git-repo"><i class="fa fa-check"></i><b>15.8</b> I hear you have some Git repo inside your Git repo</a></li>
+</ul></li>
+<li class="part"><span><b>More</b></span></li>
+<li class="chapter" data-level="16" data-path="more-content.html"><a href="more-content.html"><i class="fa fa-check"></i><b>16</b> More content</a></li>
+<li class="chapter" data-level="17" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>17</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Happy Git and GitHub for the useR</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="push-pull-github" class="section level1">
+<h1><span class="header-section-number">10</span> Connect to GitHub</h1>
+<p>Objective: make sure that you can pull from and push to GitHub from your computer.</p>
+<p>I do not explain all the <a href="http://stat545.com/git09_shell.html">shell</a> and Git commands in detail. This is a black box diagnostic / configuration exercise. In later chapters and in live workshops, we revisit these operations with much more narrative.</p>
+<div id="make-a-repo-on-github" class="section level2">
+<h2><span class="header-section-number">10.1</span> Make a repo on GitHub</h2>
+<p>Go to <a href="https://github.com" class="uri">https://github.com</a> and make sure you are logged in.</p>
+<p>Click green “New repository” button. Or, if you are on your own profile page, click on “Repositories”, then click the green “New” button.</p>
+<p>Repository name: <code>myrepo</code> (or whatever you wish, we will delete this)<br />
+Public<br />
+YES Initialize this repository with a README</p>
+<p>Click big green button “Create repository.”</p>
+<p>Copy the HTTPS clone URL to your clipboard via the green “Clone or Download” button.</p>
+</div>
+<div id="clone-the-repo-to-your-local-computer" class="section level2">
+<h2><span class="header-section-number">10.2</span> Clone the repo to your local computer</h2>
+<p>Go to the <a href="http://stat545.com/git09_shell.html">shell</a>.</p>
+<p>Take charge of – or at least notice! – what directory you’re in. <code>pwd</code> to display working directory. <code>cd</code> to move around. Personally, I would do this sort of thing in <code>~/tmp</code>.</p>
+<p>Clone <code>myrepo</code> from GitHub to your computer. This URL should have <strong>your GitHub username</strong> and the name of <strong>your practice repo</strong>. If your <a href="http://stat545.com/git09_shell.html">shell</a> cooperates, you should be able to paste the whole <code>https://....</code> bit that we copied above. But some shells are not (immediately) clipboard aware. In that sad case, you must type it. <strong>Accurately.</strong></p>
+<pre class="sh"><code>git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git</code></pre>
+<p>This should look something like this:</p>
+<pre class="sh"><code>jenny@2015-mbp tmp $ git clone https://github.com/jennybc/myrepo.git
+Cloning into &#39;myrepo&#39;...
+remote: Counting objects: 3, done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+Checking connectivity... done.</code></pre>
+<p>Make this new repo your working directory, list its files, display the README, and get some information on its connection to GitHub:</p>
+<pre class="sh"><code>cd myrepo
+ls
+less README.md
+git remote show origin</code></pre>
+<p>This should look something like this:</p>
+<pre class="sh"><code>jenny@2015-mbp ~ $ cd myrepo
+
+jenny@2015-mbp myrepo $ ls
+README.md
+
+jenny@2015-mbp myrepo $ less README.md 
+# myrepo
+tutorial development
+
+jenny@2015-mbp myrepo $ git remote show origin
+* remote origin
+  Fetch URL: https://github.com/jennybc/myrepo.git
+  Push  URL: https://github.com/jennybc/myrepo.git
+  HEAD branch: master
+  Remote branch:
+    master tracked
+  Local branch configured for &#39;git pull&#39;:
+    master merges with remote master
+  Local ref configured for &#39;git push&#39;:
+    master pushes to master (up to date)</code></pre>
+</div>
+<div id="make-a-local-change-commit-and-push" class="section level2">
+<h2><span class="header-section-number">10.3</span> Make a local change, commit, and push</h2>
+<p>Add a line to README and verify that Git notices the change:</p>
+<pre class="sh"><code>echo &quot;A line I wrote on my local computer&quot; &gt;&gt; README.md
+git status</code></pre>
+<p>This should look something like this:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">jenny@2015-mbp</span> myrepo $ echo <span class="st">&quot;A line I wrote on my local computer&quot;</span> <span class="kw">&gt;&gt;</span> README.md
+<span class="kw">jenny@2015-mbp</span> myrepo $ git status
+<span class="kw">On</span> branch master
+<span class="kw">Your</span> branch is up-to-date with <span class="st">&#39;origin/master&#39;</span>.
+<span class="kw">Changes</span> not staged for commit:
+  <span class="kw">(use</span> <span class="st">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="kw">)</span>
+  <span class="kw">(use</span> <span class="st">&quot;git checkout -- &lt;file&gt;...&quot;</span> to discard changes in working directory<span class="kw">)</span>
+
+    <span class="kw">modified</span>:   README.md
+
+<span class="kw">no</span> changes added to commit (use <span class="st">&quot;git add&quot;</span> and/or <span class="st">&quot;git commit -a&quot;</span>)</code></pre></div>
+<p>Commit this change and push to your remote repo on GitHub. If you’re a new GitHub user, you will be challenged for your GitHub username and password. Provide them!</p>
+<pre class="sh"><code>git add -A
+git commit -m &quot;A commit from my local computer&quot;
+git push</code></pre>
+<p>This should look something like this:</p>
+<pre class="sh"><code>jenny@2015-mbp myrepo $ git add -A
+
+jenny@2015-mbp myrepo $ git commit -m &quot;A commit from my local computer&quot;
+[master de669ba] A commit from my local computer
+ 1 file changed, 1 insertion(+)
+ 
+jenny@2015-mbp myrepo $ git push
+Counting objects: 3, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 311 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://github.com/jennybc/myrepo.git
+   b4112c5..de669ba  master -&gt; master</code></pre>
+</div>
+<div id="confirm-the-local-change-propagated-to-the-github-remote" class="section level2">
+<h2><span class="header-section-number">10.4</span> Confirm the local change propagated to the GitHub remote</h2>
+<p>Go back to the browser. I assume we’re still viewing your new GitHub repo.</p>
+<p>Refresh.</p>
+<p>You should see the new “A line I wrote on my local computer” in the README.</p>
+<p>If you click on “commits,” you should see one with the message “A commit from my local computer.”</p>
+<p>If you have made it this far, you are ready to graduate to using Git and GitHub with RStudio <em>(add link)</em>. But first …</p>
+</div>
+<div id="am-i-really-going-to-type-github-username-and-password-on-each-push" class="section level2">
+<h2><span class="header-section-number">10.5</span> Am I really going to type GitHub username and password on each push?</h2>
+<p>It is likely that your first push, above, leads to a challenge for your GitHub username and password.</p>
+<p>This will drive you crazy in the long-run and make you reluctant to push. Do one of the follow to eliminate this annoyance:</p>
+<ul>
+<li>Credential caching for HTTPS access <em>(add link)</em></li>
+<li>Set up SSH keys <em>(add link)</em></li>
+</ul>
+<p>Now is the perfect time to do this, since you have a functioning test repo.</p>
+</div>
+<div id="clean-up" class="section level2">
+<h2><span class="header-section-number">10.6</span> Clean up</h2>
+<p>When you’re ready to clean up, delete the local repo in the <a href="http://stat545.com/git09_shell.html">shell</a>:</p>
+<pre class="sh"><code>cd ..
+rm -rf myrepo/</code></pre>
+<p>In the browser, viewing your repo’s landing page on GitHub, click on “Settings”, near the bottom or the right sidebar.</p>
+<p>Scroll down, click on “delete repository,” and do as it asks.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="git-client.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="credential-caching.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/jennybc/happy-git-with-r/edit/master/10_connect-git-github.Rmd",
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
