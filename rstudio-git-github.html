@@ -33,8 +33,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="troubleshooting.html">
-<link rel="next" href="shell.html">
+<link rel="prev" href="ssh-keys.html">
+<link rel="next" href="rstudio-see-git.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -223,21 +223,128 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="more-content" class="section level1">
-<h1><span class="header-section-number">16</span> More content</h1>
-<p>more stuff <em>coming soon</em> … really!!</p>
+<div id="rstudio-git-github" class="section level1">
+<h1><span class="header-section-number">13</span> Connect RStudio to Git and GitHub</h1>
+<p>This is the big moment where we verify that RStudio can issue Git commands on your behalf. Assuming that you’ve gotten local Git to talk to GitHub, this means you’ll also be able to pull from and push to GitHub from RStudio.</p>
+<div id="prerequisites" class="section level2">
+<h2><span class="header-section-number">13.1</span> Prerequisites</h2>
+<p>We assume the following:</p>
+<ul>
+<li>You’ve registered a free GitHub account (chapter <a href="github-acct.html#github-acct">5</a>).</li>
+<li>You’ve installed/updated R and RStudio (chapter <a href="install-r-rstudio.html#install-r-rstudio">6</a>).</li>
+<li>You’ve installed Git (chapter <a href="install-git.html#install-git">7</a>).</li>
+<li>You’ve introduced yourself to Git (chapter <a href="hello-git.html#hello-git">8</a>).</li>
+<li>You’ve confirmed that you can push to / pull from GitHub from the command line (chapter <a href="push-pull-github.html#push-pull-github">10</a>).</li>
+<li>You’ve cached your credentials or set up SSH keys, so you don’t need to authenticate yourself to GitHub interactively <em>optional but highly recommended</em> (chapters <a href="credential-caching.html#credential-caching">11</a> and <a href="ssh-keys.html#ssh-keys">12</a>).</li>
+</ul>
+</div>
+<div id="step-1-make-a-new-repo-on-github" class="section level2">
+<h2><span class="header-section-number">13.2</span> Step 1: Make a new repo on GitHub</h2>
+<p><strong>Do this once per new project.</strong></p>
+<p>Go to <a href="https://github.com" class="uri">https://github.com</a> and make sure you are logged in.</p>
+<p>Click green “New repository” button. Or, if you are on your own profile page, click on “Repositories”, then click the green “New” button.</p>
+<p>Repository name: <code>myrepo</code> (or whatever you wish, we will delete this)<br />
+Public<br />
+YES Initialize this repository with a README</p>
+<p>Click big green button “Create repository.”</p>
+<p>Copy the HTTPS clone URL to your clipboard via the green “Clone or Download” button. Or copy the SSH URL if you chose to set up SSH keys.</p>
+</div>
+<div id="step-2-clone-the-new-github-repository-to-your-computer-via-rstudio" class="section level2">
+<h2><span class="header-section-number">13.3</span> Step 2: Clone the new GitHub repository to your computer via RStudio</h2>
+<p>In RStudio, start a new Project:</p>
+<ul>
+<li><em>File &gt; New Project &gt; Version Control &gt; Git</em>. In the “repository URL” paste the URL of your new GitHub repository. It will be something like this <code>https://github.com/jennybc/myrepo.git</code>.
+<ul>
+<li>Do you NOT see an option to get the Project from Version Control? Go to chapter <a href="rstudio-see-git.html#rstudio-see-git">14</a> for tips on how to help RStudio find Git.</li>
+</ul></li>
+<li>Take charge of – or at least notice! – the local directory for the Project. A common rookie mistake is to have no idea where you are saving files or what your working directory is. Pay attention. Be intentional. Personally, I would do this in <code>~/tmp</code>.</li>
+<li>I suggest you check “Open in new session”, as that’s what you’ll usually do in real life.</li>
+<li>Click “Create Project” to create a new directory, which will be all of these things:
+<ul>
+<li>a directory or “folder” on your computer</li>
+<li>a Git repository, linked to a remote GitHub repository</li>
+<li>an RStudio Project</li>
+</ul></li>
+<li><strong>In the absence of other constraints, I suggest that all of your R projects have exactly this set-up.</strong></li>
+</ul>
+<p>This should download the <code>README.md</code> file that we created on GitHub in the previous step. Look in RStudio’s file browser pane for the <code>README.md</code> file.</p>
+<p>There’s a big advantage to the “Github first, then RStudio” workflow: the remote GitHub repo is now the “upstream” remote for your local repo. This is a technical but important point about Git. The practical implication is that you are now set up to push and pull. No need to fanny around setting up Git remotes on the command line or in another Git client.</p>
+</div>
+<div id="step-2-plan-b-connect-a-local-rstudio-project-to-a-github-repo" class="section level2">
+<h2><span class="header-section-number">13.4</span> Step 2 plan B: Connect a local RStudio project to a GitHub repo</h2>
+<p>This workflow is the reverse of the above and cannot be executed from within R/RStudio. But sometimes it’s necessary.</p>
+<ul>
+<li><p>Create a new RStudio project: <em>File &gt; New Project &gt; New Directory &gt; Empty Project</em>.</p></li>
+<li><p>Directory name: <code>myrepo</code> (or whatever you named the GitHub repo)</p></li>
+<li><p>Take charge of – or at least notice! – the local directory where this Project will live.</p></li>
+<li><p>YES check “Create a git repository”.</p>
+<ul>
+<li>Do you NOT see an option to get the Project from Version Control? Go to chapter <a href="rstudio-see-git.html#rstudio-see-git">14</a> for tips on how to help RStudio find Git.</li>
+</ul></li>
+<li><p>I suggest you check “Open in new session”, as that’s what you’ll usually do in real life.</p></li>
+<li>Click “Create Project” to create a new directory, which will be all of these things:
+<ul>
+<li>a directory or “folder” on your computer</li>
+<li>a Git repository, <del>linked to a remote GitHub repository</del> <em>no, tragically this is not yet true … we deal with that next</em></li>
+<li>an RStudio Project</li>
+</ul></li>
+<li><p><strong>In the absence of other constraints, I suggest that all of your R projects have exactly this set-up.</strong></p></li>
+<li><p>Initiate the “upstream” or “tracking” relationship by adding a remote. Go to <em>Tools &gt; <a href="git09_shell.html">shell</a></em> and do this, substituting the HTTPS or SSH URL for <strong>your GitHub repo</strong>, according to your setup:</p>
+<pre class="shell"><code>git remote add origin https://github.com/jennybc/myrepo.git</code></pre></li>
+<li><p>Download all the files from the online GitHub repository (possibly just <code>README.md</code>, at this point).</p>
+<pre class="shell"><code>git pull origin master</code></pre></li>
+<li><p>Cement the tracking relationship between your GitHub repository and the local repo by pushing and setting the “upstream” remote:</p>
+<pre class="shell"><code>git push -u origin master</code></pre></li>
+</ul>
+<p>It is possible you will be challenged for username and password here, but that means you should read up on caching your credentials (chapter <a href="credential-caching.html#credential-caching">11</a>) or settting up SSH keys (chapter <a href="ssh-keys.html#ssh-keys">12</a>) so this stops happening.</p>
+</div>
+<div id="step-3-make-local-changes-save-commit" class="section level2">
+<h2><span class="header-section-number">13.5</span> Step 3: Make local changes, save, commit</h2>
+<p><strong>Do this every time you finish a valuable chunk of work, probably many times a day.</strong></p>
+<p>From RStudio, modify the <code>README.md</code> file, e.g., by adding the line “This is a line from RStudio”. Save your changes.</p>
+<p>Commit these changes to your local repo. How?</p>
+<p>From RStudio:</p>
+<ul>
+<li>Click the “Git” tab in upper right pane</li>
+<li>Check “Staged” box for any files whose existence or modifications you want to commit.
+<ul>
+<li>To see more detail on what’s changed in file since the last commit, click on “Diff” for a Git pop-up</li>
+</ul></li>
+<li>If you’re not already in the Git pop-up, click “Commit”</li>
+<li>Type a message in “Commit message”</li>
+<li>Click “Commit”</li>
+</ul>
+</div>
+<div id="step-4-push-your-local-changes-online-to-github" class="section level2">
+<h2><span class="header-section-number">13.6</span> Step 4: Push your local changes online to GitHub</h2>
+<p><strong>Do this a few times a day, but possibly less often than you commit.</strong></p>
+<p>You have new work in your local Git repository, but the changes are not online yet.</p>
+<p>This will seem counterintuitive, but first let’s stop and pull from GitHub.</p>
+<p>Why? Establish this habit for the future! If you make changes to the repo in the browser or from another machine or (one day) a collaborator has pushed, you will be happier if you pull those changes in before you attempt to push.</p>
+<p>Click the blue “Pull” button in the “Git” tab in RStudio. I doubt anything will happen, i.e. you’ll get the message “Already up-to-date.” This is just to establish a habit.</p>
+<p>Click the green “Push” button to send your local changes to GitHub. You should see some message along these lines.</p>
+<pre class="sh"><code>[master dc671f0] blah
+ 3 files changed, 22 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 myrepo.Rproj</code></pre>
+</div>
+<div id="the-end" class="section level2">
+<h2><span class="header-section-number">13.7</span> The end</h2>
+<p>Now just … repeat. Do work somewhere. Commit it. Push it or pull it depending on where you did it, but get local and remote “synced up”. Repeat.</p>
+</div>
+<div id="what-if-this-doesnt-work" class="section level2">
+<h2><span class="header-section-number">13.8</span> What if this doesn’t work?</h2>
+<p>Some people, at least under the severe time pressure of a live workshop, may not have success using Git and GitHub from RStudio. This is rare but happens and we can generally sort this out later. In the meantime, you can make commits and pulls/pushes using Git commands in the shell or with one of the other Git clients recommended in chapter <a href="git-client.html#git-client">9</a>. The use of Git and GitHub from within RStudio is just a convenience, but one worth exploiting.</p>
 
 </div>
-
-
-
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="troubleshooting.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="shell.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="ssh-keys.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="rstudio-see-git.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -264,7 +371,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jennybc/happy-git-with-r/edit/master/16_more-content.Rmd",
+"link": "https://github.com/jennybc/happy-git-with-r/edit/master/13_connect-rstudio-git-github.Rmd",
 "text": null
 },
 "download": null,
