@@ -1,7 +1,7 @@
 --- 
 title: "Happy Git and GitHub for the useR"
 author: "Jenny Bryan and the STAT 545 TAs"
-date: "2016-06-23"
+date: "2016-06-26"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
