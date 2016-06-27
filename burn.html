@@ -33,8 +33,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="existing-github-first.html">
-<link rel="next" href="rmd-test-drive.html">
+<link rel="prev" href="bingo.html">
+<link rel="next" href="reset.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -301,83 +301,39 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="existing-github-last" class="section level1">
-<h1><span class="header-section-number">18</span> Existing project, GitHub last</h1>
-<p>An explicit workflow for connecting an existing local R project to GitHub, when for some reason you cannot or don’t want to do a “GitHub first” workflow (see chapters <a href="new-github-first.html#new-github-first">16</a> and <a href="existing-github-first.html#existing-github-first">17</a>).</p>
-<p>When might this come up? Maybe if it’s an existing project that is also a Git repo with a history you care about? Then you have to do this properly.</p>
-<p>This is less desirable for a novice because it involves command line Git. You can’t stay within RStudio.</p>
-<div id="make-or-verify-an-rstudio-project" class="section level2">
-<h2><span class="header-section-number">18.1</span> Make or verify an RStudio Project</h2>
-<p>We assume you’ve got your existing R project isolated in a directory on your computer.</p>
-<p>If it’s not already an RStudio Project, make it so:</p>
+<div id="burn" class="section level1">
+<h1><span class="header-section-number">24</span> Burn it all down</h1>
+<p>This is a highly inelegant, but effective technique for disaster recovery.</p>
+<p>It has been immortalized in an xkcd comic, so it must be ok:</p>
 <ul>
-<li>Create a new RStudio project: <em>File &gt; New Project &gt; Existing Directory</em>.</li>
-<li>Yes: “Open in new session”.</li>
+<li><a href="https://xkcd.com/1597/" class="uri">https://xkcd.com/1597/</a></li>
+<li><a href="http://explainxkcd.com/wiki/index.php/1597:_Git" class="uri">http://explainxkcd.com/wiki/index.php/1597:_Git</a></li>
 </ul>
-<p>If it’s already an RStudio Project, launch it.</p>
-</div>
-<div id="make-or-verify-a-git-repo" class="section level2">
-<h2><span class="header-section-number">18.2</span> Make or verify a Git repo</h2>
-<p>You should be in RStudio now, in your project.</p>
-<p>Is it already a Git repository? The presence of the Git pane should tip you off. If yes, you’re done.</p>
-<p>If not:</p>
-<p><em>Tools &gt; Project Options … &gt; Git/SVN</em> Under Version control system, select “Git”. Confirm New Git Repository? Yes!</p>
-<p>Project should re-launch in RStudio and you should now have a Git pane.</p>
-</div>
-<div id="stage-and-commit-1" class="section level2">
-<h2><span class="header-section-number">18.3</span> Stage and commit</h2>
-<p>If your local project was already a Git repo and was up-to-date, move on. Otherwise, you probably need to stage and commit.</p>
+<p>Basic idea:</p>
 <ul>
-<li>Click the “Git” tab in upper right pane</li>
-<li>Check “Staged” box for all files you want to commit.
+<li>Commit early and often.</li>
+<li>Push to a remote, like GitHub, often.</li>
+<li>The state of things on GitHub is your new “worst case scenario”.</li>
+<li>If you really screw things up locally, copy all the files (or the ones that have changed) to a safe place.
 <ul>
-<li>Default: stage it.</li>
-<li>When to reconsider: this will all go to GitHub. So do consider if that is appropriate for each file. <strong>You can absolutely keep a file locally, without commiting it to the Git repo and sending to GitHub</strong>. Just let it sit there in your Git pane, without being staged. No harm will be done. If this is a long-term situation, list the file in <code>.gitignore</code>.</li>
+<li>Usually your files are JUST FINE. But it is easy to goof up the Git infrastructure when you’re new at this. And it can be hard to get that straightened out on your own.</li>
 </ul></li>
-<li>If you’re not already in the Git pop-up, click “Commit”</li>
-<li>Type a message in “Commit message”.</li>
-<li>Click “Commit”</li>
+<li>Rename the existing local repo as a temporary measure, i.e. before you do something radical, like delete it.</li>
+<li>Clone the repo from GitHub to your local machine. You are back to a happy state.</li>
+<li>Copy all relevant files back over from your safe space. The ones whose updated state you need to commit.</li>
+<li>Stage and commit. Push.</li>
+<li>Carry on with your life.</li>
 </ul>
-</div>
-<div id="make-a-repo-on-github-3" class="section level2">
-<h2><span class="header-section-number">18.4</span> Make a repo on GitHub</h2>
-<p>Go to <a href="https://github.com" class="uri">https://github.com</a> and make sure you are logged in.</p>
-<p>Click green “New repository” button. Or, if you are on your own profile page, click on “Repositories”, then click the green “New” button.</p>
-<p>Pick a repository name – it should probably match the name of your local Project and directory. Why confuse yourself?</p>
-<p>Public or private, as appropriate and possible<br />
-DO NOT initialize this repository with a README.</p>
-<p>Click big green button “Create repository.”</p>
-<p>Copy the HTTPS clone URL to your clipboard via the green “Clone or Download” button. Or copy the SSH URL if you chose to set up SSH keys.</p>
-</div>
-<div id="connect-to-github" class="section level2">
-<h2><span class="header-section-number">18.5</span> Connect to GitHub</h2>
-<p>Initiate the “upstream” or “tracking” relationship by adding a remote. Go to <em>Tools &gt; shell</em> and do this, substituting the HTTPS or SSH URL for <strong>your GitHub repo</strong>, according to your setup:</p>
-<pre><code>    git remote add origin https://github.com/jennybc/myrepo.git</code></pre>
-<ul>
-<li><p>Push and cement the tracking relationship between your GitHub repository and the local repo by pushing and setting the “upstream” remote:</p>
-<pre><code>git push -u origin master</code></pre></li>
-</ul>
-</div>
-<div id="confirm-the-local-change-propagated-to-the-github-remote-4" class="section level2">
-<h2><span class="header-section-number">18.6</span> Confirm the local change propagated to the GitHub remote</h2>
-<p>Go back to the browser. I assume we’re still viewing your new GitHub repo.</p>
-<p>Refresh.</p>
-<p>You should see all the project files you commited there.</p>
-<p>If you click on “commits,” you should see one with the message “init”.</p>
-</div>
-<div id="the-end-2" class="section level2">
-<h2><span class="header-section-number">18.7</span> The end</h2>
-<p>Now just … repeat. Do work somewhere. Commit it. Push it or pull it depending on where you did it, but get local and remote “synced up”. Repeat.</p>
+<p>Practice this before you need it, so you see how it works.</p>
 
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="existing-github-first.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="rmd-test-drive.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="bingo.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="reset.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -404,7 +360,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jennybc/happy-git-with-r/edit/master/22_usage-existing-project-github-last.Rmd",
+"link": "https://github.com/jennybc/happy-git-with-r/edit/master/43_prompt-burn-it-all-down.Rmd",
 "text": null
 },
 "download": null,

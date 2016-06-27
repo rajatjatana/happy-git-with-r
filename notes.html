@@ -33,8 +33,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="existing-github-first.html">
-<link rel="next" href="rmd-test-drive.html">
+<link rel="prev" href="search.html">
+<link rel="next" href="shell.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -301,83 +301,106 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="existing-github-last" class="section level1">
-<h1><span class="header-section-number">18</span> Existing project, GitHub last</h1>
-<p>An explicit workflow for connecting an existing local R project to GitHub, when for some reason you cannot or don’t want to do a “GitHub first” workflow (see chapters <a href="new-github-first.html#new-github-first">16</a> and <a href="existing-github-first.html#existing-github-first">17</a>).</p>
-<p>When might this come up? Maybe if it’s an existing project that is also a Git repo with a history you care about? Then you have to do this properly.</p>
-<p>This is less desirable for a novice because it involves command line Git. You can’t stay within RStudio.</p>
-<div id="make-or-verify-an-rstudio-project" class="section level2">
-<h2><span class="header-section-number">18.1</span> Make or verify an RStudio Project</h2>
-<p>We assume you’ve got your existing R project isolated in a directory on your computer.</p>
-<p>If it’s not already an RStudio Project, make it so:</p>
+<div id="notes" class="section level1">
+<h1><span class="header-section-number">27</span> Notes</h1>
+<p>Notes for future</p>
+<div id="common-workflow-questions" class="section level2">
+<h2><span class="header-section-number">27.1</span> Common workflow questions</h2>
+<div id="keep-something-out-of-git" class="section level3">
+<h3><span class="header-section-number">27.1.1</span> Keep something out of Git</h3>
+<p>List it in <code>.gitignore.</code></p>
+</div>
+<div id="i-didnt-mean-to-commit-that" class="section level3">
+<h3><span class="header-section-number">27.1.2</span> I didn’t mean to commit that</h3>
+<p>Commiting things you didn’t mean to (too big, secret). How to undo.</p>
+</div>
+</div>
+<div id="git-stuff" class="section level2">
+<h2><span class="header-section-number">27.2</span> git stuff</h2>
+<p>Git explainers, heavy on the diagrams</p>
+<p><a href="https://twitter.com/JennyBryan/status/743548245645791232" class="uri">https://twitter.com/JennyBryan/status/743548245645791232</a></p>
+<p>A Visual Git Reference<br />
+<a href="http://marklodato.github.io/visual-git-guide/index-en.html" class="uri">http://marklodato.github.io/visual-git-guide/index-en.html</a></p>
+<p>A successful Git branching model<br />
+<a href="http://nvie.com/posts/a-successful-git-branching-model/" class="uri">http://nvie.com/posts/a-successful-git-branching-model/</a></p>
+<p>A succesful Git branching model considered harmful<br />
+<a href="https://barro.github.io/2016/02/a-succesful-git-branching-model-considered-harmful/" class="uri">https://barro.github.io/2016/02/a-succesful-git-branching-model-considered-harmful/</a></p>
+<p>Git Tutorials from Atlassian <a href="https://www.atlassian.com/git/tutorials/" class="uri">https://www.atlassian.com/git/tutorials/</a></p>
+<p>Software Carpentry Git Novice Lesson<br />
+<a href="http://swcarpentry.github.io/git-novice/" class="uri">http://swcarpentry.github.io/git-novice/</a></p>
+<p>Michael Freeman slides on Git collaboration<br />
+<a href="http://slides.com/michaelfreeman/git-collaboration#/" class="uri">http://slides.com/michaelfreeman/git-collaboration#/</a></p>
+<p>GitHub Training materials<br />
+<a href="https://services.github.com/kit/" class="uri">https://services.github.com/kit/</a></p>
+<p>Git for Ages 4 and Up<br />
+<a href="https://www.youtube.com/watch?v=3m7BgIvC-uQ" class="uri">https://www.youtube.com/watch?v=3m7BgIvC-uQ</a></p>
+<p>Learn Git Branching<br />
+<a href="http://learngitbranching.js.org" class="uri">http://learngitbranching.js.org</a></p>
+</div>
+<div id="the-repeated-amend" class="section level2">
+<h2><span class="header-section-number">27.3</span> The repeated amend</h2>
+<p>A way to commit often, without exposing your WIP on GitHub or without creating a very cluttered history.</p>
+<p>Make changes. Reach a decent stopping point. Test, check, if a package … Render if an analysis …. Nothing broken?</p>
+<p>Commit. <strong>Don’t push.</strong></p>
+<p>Make more progress. Keep testing or checking or rendering. Inspect diffs to watch what’s changing.</p>
+<p>Are things broken? Use an appropriate reset to fall back.</p>
+<p>Are things improving? Commit but <strong>amend</strong> the previous commit.</p>
+<p>Keep going like this until you’ve built up a commit you can be proud of.</p>
+<p><strong>Now push.</strong></p>
+<p>It is important to not push amended commits unless you really know what you’re doing and you can be quite sure that no one else has pulled your work.</p>
+</div>
+<div id="disaster-recovery" class="section level2">
+<h2><span class="header-section-number">27.4</span> Disaster recovery</h2>
+<p><a href="http://stackoverflow.com/questions?sort=votes" class="uri">http://stackoverflow.com/questions?sort=votes</a></p>
+<p>Break it down:</p>
 <ul>
-<li>Create a new RStudio project: <em>File &gt; New Project &gt; Existing Directory</em>.</li>
-<li>Yes: “Open in new session”.</li>
+<li>Is something wrong with my filesystem/files?</li>
+<li>Is my git repo messed up?</li>
+<li>How can I keep this from happening again?</li>
 </ul>
-<p>If it’s already an RStudio Project, launch it.</p>
+<p>Rebase avoidance techniques.</p>
+<p>Headless state. Rebase hell.</p>
+<p>What to do when you can’t, e.g., switch branches. Stashing and WIP commits.</p>
 </div>
-<div id="make-or-verify-a-git-repo" class="section level2">
-<h2><span class="header-section-number">18.2</span> Make or verify a Git repo</h2>
-<p>You should be in RStudio now, in your project.</p>
-<p>Is it already a Git repository? The presence of the Git pane should tip you off. If yes, you’re done.</p>
-<p>If not:</p>
-<p><em>Tools &gt; Project Options … &gt; Git/SVN</em> Under Version control system, select “Git”. Confirm New Git Repository? Yes!</p>
-<p>Project should re-launch in RStudio and you should now have a Git pane.</p>
+<div id="engage-with-r-source-on-github" class="section level2">
+<h2><span class="header-section-number">27.5</span> Engage with R source on GitHub</h2>
+<p>Browsing</p>
+<p>Searching</p>
+<ul>
+<li>My gist, re: the cran user: <a href="https://gist.github.com/jennybc/4a1bf4e9e1bb3a0a9b56" class="uri">https://gist.github.com/jennybc/4a1bf4e9e1bb3a0a9b56</a></li>
+<li>Recent search for roxygen template usage in the wild: <a href="https://github.com/search?utf8=✓&amp;q=man-roxygen+in:path&amp;type=Code&amp;ref=searchresults" class="uri">https://github.com/search?utf8=✓&amp;q=man-roxygen+in:path&amp;type=Code&amp;ref=searchresults</a></li>
+</ul>
+<p>Being a useful useR</p>
+<ul>
+<li>stay informed re: development</li>
+<li>use issues for bug reports, feature requests</li>
+<li>make pull requests</li>
+</ul>
 </div>
-<div id="stage-and-commit-1" class="section level2">
-<h2><span class="header-section-number">18.3</span> Stage and commit</h2>
-<p>If your local project was already a Git repo and was up-to-date, move on. Otherwise, you probably need to stage and commit.</p>
+<div id="workflow-and-psychology" class="section level2">
+<h2><span class="header-section-number">27.6</span> Workflow and psychology</h2>
+<p>Stress of working in the open</p>
+<p>Workflows for group of 1, 2, 5, 10</p>
 <ul>
-<li>Click the “Git” tab in upper right pane</li>
-<li>Check “Staged” box for all files you want to commit.
+<li><p>Fork and Pull vs Shared Repository</p>
 <ul>
-<li>Default: stage it.</li>
-<li>When to reconsider: this will all go to GitHub. So do consider if that is appropriate for each file. <strong>You can absolutely keep a file locally, without commiting it to the Git repo and sending to GitHub</strong>. Just let it sit there in your Git pane, without being staged. No harm will be done. If this is a long-term situation, list the file in <code>.gitignore</code>.</li>
+<li><a href="https://help.github.com/articles/types-of-collaborative-development-models/" class="uri">https://help.github.com/articles/types-of-collaborative-development-models/</a></li>
+<li><a href="https://help.github.com/articles/using-pull-requests/" class="uri">https://help.github.com/articles/using-pull-requests/</a></li>
 </ul></li>
-<li>If you’re not already in the Git pop-up, click “Commit”</li>
-<li>Type a message in “Commit message”.</li>
-<li>Click “Commit”</li>
 </ul>
-</div>
-<div id="make-a-repo-on-github-3" class="section level2">
-<h2><span class="header-section-number">18.4</span> Make a repo on GitHub</h2>
-<p>Go to <a href="https://github.com" class="uri">https://github.com</a> and make sure you are logged in.</p>
-<p>Click green “New repository” button. Or, if you are on your own profile page, click on “Repositories”, then click the green “New” button.</p>
-<p>Pick a repository name – it should probably match the name of your local Project and directory. Why confuse yourself?</p>
-<p>Public or private, as appropriate and possible<br />
-DO NOT initialize this repository with a README.</p>
-<p>Click big green button “Create repository.”</p>
-<p>Copy the HTTPS clone URL to your clipboard via the green “Clone or Download” button. Or copy the SSH URL if you chose to set up SSH keys.</p>
-</div>
-<div id="connect-to-github" class="section level2">
-<h2><span class="header-section-number">18.5</span> Connect to GitHub</h2>
-<p>Initiate the “upstream” or “tracking” relationship by adding a remote. Go to <em>Tools &gt; shell</em> and do this, substituting the HTTPS or SSH URL for <strong>your GitHub repo</strong>, according to your setup:</p>
-<pre><code>    git remote add origin https://github.com/jennybc/myrepo.git</code></pre>
-<ul>
-<li><p>Push and cement the tracking relationship between your GitHub repository and the local repo by pushing and setting the “upstream” remote:</p>
-<pre><code>git push -u origin master</code></pre></li>
-</ul>
-</div>
-<div id="confirm-the-local-change-propagated-to-the-github-remote-4" class="section level2">
-<h2><span class="header-section-number">18.6</span> Confirm the local change propagated to the GitHub remote</h2>
-<p>Go back to the browser. I assume we’re still viewing your new GitHub repo.</p>
-<p>Refresh.</p>
-<p>You should see all the project files you commited there.</p>
-<p>If you click on “commits,” you should see one with the message “init”.</p>
-</div>
-<div id="the-end-2" class="section level2">
-<h2><span class="header-section-number">18.7</span> The end</h2>
-<p>Now just … repeat. Do work somewhere. Commit it. Push it or pull it depending on where you did it, but get local and remote “synced up”. Repeat.</p>
 
 </div>
 </div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="existing-github-first.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="rmd-test-drive.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="search.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="shell.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -404,7 +427,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jennybc/happy-git-with-r/edit/master/22_usage-existing-project-github-last.Rmd",
+"link": "https://github.com/jennybc/happy-git-with-r/edit/master/50_more-content.Rmd",
 "text": null
 },
 "download": null,
