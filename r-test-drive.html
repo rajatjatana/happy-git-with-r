@@ -33,8 +33,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="hello-git.html">
-<link rel="next" href="push-pull-github.html">
+<link rel="prev" href="rmd-test-drive.html">
+<link rel="next" href="stuff.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -282,53 +282,42 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="git-client" class="section level1">
-<h1><span class="header-section-number">9</span> Install a Git client</h1>
-<p>This is optional but <strong>highly recommended</strong>.</p>
-<p>Unless specified, it is not required for live workshops and will not be explicitly taught, though you might see us using one of these clients.</p>
-<div id="what-and-why" class="section level2">
-<h2><span class="header-section-number">9.1</span> What and why</h2>
-<p>Learning to use version control can be rough at first. I found the use of a GUI – as opposed to the command line – extremely helpful when I was getting started. I call this sort of helper application a Git client. It’s really a Git(Hub) client because they also help you interact with GitHub or other remotes.</p>
-<p>Git and your Git client are not the same thing, just like R and RStudio are not the same thing. A Git client and the RStudio IDE are not necessary to use to Git or R, respectively, but they make the experience more pleasant because they reduce the amount of <a href="http://www.pgbovine.net/command-line-bullshittery.htm">command line bullshittery</a>.</p>
-<p>RStudio offers a very basic Git client. I use this often for simple operations, but you probably want another, more powerful one as well.</p>
-<p>Fair warning: for some things, you will have to use the command line. But the more powerful your Git client is, the less often this happens.</p>
-<p>Fantastic news: because all of the clients are just forming and executing Git commands on your behalf, you don’t have to pick one. You can literally do one operation from the command line, do another from RStudio, and another from SourceTree, one after the other, and it just works. <em>Very rarely, both clients will scan the repo at the same time and you’ll get an error message about <code>.git/index.lock</code>. Try the operation again at least once before doing any further troubleshooting.</em></p>
-</div>
-<div id="recommended-git-clients" class="section level2">
-<h2><span class="header-section-number">9.2</span> Recommended Git clients</h2>
-<!-- https://twitter.com/JennyBryan/status/734894596019224576 -->
+<div id="r-test-drive" class="section level1">
+<h1><span class="header-section-number">20</span> Render an R script</h1>
+<p>An underappreciated fact is that much of what you can do with R Markdown? … you can also do with an R script.</p>
+<p>If you’re in analysis mode and want a report as a side effect, write an R script. If you’re writing a report with alot of R code in it, write Rmd. In either case, render to markdown.</p>
+<p>In R markdown, prose is top-level and code is tucked into chunks.</p>
+<p>In R scripts, code is top-level and prose is tucked into comments.</p>
+<p>Hands-on experiment: start with an R Markdown file, such as the one you made in your Rmd test drive (chapter <a href="rmd-test-drive.html#rmd-test-drive">19</a>). Or the boilerplate Rmd RStudio makes with <em>File &gt; New File &gt; R Markdown …</em>:</p>
 <ul>
-<li><p><a href="http://www.sourcetreeapp.com">SourceTree</a> is a free, powerful Git(Hub) client that I highly recommend. It was my first Git client and is still my favorite for nontrivial Git tasks. Available for Mac and Windows. If I’m teaching you in a course or workshop, you might see me using this.</p></li>
-<li><p><a href="https://www.gitkraken.com">GitKraken</a> is quite new on the scene and is free. I would probably start here if I was starting today. Why? Because it works across all three OSes my students use: Windows, Mac, and Linux. I hear very good reviews, especially from long-suffering Linux users who haven’t had any great options until now.</p></li>
-<li><p><a href="http://gitup.co">GitUp</a> is a free, open source client for Mac OS. I’ve heard really good things about it and like what I read on the website. However, I tried to make myself use it for a day and went sort of nuts, possibly because I’m so used to SourceTree. YMMV.</p></li>
-<li>GitHub also offers <a href="https://desktop.github.com/">a free Git(Hub) client</a> for Windows and Mac. We do NOT recommend it for Windows and have serious reservations even for Mac OS. What do we object to?
-<ul>
-<li>The degree of hand-holding offered by GitHub’s clients borders on hand-<em>cuffs</em>.</li>
-<li>The Windows client sometimes leaves the Git executable so well hidden that we can’t find it. This is a deal-killer, because that means RStudio can’t find it either.</li>
-<li>These clients wrap Git functionality so thoroughly that we’ve had students make some destructive mistakes. For example, we’ve seen a “sync” operation that resulted in the loss of local uncommitted changes. Exactly which Git operations, in what order, are implied by “sync”, is <a href="http://stackoverflow.com/questions/12104513/what-does-github-for-windows-sync-do">not entirely clear</a>. We prefer clients that expose Git more explicitly.</li>
-<li>We’ve heard similar negative reviews from other instructors. It’s not just us.</li>
-</ul></li>
-<li><p>Others that I have heard positive reviews for:</p>
-<ul>
-<li><a href="http://www.syntevo.com/smartgit/">SmartGit</a></li>
-<li><a href="https://git-cola.github.io">git-cola</a></li>
-<li><a href="https://magit.vc">magit</a>, for Emacs nerds</li>
-</ul></li>
-<li><p>Browse <a href="http://git-scm.com/downloads/guis">even more Git(Hub) clients</a>.</p></li>
+<li>Save the file as <code>foo.R</code>, as opposed to <code>foo.Rmd</code>.</li>
+<li>Anything that’s not R code? Like the YAML and the English prose? Protect it with roxygen-style comments: start each line with <code>#'</code>.</li>
+<li>Anything that’s R code? Let it exist “as is” as top-level code.</li>
+<li><p>Change the syntax of R chunk headers like so:</p>
+<p>Before: <code>```{r setup, include = FALSE}</code><br />
+After: <code>#+ r setup, include = FALSE</code></p></li>
+<li><p>Delete the 3 backticks that end each chunk.</p></li>
 </ul>
+<p>If you’re having syntax struggles, here’s another exercise:</p>
+<ul>
+<li>Create a very simple R script. Literally, you could summarize and make a plot from the iris data. Make it boring.</li>
+<li>Click on the “notebook” icon in RStudio to “Compile Report”. You’ll get a very nice HTML report.</li>
+<li>Copy the YAML from the Rmd test drive (chapter <a href="rmd-test-drive.html#rmd-test-drive">19</a>), but prepend each line with <code>#'</code>.</li>
+</ul>
+<p>All the workflow tips from the Rmd test drive (chapter <a href="rmd-test-drive.html#rmd-test-drive">19</a>) transfer: when you script an analysis, render it to markdown, commit the <code>.R</code>, the <code>.md</code>, any associated figures, and push to GitHub. Collaborators can see your code but also browse the result without running it.</p>
 
 </div>
+
+
+
 </div>
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="hello-git.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="push-pull-github.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="rmd-test-drive.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="stuff.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -355,7 +344,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jennybc/happy-git-with-r/edit/master/09_install-git-client.Rmd",
+"link": "https://github.com/jennybc/happy-git-with-r/edit/master/31_usage-first-use-r-script-and-github.Rmd",
 "text": null
 },
 "download": null,

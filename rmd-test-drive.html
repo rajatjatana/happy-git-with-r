@@ -33,8 +33,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="hello-git.html">
-<link rel="next" href="push-pull-github.html">
+<link rel="prev" href="existing-github-last.html">
+<link rel="next" href="r-test-drive.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -282,53 +282,154 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="git-client" class="section level1">
-<h1><span class="header-section-number">9</span> Install a Git client</h1>
-<p>This is optional but <strong>highly recommended</strong>.</p>
-<p>Unless specified, it is not required for live workshops and will not be explicitly taught, though you might see us using one of these clients.</p>
-<div id="what-and-why" class="section level2">
-<h2><span class="header-section-number">9.1</span> What and why</h2>
-<p>Learning to use version control can be rough at first. I found the use of a GUI – as opposed to the command line – extremely helpful when I was getting started. I call this sort of helper application a Git client. It’s really a Git(Hub) client because they also help you interact with GitHub or other remotes.</p>
-<p>Git and your Git client are not the same thing, just like R and RStudio are not the same thing. A Git client and the RStudio IDE are not necessary to use to Git or R, respectively, but they make the experience more pleasant because they reduce the amount of <a href="http://www.pgbovine.net/command-line-bullshittery.htm">command line bullshittery</a>.</p>
-<p>RStudio offers a very basic Git client. I use this often for simple operations, but you probably want another, more powerful one as well.</p>
-<p>Fair warning: for some things, you will have to use the command line. But the more powerful your Git client is, the less often this happens.</p>
-<p>Fantastic news: because all of the clients are just forming and executing Git commands on your behalf, you don’t have to pick one. You can literally do one operation from the command line, do another from RStudio, and another from SourceTree, one after the other, and it just works. <em>Very rarely, both clients will scan the repo at the same time and you’ll get an error message about <code>.git/index.lock</code>. Try the operation again at least once before doing any further troubleshooting.</em></p>
-</div>
-<div id="recommended-git-clients" class="section level2">
-<h2><span class="header-section-number">9.2</span> Recommended Git clients</h2>
-<!-- https://twitter.com/JennyBryan/status/734894596019224576 -->
+<div id="rmd-test-drive" class="section level1">
+<h1><span class="header-section-number">19</span> Test drive R Markdown</h1>
+<p>We will author an R Markdown document and render it to HTML. We discuss how to keep the intermediate Markdown file, the figures, and what to commit to Git and push to GitHub. If GitHub is the primary venue, we render directly to GitHub-flavored markdown and never create HTML.</p>
+<p>Here is the official R Markdown documentation: <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a></p>
+<div id="hello-world" class="section level2">
+<h2><span class="header-section-number">19.1</span> Hello World</h2>
+<p>We’ll practice with RStudio’s boilerplate R Markdown document.</p>
+<p>Launch RStudio in a Project that is a Git repo that is connected to a GitHub repo.</p>
+<p>We are modelling “walk before you run” here. It is best to increase complexity in small increments. We test our system’s ability to render the <a href="http://en.wikipedia.org/wiki/%22Hello,_world!%22_program">“hello world”</a> of R Markdown documents before we muddy the waters with our own, probably buggy, documents.</p>
+<p>Do this: <em>File &gt; New File &gt; R Markdown …</em></p>
 <ul>
-<li><p><a href="http://www.sourcetreeapp.com">SourceTree</a> is a free, powerful Git(Hub) client that I highly recommend. It was my first Git client and is still my favorite for nontrivial Git tasks. Available for Mac and Windows. If I’m teaching you in a course or workshop, you might see me using this.</p></li>
-<li><p><a href="https://www.gitkraken.com">GitKraken</a> is quite new on the scene and is free. I would probably start here if I was starting today. Why? Because it works across all three OSes my students use: Windows, Mac, and Linux. I hear very good reviews, especially from long-suffering Linux users who haven’t had any great options until now.</p></li>
-<li><p><a href="http://gitup.co">GitUp</a> is a free, open source client for Mac OS. I’ve heard really good things about it and like what I read on the website. However, I tried to make myself use it for a day and went sort of nuts, possibly because I’m so used to SourceTree. YMMV.</p></li>
-<li>GitHub also offers <a href="https://desktop.github.com/">a free Git(Hub) client</a> for Windows and Mac. We do NOT recommend it for Windows and have serious reservations even for Mac OS. What do we object to?
-<ul>
-<li>The degree of hand-holding offered by GitHub’s clients borders on hand-<em>cuffs</em>.</li>
-<li>The Windows client sometimes leaves the Git executable so well hidden that we can’t find it. This is a deal-killer, because that means RStudio can’t find it either.</li>
-<li>These clients wrap Git functionality so thoroughly that we’ve had students make some destructive mistakes. For example, we’ve seen a “sync” operation that resulted in the loss of local uncommitted changes. Exactly which Git operations, in what order, are implied by “sync”, is <a href="http://stackoverflow.com/questions/12104513/what-does-github-for-windows-sync-do">not entirely clear</a>. We prefer clients that expose Git more explicitly.</li>
-<li>We’ve heard similar negative reviews from other instructors. It’s not just us.</li>
-</ul></li>
-<li><p>Others that I have heard positive reviews for:</p>
-<ul>
-<li><a href="http://www.syntevo.com/smartgit/">SmartGit</a></li>
-<li><a href="https://git-cola.github.io">git-cola</a></li>
-<li><a href="https://magit.vc">magit</a>, for Emacs nerds</li>
-</ul></li>
-<li><p>Browse <a href="http://git-scm.com/downloads/guis">even more Git(Hub) clients</a>.</p></li>
+<li>Give it an informative title. This will appear in the document but does not necessarily have anything to do with the file’s name. But the title and filename should be related! Why confuse yourself? The title is for human eyeballs, so it can contain spaces and punctuation. The filename is for humans and computers, so it should have similar words in it but no spaces and no punctuation.</li>
+<li>Accept the default Author or edit if you wish.</li>
+<li>Accept the default output format of HTML.</li>
+<li>Click OK.</li>
 </ul>
+<p>Save this document to a reasonable filename and location. The filename should end in <code>.Rmd</code> or <code>.rmd</code>. Save in the top-level of this RStudio project and Git repository, that is also current working directory. Trust me on this and do this for a while.</p>
+<p>You might want to commit here. So you can see what’s about to change …</p>
+<p>Click on “Knit HTML” or do <em>File &gt; Knit Document</em>. RStudio should display a preview of the resulting HTML. Also look at the file browser. You should see the R Markdown document, i.e. <code>foo.Rmd</code> AND the resulting HTML <code>foo.html</code>.</p>
+<p>Congratulations, you’ve just made your first reproducible report with R Markdown.</p>
+<p>You might want to commit here.</p>
+</div>
+<div id="push-to-github" class="section level2">
+<h2><span class="header-section-number">19.2</span> Push to GitHub</h2>
+<p>Push the current state to GitHub.</p>
+<p>Go visit it in the browser.</p>
+<p>Do you see the new files? An R Markdown document and the associated HTML? Visit both in the browser. Verify this:</p>
+<ul>
+<li>Rmd is quite readable. But the output is obviously not there.</li>
+<li>HTML is ugly.</li>
+</ul>
+</div>
+<div id="output-format" class="section level2">
+<h2><span class="header-section-number">19.3</span> Output format</h2>
+<p>Do you really want HTML? Do you only want HTML? If so, you can skip this step!</p>
+<p>The magical process that turns your R Markdown to HTML is like so: <code>foo.Rmd --&gt; foo.md --&gt; foo.html</code>. Note the intermediate markdown, <code>foo.md</code>. By default RStudio discards this, but you might want to hold on to that markdown.</p>
+<p>Why? GitHub gives very special treatment to markdown files. They are rendered in an almost HTML-like way. This is great because it preserves all the charms of plain text but gives you a pseudo-webpage for free when you visit the file in the browser. In contrast, HTML is rendered as plain text on GitHub and you’ll have to take special measures to see it the way you want.</p>
+<p>In many cases, you <em>only want the markdown</em>. In that case, we switch the output format to <code>github_document</code>. This means render will be <code>foo.Rmd --&gt; foo.md</code>, where <code>foo.md</code> is GitHub-flavored markdown. If you still want the HTML <em>but also the intermediate markdown</em>, there’s a way to request that too.</p>
+<p><strong>Output format</strong> is one of the many things we can control in the YAML frontmatter – the text at the top of your file between leading and trailing lines of <code>---</code>.</p>
+<p>You can make some changes via the RStudio IDE: click on the “gear” in the top bar of the source editor, near the “Knit HTML” button. Select “Output options” and go to the Advanced tab and check “Keep markdown source file.” Your YAML should now look more like this:</p>
+<div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml">    <span class="kw">-</span>--
+    <span class="fu">title:</span> <span class="st">&quot;Something fascinating&quot;</span>
+    <span class="fu">author:</span> <span class="st">&quot;Jenny Bryan&quot;</span>
+    <span class="fu">date:</span> <span class="st">&quot;2016-06-27&quot;</span>
+    <span class="fu">output:</span>
+      <span class="fu">html_document:</span>
+        <span class="fu">keep_md:</span> true
+    <span class="kw">-</span>--</code></pre></div>
+<p>You should have gained the line <code>keep_md: true</code>. You can also simply edit the file yourself to achieve this.</p>
+<p>In fact this hand-edit is necessary if you want to keep only markdown and get GitHub-flavored markdown. In that case, make your YAML look like this:</p>
+<div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml">    <span class="kw">-</span>--
+    <span class="fu">title:</span> <span class="st">&quot;Something fascinating&quot;</span>
+    <span class="fu">author:</span> <span class="st">&quot;Jenny Bryan&quot;</span>
+    <span class="fu">date:</span> <span class="st">&quot;2016-06-27&quot;</span>
+    <span class="fu">output:</span> github_document
+    <span class="kw">-</span>--</code></pre></div>
+<p>Save!</p>
+<p>You might want to commit here.</p>
+<p>Render via “Knit HTML” button.</p>
+<p>Now revisit the file browser. In addition to <code>foo.Rmd</code>, you should now see <code>foo.md</code>. If there are R chunks that make figures, the usage of markdown output formats will also cause those figure files to be left behind in a sensibly named sub-directory, <code>foo_files</code>.</p>
+<p>If you commit and push <code>foo.md</code> and everything inside <code>foo_files</code>, then anyone with permission to view your GitHub repo can see a decent-looking version of your report.</p>
+<p>If your output format is <code>html_document</code>, you should still see <code>foo.html</code>. If your output format is <code>github_document</code> and you see <code>foo.html</code>, that’s leftover from earlier experiments. Delete that. It will only confuse you later.</p>
+<p>You might want to commit here.</p>
+</div>
+<div id="push-to-github-1" class="section level2">
+<h2><span class="header-section-number">19.4</span> Push to GitHub</h2>
+<p>Push the current state to GitHub.</p>
+<p>Go visit it in the browser.</p>
+<p>Do you see the modifications and new file(s)? Your Rmd should be modified (the YAML frontmatter changed). And you should have gained at least, the associated markdown file.</p>
+<ul>
+<li>Visit the markdown file and compare to our previous HTML.</li>
+<li>Do you see how the markdown is much more useful on GitHub? Internalize that.</li>
+</ul>
+</div>
+<div id="put-your-stamp-on-it" class="section level2">
+<h2><span class="header-section-number">19.5</span> Put your stamp on it</h2>
+<p>Select everything but the YAML frontmatter and … delete it!</p>
+<p>Write a single English sentence.</p>
+<p>Insert an empty R chunk, via the “Chunk” menu in upper right of source editor or with corresponding keyboard shortcut.</p>
+<!-- resorting to less desirable trick because usual trick does not play nice with bookdown -->
+<pre><code>```{r}
+## insert your brilliant WORKING code here
+```</code></pre>
+<p>Insert 1 to 3 lines of functioning code that begin the task at hand. “Walk through” and run those lines using the “Run” button or the corresponding keyboard shortcut. You MUST make sure your code actually works!</p>
+<p>Satisfied? Save!</p>
+<p>You might want to commit here.</p>
+<p>Now render the whole document via “Knit HTML.” Voilà!</p>
+<p>You might want to commit here.</p>
+</div>
+<div id="develop-your-report" class="section level2">
+<h2><span class="header-section-number">19.6</span> Develop your report</h2>
+<p>In this incremental manner, develop your report. Add code to this chunk. Refine it. Add new chunks. Go crazy! But keep running the code “manually” to make sure it works.</p>
+<p>If it doesn’t work with you babysitting it, I can guarantee you it will fail, in a more spectacular and cryptic way, when run at arms-length via “Knit HTML” or <code>rmarkdown::render()</code>.</p>
+<p>Clean out your workspace and restart R and re-run everything periodically, if things get weird. There are lots of chunk menu items and keyboard shortcuts to accelerate this workflow. Render the whole document often to catch errors when they’re easy to pinpoint and fix. Save often and commit every time you reach a point that you’d like as a “fall back” position.</p>
+<p>You’ll develop your own mojo soon, but this should give you your first successful R Markdown experience.</p>
+</div>
+<div id="publish-your-report" class="section level2">
+<h2><span class="header-section-number">19.7</span> Publish your report</h2>
+<p>If you’ve been making HTML, you can put that up on the web somewhere, email to your collaborator, whatever.</p>
+<p>No matter what, technically you can publish this report merely by pushing a rendered version to GitHub. However, certain practices make this effort at publishing more satisfying for your audience.</p>
+<p>Here are two behaviors I find very frustrating:</p>
+<ul>
+<li>“Here is my code. Behold.” This is when someone only pushes their source, i.e. R Markdown or R code AND they want other people to look at their “product”. The implicit assumption is that target audience will download code and run it. Sometimes the potential payoff simply does not justify this effort.</li>
+<li>“Here is my HTML. Behold.” This is when someone doesn’t bother to edit the default output format and accepts HTML only. What am I supposed to do with HTML on GitHub?</li>
+</ul>
+<p>Creating, commiting, and pushing markdown is a very functional, lighweight publishing strategy. Use <code>output: github_document</code> or <code>keep_md: true</code> if output is <code>html_document</code>. In both cases, it is critical to also commit and push everything inside <code>foo_files</code>. Now people can visit and consume your work like any other webpage.</p>
+<p>This is (sort of) another example of keeping things machine- and human-readable, which is bliss. By making <code>foo.Rmd</code> available, others can see and run your <strong>actual code</strong>. By sharing <code>foo.md</code> and/or <code>foo.html</code>, others can casually browse your end product and decide if they even want to bother.</p>
+</div>
+<div id="html-on-github" class="section level2">
+<h2><span class="header-section-number">19.8</span> HTML on GitHub</h2>
+<p>HTML files, such as <code>foo.html</code>, are not immediately useful on GitHub (though your local versions are easily viewable). Visit one and you’ll see the raw HTML. Yuck. But there are ways to get a preview: such as <a href="https://rawgit.com" class="uri">https://rawgit.com</a> or <a href="http://htmlpreview.github.io" class="uri">http://htmlpreview.github.io</a>. Expect some pain with HTML files inside private repos. When it becomes vital for the whole world to see proper HTML in its full glory, it’s time to use a more sophisticated web publishing strategy.</p>
+<p>I have more <a href="http://stat545.com/bit006_github-browsability-wins.html">general ideas</a> about how to make a GitHub repo function as a website.</p>
+</div>
+<div id="troubleshooting" class="section level2">
+<h2><span class="header-section-number">19.9</span> Troubleshooting</h2>
+<p><strong>Make sure RStudio and the <code>rmarkdown</code> package (and its dependencies) are up-to-date.</strong> In case of catastrophic failure to render R Markdown, consider that your software may be too old. R Markdown has been developing rapidly (written 2015-09), so you need a very current version of RStudio and <code>rmarkdown</code> to enjoy all the goodies we describe in this course.</p>
+<p><strong>Get rid of your <code>.Rprofile</code></strong>, at least temporarily. I have found that a “mature” <code>.Rprofile</code> that has accumulated haphazardly over the years can cause trouble. Specifically, if you’ve got anything in there relating to <code>knitr</code>, <code>markdown</code>, <code>rmarkdown</code> and RStudio stuff, it may be preventing the installation or usage of the most recent goodies (see above). Comment the whole file out or rename it something else and relaunch or even re-install RStudio.</p>
+<p><strong>Insert a chunk in your <code>.Rmd</code> document so that it renders even when there are errors.</strong> Some errors are easier to diagnose if you can execute specific R statements during rendering and leave more evidence behind for forensic examination. Put this chunk:</p>
+<pre><code>```{r setup, include = FALSE, cache = FALSE}
+knitr::opts_chunk$set(error = TRUE) here
+```</code></pre>
+<p>near the top of your R Markdown document if you want to soldier on through errors, i.e. turn <code>foo.Rmd</code> into <code>foo.md</code> and/or <code>foo.html</code> no matter what. This is also helpful if you are writing a tutorial and want to demo code that throws an error. You might want to keep this as an <a href="https://support.rstudio.com/hc/en-us/articles/204463668-Code-Snippets">RStudio snippet</a> for easy insertion.</p>
+<p><strong>Tolerate errors in one specific chunk.</strong> If it’s undesirable to globally accept errors, you can still do this for a specific chunk like so:</p>
+<pre><code>```{r wing-and-a-prayer, error = TRUE}
+## your sketchy code goes here ;)
+```</code></pre>
+<p><strong>Check your working directory.</strong> It’s going to break your heart as you learn how often your mistakes are really mundane and basic. Ask me how I know. When things go wrong consider:</p>
+<ul>
+<li>What is the working directory?</li>
+<li>Is that file I want to read/write actually where I think it is?</li>
+</ul>
+<p>Drop these commands into R chunks to check the above:</p>
+<ul>
+<li><code>getwd()</code> will display working directory at <strong>run time</strong>. If you monkeyed around with working directory with, e.g., the mouse, maybe it’s set to one place for your interactive development and another when “Knit HTML” takes over?</li>
+<li><code>list.files()</code> will list the files in working directory. Is the file you want even there?</li>
+</ul>
+<p><strong>Don’t try to change working directory within an R Markdown document</strong>. <a href="https://github.com/yihui/knitr/blob/master/FAQ.md">Just don’t</a>. That is all.</p>
+<p><strong>Don’t be in a hurry to create a complicated sub-directory structure.</strong> RStudio/<code>knitr</code>/<code>rmarkdown</code> (which bring you the “Knit HTML” button) are rather opinionated about the working directory being set to the <code>.Rmd</code> file’s location and about all files living together in one big happy directory. This can all be worked around. But not today.</p>
 
 </div>
 </div>
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="hello-git.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="push-pull-github.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="existing-github-last.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-test-drive.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -355,7 +456,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jennybc/happy-git-with-r/edit/master/09_install-git-client.Rmd",
+"link": "https://github.com/jennybc/happy-git-with-r/edit/master/30_usage-first-use-rmd-and-github.Rmd",
 "text": null
 },
 "download": null,

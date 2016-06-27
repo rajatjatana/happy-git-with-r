@@ -33,8 +33,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="hello-git.html">
-<link rel="next" href="push-pull-github.html">
+<link rel="prev" href="existing-github-first.html">
+<link rel="next" href="rmd-test-drive.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -282,53 +282,83 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="git-client" class="section level1">
-<h1><span class="header-section-number">9</span> Install a Git client</h1>
-<p>This is optional but <strong>highly recommended</strong>.</p>
-<p>Unless specified, it is not required for live workshops and will not be explicitly taught, though you might see us using one of these clients.</p>
-<div id="what-and-why" class="section level2">
-<h2><span class="header-section-number">9.1</span> What and why</h2>
-<p>Learning to use version control can be rough at first. I found the use of a GUI – as opposed to the command line – extremely helpful when I was getting started. I call this sort of helper application a Git client. It’s really a Git(Hub) client because they also help you interact with GitHub or other remotes.</p>
-<p>Git and your Git client are not the same thing, just like R and RStudio are not the same thing. A Git client and the RStudio IDE are not necessary to use to Git or R, respectively, but they make the experience more pleasant because they reduce the amount of <a href="http://www.pgbovine.net/command-line-bullshittery.htm">command line bullshittery</a>.</p>
-<p>RStudio offers a very basic Git client. I use this often for simple operations, but you probably want another, more powerful one as well.</p>
-<p>Fair warning: for some things, you will have to use the command line. But the more powerful your Git client is, the less often this happens.</p>
-<p>Fantastic news: because all of the clients are just forming and executing Git commands on your behalf, you don’t have to pick one. You can literally do one operation from the command line, do another from RStudio, and another from SourceTree, one after the other, and it just works. <em>Very rarely, both clients will scan the repo at the same time and you’ll get an error message about <code>.git/index.lock</code>. Try the operation again at least once before doing any further troubleshooting.</em></p>
-</div>
-<div id="recommended-git-clients" class="section level2">
-<h2><span class="header-section-number">9.2</span> Recommended Git clients</h2>
-<!-- https://twitter.com/JennyBryan/status/734894596019224576 -->
+<div id="existing-github-last" class="section level1">
+<h1><span class="header-section-number">18</span> Existing project, GitHub last</h1>
+<p>An explicit workflow for connecting an existing local R project to GitHub, when for some reason you cannot or don’t want to do a “GitHub first” workflow (see chapters <a href="new-github-first.html#new-github-first">16</a> and <a href="existing-github-first.html#existing-github-first">17</a>).</p>
+<p>When might this come up? Maybe if it’s an existing project that is also a Git repo with a history you care about? Then you have to do this properly.</p>
+<p>This is less desirable for a novice because it involves command line Git. You can’t stay within RStudio.</p>
+<div id="make-or-verify-an-rstudio-project" class="section level2">
+<h2><span class="header-section-number">18.1</span> Make or verify an RStudio Project</h2>
+<p>We assume you’ve got your existing R project isolated in a directory on your computer.</p>
+<p>If it’s not already an RStudio Project, make it so:</p>
 <ul>
-<li><p><a href="http://www.sourcetreeapp.com">SourceTree</a> is a free, powerful Git(Hub) client that I highly recommend. It was my first Git client and is still my favorite for nontrivial Git tasks. Available for Mac and Windows. If I’m teaching you in a course or workshop, you might see me using this.</p></li>
-<li><p><a href="https://www.gitkraken.com">GitKraken</a> is quite new on the scene and is free. I would probably start here if I was starting today. Why? Because it works across all three OSes my students use: Windows, Mac, and Linux. I hear very good reviews, especially from long-suffering Linux users who haven’t had any great options until now.</p></li>
-<li><p><a href="http://gitup.co">GitUp</a> is a free, open source client for Mac OS. I’ve heard really good things about it and like what I read on the website. However, I tried to make myself use it for a day and went sort of nuts, possibly because I’m so used to SourceTree. YMMV.</p></li>
-<li>GitHub also offers <a href="https://desktop.github.com/">a free Git(Hub) client</a> for Windows and Mac. We do NOT recommend it for Windows and have serious reservations even for Mac OS. What do we object to?
-<ul>
-<li>The degree of hand-holding offered by GitHub’s clients borders on hand-<em>cuffs</em>.</li>
-<li>The Windows client sometimes leaves the Git executable so well hidden that we can’t find it. This is a deal-killer, because that means RStudio can’t find it either.</li>
-<li>These clients wrap Git functionality so thoroughly that we’ve had students make some destructive mistakes. For example, we’ve seen a “sync” operation that resulted in the loss of local uncommitted changes. Exactly which Git operations, in what order, are implied by “sync”, is <a href="http://stackoverflow.com/questions/12104513/what-does-github-for-windows-sync-do">not entirely clear</a>. We prefer clients that expose Git more explicitly.</li>
-<li>We’ve heard similar negative reviews from other instructors. It’s not just us.</li>
-</ul></li>
-<li><p>Others that I have heard positive reviews for:</p>
-<ul>
-<li><a href="http://www.syntevo.com/smartgit/">SmartGit</a></li>
-<li><a href="https://git-cola.github.io">git-cola</a></li>
-<li><a href="https://magit.vc">magit</a>, for Emacs nerds</li>
-</ul></li>
-<li><p>Browse <a href="http://git-scm.com/downloads/guis">even more Git(Hub) clients</a>.</p></li>
+<li>Create a new RStudio project: <em>File &gt; New Project &gt; Existing Directory</em>.</li>
+<li>Yes: “Open in new session”.</li>
 </ul>
+<p>If it’s already an RStudio Project, launch it.</p>
+</div>
+<div id="make-or-verify-a-git-repo" class="section level2">
+<h2><span class="header-section-number">18.2</span> Make or verify a Git repo</h2>
+<p>You should be in RStudio now, in your project.</p>
+<p>Is it already a Git repository? The presence of the Git pane should tip you off. If yes, you’re done.</p>
+<p>If not:</p>
+<p><em>Tools &gt; Project Options … &gt; Git/SVN</em> Under Version control system, select “Git”. Confirm New Git Repository? Yes!</p>
+<p>Project should re-launch in RStudio and you should now have a Git pane.</p>
+</div>
+<div id="stage-and-commit-1" class="section level2">
+<h2><span class="header-section-number">18.3</span> Stage and commit</h2>
+<p>If your local project was already a Git repo and was up-to-date, move on. Otherwise, you probably need to stage and commit.</p>
+<ul>
+<li>Click the “Git” tab in upper right pane</li>
+<li>Check “Staged” box for all files you want to commit.
+<ul>
+<li>Default: stage it.</li>
+<li>When to reconsider: this will all go to GitHub. So do consider if that is appropriate for each file. <strong>You can absolutely keep a file locally, without commiting it to the Git repo and sending to GitHub</strong>. Just let it sit there in your Git pane, without being staged. No harm will be done. If this is a long-term situation, list the file in <code>.gitignore</code>.</li>
+</ul></li>
+<li>If you’re not already in the Git pop-up, click “Commit”</li>
+<li>Type a message in “Commit message”.</li>
+<li>Click “Commit”</li>
+</ul>
+</div>
+<div id="make-a-repo-on-github-3" class="section level2">
+<h2><span class="header-section-number">18.4</span> Make a repo on GitHub</h2>
+<p>Go to <a href="https://github.com" class="uri">https://github.com</a> and make sure you are logged in.</p>
+<p>Click green “New repository” button. Or, if you are on your own profile page, click on “Repositories”, then click the green “New” button.</p>
+<p>Pick a repository name – it should probably match the name of your local Project and directory. Why confuse yourself?</p>
+<p>Public or private, as appropriate and possible<br />
+DO NOT initialize this repository with a README.</p>
+<p>Click big green button “Create repository.”</p>
+<p>Copy the HTTPS clone URL to your clipboard via the green “Clone or Download” button. Or copy the SSH URL if you chose to set up SSH keys.</p>
+</div>
+<div id="connect-to-github" class="section level2">
+<h2><span class="header-section-number">18.5</span> Connect to GitHub</h2>
+<p>Initiate the “upstream” or “tracking” relationship by adding a remote. Go to <em>Tools &gt; shell</em> and do this, substituting the HTTPS or SSH URL for <strong>your GitHub repo</strong>, according to your setup:</p>
+<pre><code>    git remote add origin https://github.com/jennybc/myrepo.git</code></pre>
+<ul>
+<li><p>Push and cement the tracking relationship between your GitHub repository and the local repo by pushing and setting the “upstream” remote:</p>
+<pre><code>git push -u origin master</code></pre></li>
+</ul>
+</div>
+<div id="confirm-the-local-change-propagated-to-the-github-remote-4" class="section level2">
+<h2><span class="header-section-number">18.6</span> Confirm the local change propagated to the GitHub remote</h2>
+<p>Go back to the browser. I assume we’re still viewing your new GitHub repo.</p>
+<p>Refresh.</p>
+<p>You should see all the project files you commited there.</p>
+<p>If you click on “commits,” you should see one with the message “init”.</p>
+</div>
+<div id="the-end-2" class="section level2">
+<h2><span class="header-section-number">18.7</span> The end</h2>
+<p>Now just … repeat. Do work somewhere. Commit it. Push it or pull it depending on where you did it, but get local and remote “synced up”. Repeat.</p>
 
 </div>
 </div>
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="hello-git.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="push-pull-github.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="existing-github-first.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="rmd-test-drive.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -355,7 +385,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jennybc/happy-git-with-r/edit/master/09_install-git-client.Rmd",
+"link": "https://github.com/jennybc/happy-git-with-r/edit/master/22_usage-existing-project-github-last.Rmd",
 "text": null
 },
 "download": null,

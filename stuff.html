@@ -33,8 +33,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="hello-git.html">
-<link rel="next" href="push-pull-github.html">
+<link rel="prev" href="r-test-drive.html">
+<link rel="next" href="shell.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -282,40 +282,70 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="git-client" class="section level1">
-<h1><span class="header-section-number">9</span> Install a Git client</h1>
-<p>This is optional but <strong>highly recommended</strong>.</p>
-<p>Unless specified, it is not required for live workshops and will not be explicitly taught, though you might see us using one of these clients.</p>
-<div id="what-and-why" class="section level2">
-<h2><span class="header-section-number">9.1</span> What and why</h2>
-<p>Learning to use version control can be rough at first. I found the use of a GUI – as opposed to the command line – extremely helpful when I was getting started. I call this sort of helper application a Git client. It’s really a Git(Hub) client because they also help you interact with GitHub or other remotes.</p>
-<p>Git and your Git client are not the same thing, just like R and RStudio are not the same thing. A Git client and the RStudio IDE are not necessary to use to Git or R, respectively, but they make the experience more pleasant because they reduce the amount of <a href="http://www.pgbovine.net/command-line-bullshittery.htm">command line bullshittery</a>.</p>
-<p>RStudio offers a very basic Git client. I use this often for simple operations, but you probably want another, more powerful one as well.</p>
-<p>Fair warning: for some things, you will have to use the command line. But the more powerful your Git client is, the less often this happens.</p>
-<p>Fantastic news: because all of the clients are just forming and executing Git commands on your behalf, you don’t have to pick one. You can literally do one operation from the command line, do another from RStudio, and another from SourceTree, one after the other, and it just works. <em>Very rarely, both clients will scan the repo at the same time and you’ll get an error message about <code>.git/index.lock</code>. Try the operation again at least once before doing any further troubleshooting.</em></p>
+<div id="stuff" class="section level1">
+<h1><span class="header-section-number">21</span> stuff</h1>
+<div id="clone-a-project" class="section level2">
+<h2><span class="header-section-number">21.1</span> Clone a project</h2>
+<p>For when you just want a copy of something. But also want to track its evolution, which would not be true if you just, say, downloaded the ZIP archive.</p>
+<p>I create a repo (or use one created above). They clone. I make a new commit. They pull to get it.</p>
+<p>More practice: Do this once with … your favorite R package? The polygraphing film data (or something else that is not an R package)?</p>
+<p>Need to explain when to do this versus fork.</p>
+<p>How to keep a fork updated. The browser only method. The 2nd remote method.</p>
 </div>
-<div id="recommended-git-clients" class="section level2">
-<h2><span class="header-section-number">9.2</span> Recommended Git clients</h2>
-<!-- https://twitter.com/JennyBryan/status/734894596019224576 -->
+<div id="git-stuff" class="section level2">
+<h2><span class="header-section-number">21.2</span> git stuff</h2>
+<p>link out to full tutorials w/ good visuals</p>
+<p>filesystem / working directory</p>
+<p>vs</p>
+<p>staging area</p>
+<p>vs</p>
+<p>???</p>
+<p>make sure understand you can have a file locally that git is not tracking and is not pushing/pulling to github. It’s ok to not stage everything. If a long-term situation, gitignore so it doesn’t clutter things up and bug you.</p>
 <ul>
-<li><p><a href="http://www.sourcetreeapp.com">SourceTree</a> is a free, powerful Git(Hub) client that I highly recommend. It was my first Git client and is still my favorite for nontrivial Git tasks. Available for Mac and Windows. If I’m teaching you in a course or workshop, you might see me using this.</p></li>
-<li><p><a href="https://www.gitkraken.com">GitKraken</a> is quite new on the scene and is free. I would probably start here if I was starting today. Why? Because it works across all three OSes my students use: Windows, Mac, and Linux. I hear very good reviews, especially from long-suffering Linux users who haven’t had any great options until now.</p></li>
-<li><p><a href="http://gitup.co">GitUp</a> is a free, open source client for Mac OS. I’ve heard really good things about it and like what I read on the website. However, I tried to make myself use it for a day and went sort of nuts, possibly because I’m so used to SourceTree. YMMV.</p></li>
-<li>GitHub also offers <a href="https://desktop.github.com/">a free Git(Hub) client</a> for Windows and Mac. We do NOT recommend it for Windows and have serious reservations even for Mac OS. What do we object to?
-<ul>
-<li>The degree of hand-holding offered by GitHub’s clients borders on hand-<em>cuffs</em>.</li>
-<li>The Windows client sometimes leaves the Git executable so well hidden that we can’t find it. This is a deal-killer, because that means RStudio can’t find it either.</li>
-<li>These clients wrap Git functionality so thoroughly that we’ve had students make some destructive mistakes. For example, we’ve seen a “sync” operation that resulted in the loss of local uncommitted changes. Exactly which Git operations, in what order, are implied by “sync”, is <a href="http://stackoverflow.com/questions/12104513/what-does-github-for-windows-sync-do">not entirely clear</a>. We prefer clients that expose Git more explicitly.</li>
-<li>We’ve heard similar negative reviews from other instructors. It’s not just us.</li>
-</ul></li>
-<li><p>Others that I have heard positive reviews for:</p>
-<ul>
-<li><a href="http://www.syntevo.com/smartgit/">SmartGit</a></li>
-<li><a href="https://git-cola.github.io">git-cola</a></li>
-<li><a href="https://magit.vc">magit</a>, for Emacs nerds</li>
-</ul></li>
-<li><p>Browse <a href="http://git-scm.com/downloads/guis">even more Git(Hub) clients</a>.</p></li>
+<li><code>git add -A</code></li>
 </ul>
+</div>
+<div id="the-repeated-amend" class="section level2">
+<h2><span class="header-section-number">21.3</span> The repeated amend</h2>
+<p>local only, i.e. never amend a commit that’s already pushed</p>
+<p>affecting a remote, explain why so dangerous and when it <em>might</em> be ok</p>
+</div>
+<div id="disaster-recovery" class="section level2">
+<h2><span class="header-section-number">21.4</span> Disaster recovery</h2>
+<p>Break it down:</p>
+<ul>
+<li>Is something wrong with my filesystem, files?</li>
+<li>Is my git repo messed up?</li>
+<li>How can I keep this from happening again?</li>
+</ul>
+<p>Best case, you have no filesystem problem, only a git problem. And some sort of reset usually works.</p>
+<p>Practice burn it all down.</p>
+<p>Editing most recent commit or just its message.</p>
+<p>Rebase avoidance techniques.</p>
+<p>Headless state. Rebase hell.</p>
+<p><a href="http://stackoverflow.com/questions?sort=votes" class="uri">http://stackoverflow.com/questions?sort=votes</a></p>
+<p>Commiting things you didn’t mean to (too big, secret)</p>
+<p>Not being able to do something, like edit last commit (technically I wanted to do interactive rebase, in order to edit last commit w/o amending it), because of having unstaged changes.</p>
+</div>
+<div id="engage-with-r-source-on-github" class="section level2">
+<h2><span class="header-section-number">21.5</span> Engage with R source on GitHub</h2>
+<p>Browsing</p>
+<p>Searching</p>
+<ul>
+<li>My gist, re: the cran user: <a href="https://gist.github.com/jennybc/4a1bf4e9e1bb3a0a9b56" class="uri">https://gist.github.com/jennybc/4a1bf4e9e1bb3a0a9b56</a></li>
+<li>Recent search for roxygen template usage in the wild: <a href="https://github.com/search?utf8=✓&amp;q=man-roxygen+in:path&amp;type=Code&amp;ref=searchresults" class="uri">https://github.com/search?utf8=✓&amp;q=man-roxygen+in:path&amp;type=Code&amp;ref=searchresults</a></li>
+</ul>
+<p>Being a useful useR</p>
+<ul>
+<li>stay informed re: development</li>
+<li>use issues for bug reports, feature requests</li>
+<li>make pull requests</li>
+</ul>
+</div>
+<div id="workflow-and-psychology" class="section level2">
+<h2><span class="header-section-number">21.6</span> Workflow and psychology</h2>
+<p>Stress of working in the open</p>
+<p>Workflows for group of 1, 2, 5, 10.</p>
 
 </div>
 </div>
@@ -327,8 +357,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-<a href="hello-git.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="push-pull-github.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="r-test-drive.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="shell.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -355,7 +385,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jennybc/happy-git-with-r/edit/master/09_install-git-client.Rmd",
+"link": "https://github.com/jennybc/happy-git-with-r/edit/master/50_more-content.Rmd",
 "text": null
 },
 "download": null,

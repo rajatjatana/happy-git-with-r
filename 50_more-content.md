@@ -1,30 +1,8 @@
 # (PART) More {-} 
 
-# More content
-
-more stuff *coming soon* ... really!!
-
 placeholders and notes
 
-## New project
-
-Revisit and expand "GitHub first, then RStudio" example presented here.
-
-## R Markdown + GitHub workflow
-
-[Test drive R Markdown](block007_first-use-rmarkdown.html) but embrace the Git/GitHub aspects.
-
-Push HTML and show how unsatisfactory that is. Push markdown and show how nice that is.
-
-Optional: R script example and properly commented YAML.
-
-## Existing project
-
-~~Create an RStudio project, then make it a Git repo, then make a GitHub repo, then connect them.~~ *oh, let's not*
-
-Easier though less elegant: create repo on GitHub, clone via RStudio, then copy your stuff in.
-
-What if it's an existing project that is also a Git repo with a history you care about? Then you have to do it properly. Using the "RStudio first, then GitHub" template from here: [Test connection between RStudio and GitHub](git07_git-github-rstudio.html).
+# stuff
 
 ## Clone a project
 
@@ -41,6 +19,16 @@ How to keep a fork updated. The browser only method. The 2nd remote method.
 ## git stuff
 
 link out to full tutorials w/ good visuals
+
+filesystem / working directory
+
+vs
+
+staging area
+
+vs
+
+???
 
 make sure understand you can have a file locally that git is not tracking and is not pushing/pulling to github.  It's ok to not stage everything. If a long-term situation, gitignore so it doesn't clutter things up and bug you.
 
