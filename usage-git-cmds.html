@@ -33,8 +33,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="clone.html">
-<link rel="next" href="bingo.html">
+<link rel="prev" href="r-test-drive.html">
+<link rel="next" href="clone.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -303,54 +303,59 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="fork" class="section level1">
-<h1><span class="header-section-number">23</span> Fork a repo</h1>
-<p>In the previous prompt (chapter <a href="clone.html#clone">22</a>), we <em>cloned</em> someone else’s repo to get a copy that we could keep up to date, by pulling new commits into our local copy.</p>
-<p>What if you suspect you might want to propose a change to a repository? Then you should <strong>fork</strong> it, instead of clone it.</p>
-<div id="fork-then-clone" class="section level2">
-<h2><span class="header-section-number">23.1</span> Fork then clone</h2>
-<p>On GitHub, navigate to a repo of interest.</p>
-<p>In the upper right hand corner, click Fork.</p>
-<p>This creates a copy of the repo in your GitHub account and takes you there in the browser.</p>
-<p>Use the usual workflow (chapter <a href="clone.html#clone">22</a>) to clone this to your local machine.</p>
-</div>
-<div id="fork-and-pull" class="section level2">
-<h2><span class="header-section-number">23.2</span> Fork and pull</h2>
-<p>Make your changes locally, commit, then push back to your fork.</p>
-<p>When/if you are ready to propose a change, you place a pull request from your fork on GitHub to the original repo owned by someone else.</p>
-<p>Here’s a sketch of how this looks:</p>
-<div class="figure">
-<img src="git-fork-new-project-push-pull-request.png" alt="" />
+<div id="usage-git-cmds" class="section level1">
+<h1><span class="header-section-number">21</span> Git commands</h1>
+<p>Here’s a start on the various Git commands that have been largely going on under the hood. We’ve tried to pick workflows that have RStudio doing this for us. But all of this can be done from the command line.</p>
+<p><em>Unless you use the <a href="https://developer.github.com/v3/">GitHub API</a>, most of the GitHub bits really have to be done from the browser.</em></p>
+<p>New local git repo from a repo on GitHub:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> clone https://github.com/jennybc/happy-git-with-r.git</code></pre></div>
+<p>Check the remote was cloned successfully:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> remote --verbose</code></pre></div>
+<p>Stage local changes, commit:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> add foo.txt
+<span class="kw">git</span> commit --message <span class="st">&quot;A commit message&quot;</span></code></pre></div>
+<p>Check on the state of the Git world:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> status
+<span class="kw">git</span> log</code></pre></div>
+<p>Compare versions:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> diff</code></pre></div>
+<p>Add a remote to existing local repo:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> remote add origin https://github.com/jennybc/happy-git-with-r
+<span class="kw">git</span> remote --verbose
+<span class="kw">git</span> remote show origin</code></pre></div>
+<p>Push local master to GitHub master and have local master track master on GitHub:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> push --set-upstream origin master
+<span class="co">## shorter form</span>
+<span class="kw">git</span> push -u origin master
+<span class="co">## you only need to set upstream tracking once!</span></code></pre></div>
+<p>Regular push:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> push 
+<span class="co">## the above usually implies (and certainly does in our tutorial)</span>
+<span class="kw">git</span> push origin master
+<span class="co">## git push [remote-name] [branch-name]</span></code></pre></div>
+<p>Pull commits from GitHub:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> pull</code></pre></div>
+<p>Pull commits and don’t let it put you in a merge conflict pickle:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> pull --ff-only</code></pre></div>
+<p>Fetch commits</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> fetch</code></pre></div>
+<p>Switch to a branch</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> checkout [branch-name]</code></pre></div>
+<p>Checking remote and branch tracking</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> remote -v
+<span class="kw">git</span> branch -vv</code></pre></div>
 
 </div>
-</div>
-<div id="updating-your-fork" class="section level2">
-<h2><span class="header-section-number">23.3</span> Updating your fork</h2>
-<p>It is harder to keep a fork updated than a clone. Why? Because the primary remote associated with your local is your fork. But you need to get the new commits from the repository you originally forked.</p>
-<p>You need to have more than one <em>remote</em> associated with your local repo.</p>
-<p>If you’re nervous about command line Git, you update your fork on GitHub purely via the browser. Then pull to get the commits into your local repo:</p>
-<ul>
-<li><a href="http://www.hpique.com/2013/09/updating-a-fork-directly-from-github/">Updating a fork directly from GitHub</a></li>
-</ul>
-<p>In the long run, you will want to learn how to configure a second remote for your local repo. Pull the new commits into your local repo, then push them to your own fork:</p>
-<ul>
-<li><a href="https://help.github.com/articles/syncing-a-fork/">GitHub Help: Syncing a fork</a></li>
-</ul>
-<p><em>Here’s a <a href="https://twitter.com/minisciencegirl/status/697236466867445760">handwritten sketch</a> devised with <a href="http://billmills.github.io">Bill Mills</a> in a bar, but that will have to do for now!</em></p>
-<div class="figure">
-<img src="git-fork-update.jpg" alt="" />
 
-</div>
 
-</div>
-</div>
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="clone.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="bingo.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="r-test-drive.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="clone.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -377,7 +382,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jennybc/happy-git-with-r/edit/master/41_prompt-fork.Rmd",
+"link": "https://github.com/jennybc/happy-git-with-r/edit/master/38_usage-git-commands.Rmd",
 "text": null
 },
 "download": null,
