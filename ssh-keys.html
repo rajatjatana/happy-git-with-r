@@ -25,7 +25,7 @@
 
 <meta name="author" content="Jenny Bryan and the STAT 545 TAs">
 
-<meta name="date" content="2016-06-26">
+<meta name="date" content="2016-06-27">
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -168,7 +168,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11.3.1" data-path="credential-caching.html"><a href="credential-caching.html#trigger-a-username-password-challenge"><i class="fa fa-check"></i><b>11.3.1</b> Trigger a username / password challenge</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="ssh-keys.html"><a href="ssh-keys.html"><i class="fa fa-check"></i><b>12</b> Set up keys for SSH</a></li>
+<li class="chapter" data-level="12" data-path="ssh-keys.html"><a href="ssh-keys.html"><i class="fa fa-check"></i><b>12</b> Set up keys for SSH</a><ul>
+<li class="chapter" data-level="12.1" data-path="ssh-keys.html"><a href="ssh-keys.html#ssh-keys"><i class="fa fa-check"></i><b>12.1</b> SSH Keys</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="ssh-keys.html"><a href="ssh-keys.html#about-ssh-keys"><i class="fa fa-check"></i><b>12.1.1</b> About SSH Keys</a></li>
+<li class="chapter" data-level="12.1.2" data-path="ssh-keys.html"><a href="ssh-keys.html#mac-1"><i class="fa fa-check"></i><b>12.1.2</b> Mac</a></li>
+<li class="chapter" data-level="12.1.3" data-path="ssh-keys.html"><a href="ssh-keys.html#linux-2"><i class="fa fa-check"></i><b>12.1.3</b> Linux</a></li>
+<li class="chapter" data-level="12.1.4" data-path="ssh-keys.html"><a href="ssh-keys.html#windows-2"><i class="fa fa-check"></i><b>12.1.4</b> Windows</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="13" data-path="rstudio-git-github.html"><a href="rstudio-git-github.html"><i class="fa fa-check"></i><b>13</b> Connect RStudio to Git and GitHub</a><ul>
 <li class="chapter" data-level="13.1" data-path="rstudio-git-github.html"><a href="rstudio-git-github.html#prerequisites"><i class="fa fa-check"></i><b>13.1</b> Prerequisites</a></li>
 <li class="chapter" data-level="13.2" data-path="rstudio-git-github.html"><a href="rstudio-git-github.html#make-a-new-repo-on-github"><i class="fa fa-check"></i><b>13.2</b> Make a new repo on GitHub</a></li>
@@ -243,12 +250,82 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li><a href="http://r-pkgs.had.co.nz/git.html#git-init" class="uri">http://r-pkgs.had.co.nz/git.html#git-init</a></li>
 </ul></li>
-<li>How to do via shell?
+</ul>
+<div id="ssh-keys" class="section level2">
+<h2><span class="header-section-number">12.1</span> SSH Keys</h2>
+<div id="about-ssh-keys" class="section level3">
+<h3><span class="header-section-number">12.1.1</span> About SSH Keys</h3>
+<p>SSH keys provide a more secure way of logging into a virtual private server with SSH than using a password alone. While a password can eventually be cracked with a brute force attack, SSH keys are nearly impossible to decipher by brute force alone. Generating a key pair provides you with two long string of characters: a public and a private key. You can place the public key on any server, and then unlock it by connecting to it with a client that already has the private key. When the two match up, the system unlocks without the need for a password. You can increase security even more by protecting the private key with a passphrase.</p>
+<ol style="list-style-type: decimal">
+<li><p>Create the RSA Key Pair The first step is to create the key pair on your computer:</p>
+<pre><code>$ ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;</code></pre></li>
+<li><p>Store the Keys and Passphrase Once you have entered the Gen Key command, you will get a few more questions:</p>
+<pre><code>Enter file in which to save the key (/home/demo/.ssh/id_rsa):</code></pre>
+<p>You can press enter here, saving the file to the user home (in this case, my example user is called demo).</p>
+<pre><code>Enter passphrase (empty for no passphrase):</code></pre>
+<p>It’s up to you whether you want to use a passphrase. Entering a passphrase does have its benefits: the security of a key, no matter how encrypted, still depends on the fact that it is not visible to anyone else. Should a passphrase-protected private key fall into an unauthorized users possession, they will be unable to log in to its associated accounts until they figure out the passphrase, buying the hacked user some extra time. The only downside, of course, to having a passphrase, is then having to type it in each time you use the Key Pair.</p></li>
+</ol>
+<p>The entire key generation process looks like this:</p>
+<pre><code>$ ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/demo/.ssh/id_rsa): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/demo/.ssh/id_rsa.
+Your public key has been saved in /home/demo/.ssh/id_rsa.pub.
+The key fingerprint is:
+4a:dd:0a:c6:35:4e:3f:ed:27:38:8c:74:44:4d:93:67 demo@a
+The key&#39;s randomart image is:
++--[ RSA 2048]----+
+|          .oo.   |
+|         .  o.E  |
+|        + .  o   |
+|     . = = .     |
+|      = S = .    |
+|     o + = +     |
+|      . o + o .  |
+|           . o   |
+|                 |
++-----------------+
+</code></pre>
+<p>The public key is now located in <code>/home/demo/.ssh/id_rsa.pub</code> The private key (identification) is now located in <code>/home/demo/.ssh/id_rsa</code></p>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Add the SSH keys to the SSH agent. First ensure the agent is enabled:</p>
+<pre><code>$ eval &quot;$(ssh-agent -s)&quot;
+Agent pid 59566</code></pre>
+<p>Then add the key to the agent:</p>
+<pre><code>$ ssh-add ~/.ssh/id_rsa</code></pre></li>
+<li><p>Now copy this public key onto your clipboard.</p></li>
+</ol>
+</div>
+<div id="mac-1" class="section level3">
+<h3><span class="header-section-number">12.1.2</span> Mac</h3>
+<pre><code>pbcopy &lt; ~/.ssh/id_rsa.pub</code></pre>
+</div>
+<div id="linux-2" class="section level3">
+<h3><span class="header-section-number">12.1.3</span> Linux</h3>
+<pre><code>sudo apt-get install xclip
+xclip -sel clip &lt; ~/.ssh/id_rsa.pub
+</code></pre>
+</div>
+<div id="windows-2" class="section level3">
+<h3><span class="header-section-number">12.1.4</span> Windows</h3>
+<pre><code>$ clip &lt; ~/.ssh/id_rsa.pub</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Go to your profile on <a href="GitHub.com">GitHub</a></li>
+</ol>
 <ul>
-<li><a href="https://help.github.com/articles/generating-an-ssh-key/" class="uri">https://help.github.com/articles/generating-an-ssh-key/</a></li>
-</ul></li>
+<li><p>In the top right corner of the page, click your profile photo, then click Settings.</p></li>
+<li><p>In the user settings sidebar, click SSH and GPG keys.</p></li>
+<li><p>Click New SSH key.</p></li>
+<li><p>In the “Title” field, add a descriptive label for the new key. For example, if you’re using a personal Mac, you might call this key “Personal MacBook Air”.</p></li>
+<li><p>Paste your key into the “Key” field.</p></li>
+<li><p>Click Add SSH key.</p></li>
+<li><p>Confirm the action by entering your GitHub password</p></li>
 </ul>
 
+</div>
+</div>
 </div>
             </section>
 
