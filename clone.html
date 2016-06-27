@@ -33,8 +33,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="fork.html">
-<link rel="next" href="shell.html">
+<link rel="prev" href="r-test-drive.html">
+<link rel="next" href="fork.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -290,75 +290,30 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="stuff" class="section level1">
-<h1><span class="header-section-number">23</span> stuff</h1>
-<div id="git-stuff" class="section level2">
-<h2><span class="header-section-number">23.1</span> git stuff</h2>
-<p>link out to full tutorials w/ good visuals</p>
-<p>filesystem / working directory</p>
-<p>vs</p>
-<p>staging area</p>
-<p>vs</p>
-<p>???</p>
-<p>make sure understand you can have a file locally that git is not tracking and is not pushing/pulling to github. It’s ok to not stage everything. If a long-term situation, gitignore so it doesn’t clutter things up and bug you.</p>
+<div id="clone" class="section level1">
+<h1><span class="header-section-number">21</span> Clone a repo</h1>
+<p>Clone someone else’s repository on GitHub where you just want a copy. But you also want to track its evolution. That is what differentiates a GitHub clone from, say, simply downloading the ZIP archive at a specific point in time.</p>
+<p>Pick a GitHub repository that interests you. Inspiration:</p>
 <ul>
-<li><code>git add -A</code></li>
-</ul>
-</div>
-<div id="the-repeated-amend" class="section level2">
-<h2><span class="header-section-number">23.2</span> The repeated amend</h2>
-<p>local only, i.e. never amend a commit that’s already pushed</p>
-<p>affecting a remote, explain why so dangerous and when it <em>might</em> be ok</p>
-</div>
-<div id="disaster-recovery" class="section level2">
-<h2><span class="header-section-number">23.3</span> Disaster recovery</h2>
-<p>Break it down:</p>
+<li>an R package you care about</li>
+<li>a data analytic project you find interesting
 <ul>
-<li>Is something wrong with my filesystem, files?</li>
-<li>Is my git repo messed up?</li>
-<li>How can I keep this from happening again?</li>
+<li>Example: The Github repo that underpins <a href="http://polygraph.cool/films/">Polygraphing’s blog post</a> analyzing 2,000 screenplays is here: <a href="https://github.com/brandles/scripts" class="uri">https://github.com/brandles/scripts</a></li>
+</ul></li>
 </ul>
-<p>Best case, you have no filesystem problem, only a git problem. And some sort of reset usually works.</p>
-<p>Practice burn it all down.</p>
-<p>Editing most recent commit or just its message.</p>
-<p>Rebase avoidance techniques.</p>
-<p>Headless state. Rebase hell.</p>
-<p><a href="http://stackoverflow.com/questions?sort=votes" class="uri">http://stackoverflow.com/questions?sort=votes</a></p>
-<p>Commiting things you didn’t mean to (too big, secret)</p>
-<p>Not being able to do something, like edit last commit (technically I wanted to do interactive rebase, in order to edit last commit w/o amending it), because of having unstaged changes.</p>
-</div>
-<div id="engage-with-r-source-on-github" class="section level2">
-<h2><span class="header-section-number">23.4</span> Engage with R source on GitHub</h2>
-<p>Browsing</p>
-<p>Searching</p>
-<ul>
-<li>My gist, re: the cran user: <a href="https://gist.github.com/jennybc/4a1bf4e9e1bb3a0a9b56" class="uri">https://gist.github.com/jennybc/4a1bf4e9e1bb3a0a9b56</a></li>
-<li>Recent search for roxygen template usage in the wild: <a href="https://github.com/search?utf8=✓&amp;q=man-roxygen+in:path&amp;type=Code&amp;ref=searchresults" class="uri">https://github.com/search?utf8=✓&amp;q=man-roxygen+in:path&amp;type=Code&amp;ref=searchresults</a></li>
-</ul>
-<p>Being a useful useR</p>
-<ul>
-<li>stay informed re: development</li>
-<li>use issues for bug reports, feature requests</li>
-<li>make pull requests</li>
-</ul>
-</div>
-<div id="workflow-and-psychology" class="section level2">
-<h2><span class="header-section-number">23.5</span> Workflow and psychology</h2>
-<p>Stress of working in the open</p>
-<p>Workflows for group of 1, 2, 5, 10.</p>
+<p>Create a new RStudio Project from this GitHub repo. Refresh your memory of how to do that by re-visiting our “GitHub first” workflow in chapter <a href="new-github-first.html#new-github-first">16</a>.</p>
+<p>Once you have the code locally, try to run some of it. Try to understand how it works.</p>
+<p>Do you want to make a change? Fine do that!</p>
+<p>Do you want to send changes back to the original author? Now you have firsthand knowledge of when you should <em>fork instead of clone</em>. See chapter <a href="fork.html#fork">22</a>.</p>
 
 </div>
-</div>
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="fork.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="shell.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="r-test-drive.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="fork.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -385,7 +340,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jennybc/happy-git-with-r/edit/master/50_more-content.Rmd",
+"link": "https://github.com/jennybc/happy-git-with-r/edit/master/40_prompt-clone.Rmd",
 "text": null
 },
 "download": null,
