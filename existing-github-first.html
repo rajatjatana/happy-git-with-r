@@ -25,7 +25,7 @@
 
 <meta name="author" content="Jenny Bryan and the STAT 545 TAs">
 
-<meta name="date" content="2016-06-27">
+<meta name="date" content="2016-06-29">
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -200,7 +200,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="15.4" data-path="troubleshooting.html"><a href="troubleshooting.html#i-have-no-idea-if-my-local-repo-and-my-remote-repo-are-connected."><i class="fa fa-check"></i><b>15.4</b> I have no idea if my local repo and my remote repo are connected.</a></li>
 <li class="chapter" data-level="15.5" data-path="troubleshooting.html"><a href="troubleshooting.html#push-fail-at-the-rstudio-level"><i class="fa fa-check"></i><b>15.5</b> Push fail at the RStudio level</a></li>
 <li class="chapter" data-level="15.6" data-path="troubleshooting.html"><a href="troubleshooting.html#push-rejected-i.e.fail-at-the-gitgithub-level"><i class="fa fa-check"></i><b>15.6</b> Push rejected, i.e. fail at the Git/GitHub level</a></li>
-<li class="chapter" data-level="15.7" data-path="troubleshooting.html"><a href="troubleshooting.html#rstudio-is-not-making-certain-files-available-for-stagingcommiting"><i class="fa fa-check"></i><b>15.7</b> RStudio is not making certain files available for staging/commiting</a></li>
+<li class="chapter" data-level="15.7" data-path="troubleshooting.html"><a href="troubleshooting.html#rstudio-is-not-making-certain-files-available-for-stagingcommitting"><i class="fa fa-check"></i><b>15.7</b> RStudio is not making certain files available for staging/committing</a></li>
 <li class="chapter" data-level="15.8" data-path="troubleshooting.html"><a href="troubleshooting.html#i-hear-you-have-some-git-repo-inside-your-git-repo"><i class="fa fa-check"></i><b>15.8</b> I hear you have some Git repo inside your Git repo</a></li>
 </ul></li>
 <li class="part"><span><b>Early Usage</b></span></li>
@@ -307,7 +307,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">17</span> Existing project, GitHub first</h1>
 <p>A novice-friendly workflow for bringing an existing R project into the RStudio and Git/GitHub universe.</p>
 <p>We do this in a slightly awkward way, in order to avoid using Git at the command line. You won’t want to work this way forever, but it’s perfectly fine as you’re getting started!</p>
-<p>We assume you’ve got your existing R project isolated in a directory on your computer. If that’s not already true, make it so. Create a directory and marshall all the existing data and R scripts there. It doesn’t really matter where you do this, but note where the project currently lives.</p>
+<p>We assume you’ve got your existing R project isolated in a directory on your computer. If that’s not already true, make it so. Create a directory and marshal all the existing data and R scripts there. It doesn’t really matter where you do this, but note where the project currently lives.</p>
 <div id="make-a-repo-on-github-2" class="section level2">
 <h2><span class="header-section-number">17.1</span> Make a repo on GitHub</h2>
 <p>Go to <a href="https://github.com" class="uri">https://github.com</a> and make sure you are logged in.</p>
@@ -351,7 +351,7 @@ YES Initialize this repository with a README</p>
 <li>Check “Staged” box for all files you want to commit.
 <ul>
 <li>Default: stage it.</li>
-<li>When to reconsider: this will all go to GitHub. So do consider if that is appropriate for each file. <strong>You can absolutely keep a file locally, without commiting it to the Git repo and sending to GitHub</strong>. Just let it sit there in your Git pane, without being staged. No harm will be done. If this is a long-term situation, list the file in <code>.gitignore</code>.</li>
+<li>When to reconsider: this will all go to GitHub. So do consider if that is appropriate for each file. <strong>You can absolutely keep a file locally, without committing it to the Git repo and sending to GitHub</strong>. Just let it sit there in your Git pane, without being staged. No harm will be done. If this is a long-term situation, list the file in <code>.gitignore</code>.</li>
 </ul></li>
 <li>If you’re not already in the Git pop-up, click “Commit”</li>
 <li>Type a message in “Commit message”, such as “init”.</li>
@@ -370,7 +370,7 @@ YES Initialize this repository with a README</p>
 <h2><span class="header-section-number">17.6</span> Confirm the local change propagated to the GitHub remote</h2>
 <p>Go back to the browser. I assume we’re still viewing your new GitHub repo.</p>
 <p>Refresh.</p>
-<p>You should see all the project files you commited there.</p>
+<p>You should see all the project files you committed there.</p>
 <p>If you click on “commits,” you should see one with the message “init”.</p>
 </div>
 <div id="the-end-1" class="section level2">
