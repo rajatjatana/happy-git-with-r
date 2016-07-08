@@ -271,6 +271,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="28.4" data-path="notes.html"><a href="notes.html#disaster-recovery"><i class="fa fa-check"></i><b>28.4</b> Disaster recovery</a></li>
 <li class="chapter" data-level="28.5" data-path="notes.html"><a href="notes.html#engage-with-r-source-on-github"><i class="fa fa-check"></i><b>28.5</b> Engage with R source on GitHub</a></li>
 <li class="chapter" data-level="28.6" data-path="notes.html"><a href="notes.html#workflow-and-psychology"><i class="fa fa-check"></i><b>28.6</b> Workflow and psychology</a></li>
+<li class="chapter" data-level="28.7" data-path="notes.html"><a href="notes.html#how-the-square-bracket-links-work"><i class="fa fa-check"></i><b>28.7</b> How the square bracket links work</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>A</b> The shell</a><ul>
@@ -392,6 +393,42 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li><a href="https://help.github.com/articles/types-of-collaborative-development-models/" class="uri">https://help.github.com/articles/types-of-collaborative-development-models/</a></li>
 <li><a href="https://help.github.com/articles/using-pull-requests/" class="uri">https://help.github.com/articles/using-pull-requests/</a></li>
+</ul></li>
+</ul>
+</div>
+<div id="how-the-square-bracket-links-work" class="section level2">
+<h2><span class="header-section-number">28.7</span> How the square bracket links work</h2>
+<p>Context: you prefer to link with text, not a chapter or section number.</p>
+<ul>
+<li>GOOD! Here’s a link to <a href="contrib.html#contrib">Contributors</a>.</li>
+<li>BAD. You can see contributors in <a href="contrib.html#contrib">2</a>.</li>
+</ul>
+<p>Facts and vocabulary</p>
+<ul>
+<li>Each chapter is a file. These files should begin with the chapter title using a level-one header, e.g., <code># Chapter Title</code>.</li>
+<li>A chapter can be made up of sections, indicated by lower-level headers, e.g., <code>## A section within the chapter</code>.</li>
+<li>There are three ways to address a section when creating links within your book:
+<ul>
+<li><strong>Explicit identifier</strong>: In <code># My header {#foo}</code> the explicit identifier is <code>foo</code>.</li>
+<li><strong>Automatically generated identifier</strong>: <code>my-header</code> is the auto-identifier for <code># My header</code>. Pandoc creates auto-identifiers according to rules laid out in <a href="http://pandoc.org/README.html#extension-auto_identifiers">Extension: auto_identifiers</a>.</li>
+<li>The header text, e.g., <code>My header</code> be used verbatim as an <strong>implicit header reference</strong>. See <a href="http://pandoc.org/README.html#extension-implicit_header_references">Extension: implicit_header_references</a> for more.</li>
+</ul></li>
+<li>All 3 forms can be used to create cross-references but you build the links differently.</li>
+<li>Advantage of explicit identification: You are less likely to update the section header and then forget to make matching edits to references elsewhere in the book.</li>
+</ul>
+<p>How to make text-based links using explicit identifiers, automatic identifiers, and implicit references:</p>
+<ul>
+<li>Use implicit reference alone to get a link where the text is exactly the section header:
+<ul>
+<li><code>[Introduce yourself to Git]</code> <a href="hello-git.html#hello-git">Introduce yourself to Git</a></li>
+<li><code>[Success and operating systems]</code> <a href="installation-pain.html#success-and-operating-systems">Success and operating systems</a></li>
+</ul></li>
+<li>You can provide custom text for the link with all 3 methods of addressing a section:
+<ul>
+<li>Implicit header reference: <code>[link text][Recommended Git clients]</code> <a href="git-client.html#recommended-git-clients">link text</a><br />
+</li>
+<li>Explicit identifier: <code>[hello git! I'm Jenny](#hello-git)</code> <a href="hello-git.html#hello-git">hello git! I’m Jenny</a></li>
+<li>Automatic identifier: <code>[Any text you want](#recommended-git-clients)</code> <a href="git-client.html#recommended-git-clients">Any text you want</a></li>
 </ul></li>
 </ul>
 
