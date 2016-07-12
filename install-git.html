@@ -8,7 +8,7 @@
   <title>Happy Git and GitHub for the useR</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="Using Git and GitHub with R, Rstudio, and R Markdown">
-  <meta name="generator" content="bookdown 0.0.79 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.0.80 and GitBook 2.6.7">
 
   <meta property="og:title" content="Happy Git and GitHub for the useR" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 
 <meta name="author" content="Jenny Bryan and the STAT 545 TAs">
 
-<meta name="date" content="2016-07-11">
+<meta name="date" content="2016-07-12">
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -145,7 +145,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="9" data-path="git-client.html"><a href="git-client.html"><i class="fa fa-check"></i><b>9</b> Install a Git client</a><ul>
 <li class="chapter" data-level="9.1" data-path="git-client.html"><a href="git-client.html#what-and-why"><i class="fa fa-check"></i><b>9.1</b> What and why</a></li>
-<li class="chapter" data-level="9.2" data-path="git-client.html"><a href="git-client.html#recommended-git-clients"><i class="fa fa-check"></i><b>9.2</b> Recommended Git clients</a></li>
+<li class="chapter" data-level="9.2" data-path="git-client.html"><a href="git-client.html#a-picture-is-worth-a-thousand-words"><i class="fa fa-check"></i><b>9.2</b> A picture is worth a thousand words</a></li>
+<li class="chapter" data-level="9.3" data-path="git-client.html"><a href="git-client.html#recommended-git-clients"><i class="fa fa-check"></i><b>9.3</b> Recommended Git clients</a></li>
 </ul></li>
 <li class="part"><span><b>Connect Git, GitHub, RStudio</b></span></li>
 <li class="chapter" data-level="10" data-path="push-pull-github.html"><a href="push-pull-github.html"><i class="fa fa-check"></i><b>10</b> Connect to GitHub</a><ul>
@@ -306,19 +307,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Otherwise, find installation instructions below for your operating system.</p>
 <div id="git-already-installed" class="section level2">
 <h2><span class="header-section-number">7.1</span> Git already installed?</h2>
-<p>Go to the shell (Appendix <a href="shell.html#shell">A</a>) and enter <code>which git</code> and <code>git --version</code>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">jenny@2015-mbp</span> happy-git-with-r $ which git
-<span class="kw">/usr/bin/git</span>
-
-<span class="kw">jenny@2015-mbp</span> happy-git-with-r $ git --version
-<span class="kw">git</span> version 2.7.4 (Apple Git-66)</code></pre></div>
-<p>If Git reports a path to an executable and a version, that’s great! You have Git already. No need to install! Move on.</p>
+<p>Go to the shell (Appendix <a href="shell.html#shell">A</a>). Enter <code>which git</code> to request the path to your Git exectuable</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">which</span> git
+<span class="co">## /usr/bin/git</span></code></pre></div>
+<p>and <code>git --version</code> to see its version.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> --version
+<span class="co">## git version 1.8.5.6</span></code></pre></div>
+<p>If you are successful, that’s great! You have Git already. No need to install! Move on.</p>
 <p>If, instead, you see something more like <code>git: command not found</code>, keep reading.</p>
 <p>Mac OS users might get an immediate offer to install command line developer tools. Yes, you should accept! Click “Install” and read more below.</p>
 </div>
 <div id="windows" class="section level2">
 <h2><span class="header-section-number">7.2</span> Windows</h2>
-<p><strong>Option 1</strong> (<em>recommended</em>): Install <a href="https://git-for-windows.github.io/">Git for Windows</a>, previously known as <code>msysgit</code> or “Git Bash”, to get Git in addition to some other useful tools, such as the Bash shell. Yes, all those names are totally confusing. Use all the default settings during installation.</p>
+<p><strong>Option 1</strong> (<em>recommended</em>): Install <a href="https://git-for-windows.github.io/">Git for Windows</a>, previously known as <code>msysgit</code> or “Git Bash”, to get Git in addition to some other useful tools, such as the Bash shell. Yes, all those names are totally confusing. You may accept all the default settings during installation.</p>
 <ul>
 <li>This approach leaves the Git executable in a conventional location, which will help you and other programs, e.g. RStudio, find it and use it. This also supports a transition to more expert use, because the Bash shell will be useful as you venture outside of R/RStudio.</li>
 <li>This also leaves you with a Git client, though not a very good one. So check out Git clients we recommend (chapter <a href="git-client.html#git-client">9</a>).</li>

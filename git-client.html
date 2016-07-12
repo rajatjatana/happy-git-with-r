@@ -8,7 +8,7 @@
   <title>Happy Git and GitHub for the useR</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="Using Git and GitHub with R, Rstudio, and R Markdown">
-  <meta name="generator" content="bookdown 0.0.79 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.0.80 and GitBook 2.6.7">
 
   <meta property="og:title" content="Happy Git and GitHub for the useR" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 
 <meta name="author" content="Jenny Bryan and the STAT 545 TAs">
 
-<meta name="date" content="2016-07-11">
+<meta name="date" content="2016-07-12">
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -145,7 +145,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="9" data-path="git-client.html"><a href="git-client.html"><i class="fa fa-check"></i><b>9</b> Install a Git client</a><ul>
 <li class="chapter" data-level="9.1" data-path="git-client.html"><a href="git-client.html#what-and-why"><i class="fa fa-check"></i><b>9.1</b> What and why</a></li>
-<li class="chapter" data-level="9.2" data-path="git-client.html"><a href="git-client.html#recommended-git-clients"><i class="fa fa-check"></i><b>9.2</b> Recommended Git clients</a></li>
+<li class="chapter" data-level="9.2" data-path="git-client.html"><a href="git-client.html#a-picture-is-worth-a-thousand-words"><i class="fa fa-check"></i><b>9.2</b> A picture is worth a thousand words</a></li>
+<li class="chapter" data-level="9.3" data-path="git-client.html"><a href="git-client.html#recommended-git-clients"><i class="fa fa-check"></i><b>9.3</b> Recommended Git clients</a></li>
 </ul></li>
 <li class="part"><span><b>Connect Git, GitHub, RStudio</b></span></li>
 <li class="chapter" data-level="10" data-path="push-pull-github.html"><a href="push-pull-github.html"><i class="fa fa-check"></i><b>10</b> Connect to GitHub</a><ul>
@@ -311,8 +312,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Fair warning: for some things, you will have to use the command line. But the more powerful your Git client is, the less often this happens.</p>
 <p>Fantastic news: because all of the clients are just forming and executing Git commands on your behalf, you don’t have to pick one. You can literally do one operation from the command line, do another from RStudio, and another from SourceTree, one after the other, and it just works. <em>Very rarely, both clients will scan the repo at the same time and you’ll get an error message about <code>.git/index.lock</code>. Try the operation again at least once before doing any further troubleshooting.</em></p>
 </div>
+<div id="a-picture-is-worth-a-thousand-words" class="section level2">
+<h2><span class="header-section-number">9.2</span> A picture is worth a thousand words</h2>
+<p>Here’s a screenshot of SourceTree (see below) open to the repository for this site. You get a nice graphical overview of the recent commit history, branches, and diffs, as well as a GUI that facilitates the most common Git operations.</p>
+<div class="figure">
+<img src="img/sourcetree-screenshot.png" alt="SourceTree screenshot" />
+<p class="caption">SourceTree screenshot</p>
+</div>
+<p>In contrast, here’s a shell session where I’ve used command line Git to access some of the same information.</p>
+<div class="figure">
+<img src="img/command-line-git-screenshot.png" alt="Command line Git" />
+<p class="caption">Command line Git</p>
+</div>
+<p>Which do you prefer?</p>
+</div>
 <div id="recommended-git-clients" class="section level2">
-<h2><span class="header-section-number">9.2</span> Recommended Git clients</h2>
+<h2><span class="header-section-number">9.3</span> Recommended Git clients</h2>
 <!-- https://twitter.com/JennyBryan/status/734894596019224576 -->
 <ul>
 <li><p><a href="http://www.sourcetreeapp.com">SourceTree</a> is a free, powerful Git(Hub) client that I highly recommend. It was my first Git client and is still my favorite for nontrivial Git tasks. Available for Mac and Windows. If I’m teaching you in a course or workshop, you might see me using this.</p></li>
