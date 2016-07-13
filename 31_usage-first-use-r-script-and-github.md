@@ -80,6 +80,7 @@ Drawing on the workflow tips in [Rmd test drive](#rmd-test-drive), let's add som
 #' date: "`r format(Sys.Date())`"
 #' output: github_document
 #' ---
+#'
 #' Here's some prose in a very special comment. Let's summarize the built-in
 #' dataset `VADeaths`.
 ## here is a regular code comment, that will remain as such
@@ -92,5 +93,8 @@ dotchart(VADeaths, main = "Death Rates in Virginia - 1940")
 ```
 
 Behind the scenes here we have used `rmarkdown::render()` to render this script and you can go visit it on GitHub.
+
+
+
 
 
