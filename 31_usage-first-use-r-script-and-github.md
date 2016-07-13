@@ -96,7 +96,7 @@ summary(VADeaths)
 dotchart(VADeaths, main = "Death Rates in Virginia - 1940")
 ```
 
-Behind the scenes here we have used `rmarkdown::render()` to render this script and you can go visit it on GitHub.
+Behind the scenes here we have used `rmarkdown::render()` to render this script and you can go [visit it on GitHub](https://github.com/jennybc/happy-git-with-r/blob/master/render-r-script-demo.md).
 
 
 
