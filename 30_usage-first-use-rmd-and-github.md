@@ -58,7 +58,7 @@ You can make some changes via the RStudio IDE: click on the "gear" in the top ba
     ---
     title: "Something fascinating"
     author: "Jenny Bryan"
-    date: "2016-07-12"
+    date: "2016-07-13"
     output:
       html_document:
         keep_md: true
@@ -73,7 +73,7 @@ In fact this hand-edit is necessary if you want to keep only markdown and get Gi
     ---
     title: "Something fascinating"
     author: "Jenny Bryan"
-    date: "2016-07-12"
+    date: "2016-07-13"
     output: github_document
     ---
 ```
@@ -167,7 +167,7 @@ __Get rid of your `.Rprofile`__, at least temporarily. I have found that a "matu
 __Insert a chunk in your `.Rmd` document so that it renders even when there are errors.__ Some errors are easier to diagnose if you can execute specific R statements during rendering and leave more evidence behind for forensic examination. Put this chunk:
 
 <pre><code>```{r setup, include = FALSE, cache = FALSE}
-knitr::opts_chunk$set(error = TRUE) here
+knitr::opts_chunk$set(error = TRUE)
 ```</code></pre>
 
 near the top of your R Markdown document if you want to soldier on through errors, i.e. turn `foo.Rmd` into `foo.md` and/or `foo.html` no matter what. This is also helpful if you are writing a tutorial and want to demo code that throws an error. You might want to keep this as an [RStudio snippet](https://support.rstudio.com/hc/en-us/articles/204463668-Code-Snippets) for easy insertion.

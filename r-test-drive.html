@@ -25,7 +25,7 @@
 
 <meta name="author" content="Jenny Bryan and the STAT 545 TAs">
 
-<meta name="date" content="2016-07-12">
+<meta name="date" content="2016-07-13">
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -239,7 +239,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="19.8" data-path="rmd-test-drive.html"><a href="rmd-test-drive.html#html-on-github"><i class="fa fa-check"></i><b>19.8</b> HTML on GitHub</a></li>
 <li class="chapter" data-level="19.9" data-path="troubleshooting.html"><a href="troubleshooting.html#troubleshooting"><i class="fa fa-check"></i><b>19.9</b> Troubleshooting</a></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="r-test-drive.html"><a href="r-test-drive.html"><i class="fa fa-check"></i><b>20</b> Render an R script</a></li>
+<li class="chapter" data-level="20" data-path="r-test-drive.html"><a href="r-test-drive.html"><i class="fa fa-check"></i><b>20</b> Render an R script</a><ul>
+<li class="chapter" data-level="20.1" data-path="r-test-drive.html"><a href="r-test-drive.html#morph-r-markdown-into-a-renderable-r-script"><i class="fa fa-check"></i><b>20.1</b> Morph R Markdown into a renderable R script</a></li>
+<li class="chapter" data-level="20.2" data-path="r-test-drive.html"><a href="r-test-drive.html#write-a-render-ready-r-script"><i class="fa fa-check"></i><b>20.2</b> Write a render-ready R script</a></li>
+</ul></li>
 <li class="chapter" data-level="21" data-path="usage-git-cmds.html"><a href="usage-git-cmds.html"><i class="fa fa-check"></i><b>21</b> Git commands</a></li>
 <li class="part"><span><b>Tutorial prompts</b></span></li>
 <li class="chapter" data-level="22" data-path="clone.html"><a href="clone.html"><i class="fa fa-check"></i><b>22</b> Clone a repo</a></li>
@@ -302,28 +305,76 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="r-test-drive" class="section level1">
 <h1><span class="header-section-number">20</span> Render an R script</h1>
-<p>An underappreciated fact is that much of what you can do with R Markdown? … you can also do with an R script.</p>
-<p>If you’re in analysis mode and want a report as a side effect, write an R script. If you’re writing a report with a lot of R code in it, write Rmd. In either case, render to markdown.</p>
-<p>In R markdown, prose is top-level and code is tucked into chunks.</p>
-<p>In R scripts, code is top-level and prose is tucked into comments.</p>
-<p>Hands-on experiment: start with an R Markdown file, such as the one you made in your Rmd test drive (chapter <a href="rmd-test-drive.html#rmd-test-drive">19</a>). Or the boilerplate Rmd RStudio makes with <em>File &gt; New File &gt; R Markdown …</em>:</p>
+<p>An underappreciated fact is that much of what you can do with R Markdown, you can also do with an R script.</p>
+<p>If you’re in analysis mode and want a report as a side effect, write an R script. If you’re writing a report with a lot of R code in it, write Rmd. In either case, render to markdown and/or HTML to communicate with other humans beings.</p>
 <ul>
-<li>Save the file as <code>foo.R</code>, as opposed to <code>foo.Rmd</code>.</li>
+<li>In R markdown, prose is top-level and code is tucked into chunks.</li>
+<li>In R scripts, code is top-level and prose is tucked into comments. You will use <code>#'</code> to request that certain comments appear as top-level prose in the rendered output.</li>
+</ul>
+<p>You will continue to specify things like the output format via YAML at the top of the file. This will need to be commented with <code>#'</code>.</p>
+<div id="morph-r-markdown-into-a-renderable-r-script" class="section level2">
+<h2><span class="header-section-number">20.1</span> Morph R Markdown into a renderable R script</h2>
+<p>Get yourself a working R Markdown file, such as the one you made in your <a href="rmd-test-drive.html#rmd-test-drive">Rmd test drive</a>. Or use the boilerplate Rmd document RStudio makes with <em>File &gt; New File &gt; R Markdown …</em>.</p>
+<p>Save the file as <code>foo.R</code>, as opposed to <code>foo.Rmd</code>. Yes, for a brief moment, you will have R Markdown saved as an R script, but that won’t be true for long.</p>
+<p>Transform the Rmd to R:</p>
+<ul>
 <li>Anything that’s not R code? Like the YAML and the English prose? Protect it with roxygen-style comments: start each line with <code>#'</code>.</li>
-<li>Anything that’s R code? Let it exist “as is” as top-level code.</li>
-<li><p>Change the syntax of R chunk headers like so:</p>
+<li><p>Anything that’s R code? Let it exist “as is” as top-level code. That means you’ll need to change the syntax of R chunk headers like so:</p>
 <p>Before: <code>```{r setup, include = FALSE}</code><br />
-After: <code>#+ r setup, include = FALSE</code></p></li>
-<li><p>Delete the 3 backticks that end each chunk.</p></li>
+After: <code>#+ r setup, include = FALSE</code></p>
+<p>Replace the leading backticks and opening curly brace with <code>#+</code>.<br />
+Delete the trailing curly brace.<br />
+Delete the 3 backticks that end each chunk.</p></li>
 </ul>
-<p>If you’re having syntax struggles, here’s another exercise:</p>
+<p>Render the R script through one of these methods:</p>
 <ul>
-<li>Create a very simple R script. Literally, you could summarize and make a plot from the iris data. Make it boring.</li>
-<li>Click on the “notebook” icon in RStudio to “Compile Report”. You’ll get a very nice HTML report.</li>
-<li>Copy the YAML from the Rmd test drive (chapter <a href="rmd-test-drive.html#rmd-test-drive">19</a>), but prepend each line with <code>#'</code>.</li>
+<li>Click on the “notebook” icon in RStudio to “Compile Report”.</li>
+<li>In RStudio, do <em>File &gt; Knit Document</em>.</li>
+<li>In R, do <code>rmarkdown::render(&quot;foo.R&quot;)</code>.</li>
 </ul>
-<p>All the workflow tips from the Rmd test drive (chapter <a href="rmd-test-drive.html#rmd-test-drive">19</a>) transfer: when you script an analysis, render it to markdown, commit the <code>.R</code>, the <code>.md</code>, any associated figures, and push to GitHub. Collaborators can see your code but also browse the result without running it.</p>
+<p>You’ll get a markdown and/or HTML report, just as with R Markdown.</p>
+<p>If you’re having trouble making all the necessary changes and you’re frustrated, see below for an example you can copy and paste.</p>
+<p>All the workflow tips from the <a href="rmd-test-drive.html#rmd-test-drive">Rmd test drive</a> apply here: when you script an analysis, render it to markdown, commit the <code>.R</code>, the <code>.md</code>, any associated figures, and push to GitHub. Collaborators can see your code but also browse the result without running it. This makes the current state of your analysis accessible to someone who does not even run R or who wants to take a quick look at things from a cell phone or while on vacation.</p>
+</div>
+<div id="write-a-render-ready-r-script" class="section level2">
+<h2><span class="header-section-number">20.2</span> Write a render-ready R script</h2>
+<p>Instead of morphing an R Markdown file, let’s create a render-ready R script directly.</p>
+<p>Create a new R script and copy/paste this code into it.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#&#39; Here&#39;s some prose in a very special comment. Let&#39;s summarize the built-in</span>
+<span class="co">#&#39; dataset `VADeaths`.</span>
+## here is a regular code comment, that will remain as such
+<span class="kw">summary</span>(VADeaths)
 
+<span class="co">#&#39; Here&#39;s some more prose. I can use usual markdown syntax to make things</span>
+<span class="co">#&#39; **bold** or *italics*. Let&#39;s use an example from the `dotchart()` help to</span>
+<span class="co">#&#39; make a Cleveland dot plot from the `VADeaths` data.</span>
+<span class="kw">dotchart</span>(VADeaths, <span class="dt">main =</span> <span class="st">&quot;Death Rates in Virginia - 1940&quot;</span>)</code></pre></div>
+<p>Render the R script through one of these methods:</p>
+<ul>
+<li>Click on the “notebook” icon in RStudio to “Compile Report”.</li>
+<li>In RStudio, do <em>File &gt; Knit Document</em>.</li>
+<li>In R, do <code>rmarkdown::render(&quot;YOURSCRIPT.R&quot;)</code>.</li>
+</ul>
+<p>Revel in your attractive looking report with almost zero effort! Seriously, all you had to do was think about when to use special comments <code>#'</code> in order to promote that to nicely rendered text.</p>
+<p>Drawing on the workflow tips in <a href="rmd-test-drive.html#rmd-test-drive">Rmd test drive</a>, let’s add some YAML frontmatter, properly commented with <code>#'</code>, and request the <code>github_document</code>. Here’s the whole script again:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#&#39; ---</span>
+<span class="co">#&#39; title: &quot;R scripts can be rendered!&quot;</span>
+<span class="co">#&#39; author: &quot;Jenny Bryan&quot;</span>
+<span class="co">#&#39; date: &quot;`r format(Sys.Date())`&quot;</span>
+<span class="co">#&#39; output: github_document</span>
+<span class="co">#&#39; ---</span>
+<span class="co">#&#39; Here&#39;s some prose in a very special comment. Let&#39;s summarize the built-in</span>
+<span class="co">#&#39; dataset `VADeaths`.</span>
+## here is a regular code comment, that will remain as such
+<span class="kw">summary</span>(VADeaths)
+
+<span class="co">#&#39; Here&#39;s some more prose. I can use usual markdown syntax to make things</span>
+<span class="co">#&#39; **bold** or *italics*. Let&#39;s use an example from the `dotchart()` help to</span>
+<span class="co">#&#39; make a Cleveland dot plot from the `VADeaths` data.</span>
+<span class="kw">dotchart</span>(VADeaths, <span class="dt">main =</span> <span class="st">&quot;Death Rates in Virginia - 1940&quot;</span>)</code></pre></div>
+<p>Behind the scenes here we have used <code>rmarkdown::render()</code> to render this script and you can go visit it on GitHub.</p>
+
+</div>
 </div>
             </section>
 

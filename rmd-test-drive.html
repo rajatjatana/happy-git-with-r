@@ -25,7 +25,7 @@
 
 <meta name="author" content="Jenny Bryan and the STAT 545 TAs">
 
-<meta name="date" content="2016-07-12">
+<meta name="date" content="2016-07-13">
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -239,7 +239,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="19.8" data-path="rmd-test-drive.html"><a href="rmd-test-drive.html#html-on-github"><i class="fa fa-check"></i><b>19.8</b> HTML on GitHub</a></li>
 <li class="chapter" data-level="19.9" data-path="troubleshooting.html"><a href="troubleshooting.html#troubleshooting"><i class="fa fa-check"></i><b>19.9</b> Troubleshooting</a></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="r-test-drive.html"><a href="r-test-drive.html"><i class="fa fa-check"></i><b>20</b> Render an R script</a></li>
+<li class="chapter" data-level="20" data-path="r-test-drive.html"><a href="r-test-drive.html"><i class="fa fa-check"></i><b>20</b> Render an R script</a><ul>
+<li class="chapter" data-level="20.1" data-path="r-test-drive.html"><a href="r-test-drive.html#morph-r-markdown-into-a-renderable-r-script"><i class="fa fa-check"></i><b>20.1</b> Morph R Markdown into a renderable R script</a></li>
+<li class="chapter" data-level="20.2" data-path="r-test-drive.html"><a href="r-test-drive.html#write-a-render-ready-r-script"><i class="fa fa-check"></i><b>20.2</b> Write a render-ready R script</a></li>
+</ul></li>
 <li class="chapter" data-level="21" data-path="usage-git-cmds.html"><a href="usage-git-cmds.html"><i class="fa fa-check"></i><b>21</b> Git commands</a></li>
 <li class="part"><span><b>Tutorial prompts</b></span></li>
 <li class="chapter" data-level="22" data-path="clone.html"><a href="clone.html"><i class="fa fa-check"></i><b>22</b> Clone a repo</a></li>
@@ -343,7 +346,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml">    <span class="kw">-</span>--
     <span class="fu">title:</span> <span class="st">&quot;Something fascinating&quot;</span>
     <span class="fu">author:</span> <span class="st">&quot;Jenny Bryan&quot;</span>
-    <span class="fu">date:</span> <span class="st">&quot;2016-07-12&quot;</span>
+    <span class="fu">date:</span> <span class="st">&quot;2016-07-13&quot;</span>
     <span class="fu">output:</span>
       <span class="fu">html_document:</span>
         <span class="fu">keep_md:</span> true
@@ -353,7 +356,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml">    <span class="kw">-</span>--
     <span class="fu">title:</span> <span class="st">&quot;Something fascinating&quot;</span>
     <span class="fu">author:</span> <span class="st">&quot;Jenny Bryan&quot;</span>
-    <span class="fu">date:</span> <span class="st">&quot;2016-07-12&quot;</span>
+    <span class="fu">date:</span> <span class="st">&quot;2016-07-13&quot;</span>
     <span class="fu">output:</span> github_document
     <span class="kw">-</span>--</code></pre></div>
 <p>Save!</p>
@@ -419,7 +422,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><strong>Get rid of your <code>.Rprofile</code></strong>, at least temporarily. I have found that a “mature” <code>.Rprofile</code> that has accumulated haphazardly over the years can cause trouble. Specifically, if you’ve got anything in there relating to <code>knitr</code>, <code>markdown</code>, <code>rmarkdown</code> and RStudio stuff, it may be preventing the installation or usage of the most recent goodies (see above). Comment the whole file out or rename it something else and relaunch or even re-install RStudio.</p>
 <p><strong>Insert a chunk in your <code>.Rmd</code> document so that it renders even when there are errors.</strong> Some errors are easier to diagnose if you can execute specific R statements during rendering and leave more evidence behind for forensic examination. Put this chunk:</p>
 <pre><code>```{r setup, include = FALSE, cache = FALSE}
-knitr::opts_chunk$set(error = TRUE) here
+knitr::opts_chunk$set(error = TRUE)
 ```</code></pre>
 <p>near the top of your R Markdown document if you want to soldier on through errors, i.e. turn <code>foo.Rmd</code> into <code>foo.md</code> and/or <code>foo.html</code> no matter what. This is also helpful if you are writing a tutorial and want to demo code that throws an error. You might want to keep this as an <a href="https://support.rstudio.com/hc/en-us/articles/204463668-Code-Snippets">RStudio snippet</a> for easy insertion.</p>
 <p><strong>Tolerate errors in one specific chunk.</strong> If it’s undesirable to globally accept errors, you can still do this for a specific chunk like so:</p>
