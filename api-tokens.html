@@ -33,8 +33,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="burn.html">
-<link rel="next" href="search.html">
+<link rel="prev" href="shell.html">
+<link rel="next" href="comic-relief.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -322,38 +322,39 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="reset" class="section level1">
-<h1><span class="header-section-number">27</span> Resetting</h1>
-<p>Practice recovering from mistakes.</p>
-<p>Use a repository you’ve create earlier in tutorial for this. It only needs to be local, i.e. this does not involve GitHub.</p>
-<p>If it’s not your most recent commit, seriously consider just letting that go. Just. Let. It. Go.</p>
-<p>So you want to undo the last commit?</p>
-<p>If “YES UNDO IT COMPLETELY”: <code>git reset --hard HEAD^</code>. You will lose any changes that were not reflected in the commit-before-last!</p>
-<p>If “YES undo the commit, but leave the files in that state (but unstaged)”: <code>git reset HEAD^</code>. Your files will stay the same but the commit will be undone and nothing will be staged.</p>
-<p>If “YES go right back to the moment before I committed”: <code>git reset --soft HEAD^</code>. Your files will stay the same but the commit will be undone. Even your staged changes will be restored.</p>
-<p><strong>If you just want to fiddle the most recent commit or its message, you can amend it. You can do this from RStudio!</strong></p>
+<div id="api-tokens" class="section level1">
+<h1><span class="header-section-number">B</span> Using GitHub API Tokens for programmatic access</h1>
+<p>In addition to caching HTTP or GIT credentials for <em>RStudio</em> to connect to GitHub, you may also want to store credentials so that your R <em>code</em> can connect to GitHub. One reason to do this is to install R packages that are in private GitHub repositories using the <strong>devtools</strong> package. The <code>devtools::install_github()</code> function connects to GitHub’s <strong>A</strong>pplication <strong>P</strong>rogramming <strong>I</strong>interface (API) to install packages directly from GitHub repositories, and it needs credentials if those repositories are not public.</p>
+<p>The pattern described here is used by many R packages that connect to web services that require login: we get an API <em>key</em> or <em>token</em> - essentially a long password - from the web service, and store it in a file <em>outside our code repositories</em>. This ensures that we never accidentally commit our key to someplace online where others can see it. Whever R starts up, it reads this file and our keys are stored as <em>environment variables</em>. These are like variables in our R session, but they are stored separately in memory and are generally not changed during sessions. Environment variables are often set by your operating system, letting R know what type of operating system it is working in.</p>
+<div id="step-by-step" class="section level2">
+<h2><span class="header-section-number">B.1</span> Step-by-step</h2>
 <ul>
-<li>Make the change you want and amend the commit.</li>
-<li>Do you only want to change the commit message?
-<ul>
-<li>Make another small change. Surely you have a typo somewhere? Amend the commit, which gives you the chance to edit the message</li>
-</ul></li>
+<li><p>One you have a GitHub account, go to <a href="https://github.com/settings/tokens" class="uri">https://github.com/settings/tokens</a> to create a <strong>p</strong>ersonal <strong>a</strong>ccess <strong>t</strong>oken (PAT).</p>
+<p>The PAT is a long random string of characters. It is your key. When creating this PAT, you’ll have the option to provide different levels of access. Be sure that “repo” is checked off (it should be by default) when you create your PAT. Copy your PAT to the clipboard.</p></li>
+<li><p>Now, in R, run the following, replacing <code>YOUR-PAT OF-40-RANDOM-LETTERS-AND-DIGITS-GOES-HERE</code>, with your token from the clipboard.</p>
+<pre><code>cat(&quot;GITHUB_PAT=YOUR-PAT OF-40-RANDOM-LETTERS-AND-DIGITS\n&quot;,
+    file=file.path(normalizePath(&quot;~/&quot;), &quot;.Renviron&quot;),
+    append=TRUE)</code></pre>
+<p>This commands writes <code>GITHUB_PAT=YOUR-PAT OF-40-RANDOM-LETTERS-AND-DIGITS</code> to a hidden file called <code>.Renviron</code> in your home directory. If the file already exists, at adds it to the end.</p></li>
+<li><p>Restart R (Session &gt; Restart R in the RStudio menu bar), as environment variables are loaded from <code>.Renviron</code> only <a href="http://stat.ethz.ch/R-manual/R-patched/library/base/html/Startup.html">at the start of an R session</a>. Check that the PAT is now available by running this command, which finds the environment variable called <code>GITHUB_PAT</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.getenv</span>(<span class="st">&quot;GITHUB_PAT&quot;</span>)</code></pre></div>
+<p>You should see your PAT print to screen.</p></li>
 </ul>
-<p>To amend from the command line, using an editor to create the message:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> commit --amend</code></pre></div>
-<p>To amend from the command line, providing the new message:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> commit --amend -m <span class="st">&quot;New commit message&quot;</span></code></pre></div>
-<p>Git Reset Demystified:</p>
-<p><a href="https://git-scm.com/blog" class="uri">https://git-scm.com/blog</a></p>
+<p>Now commands you run from the <strong>devtools</strong> package, which knows how to look for <code>GITHUB_PAT</code>, can access private GitHub repositories to which you have access, and you can install them with <code>devtools::install_github('username/reponame')</code>.</p>
+</div>
+<div id="a-note-about-security" class="section level2">
+<h2><span class="header-section-number">B.2</span> A note about security</h2>
+<p>Many other R packages that access web services give the option of storing API keys as environment variables in your <code>.Renviron</code> file. These include many packages for accessing online data sources such as <a href="http://ropensci.org/packages/">those maintained by rOpenSci</a>. If you use these packages, your <code>.Renviron</code> file will collect many keys and tokens. These keys, and this file, should <em>never be comitted to GitHub, stored in Dropbox, or on any other online service</em>. They should not be in your code or code somments. This is why this file is stored <em>outside</em> your project folder. Your keys can be used to access your accounts <a href="https://securosis.com/blog/my-500-cloud-security-screwup">and wreak all kinds of havoc</a>. It’s OK if you lose keys; as long as you log on to the site via a browser, you should be able to revoke keys and generate new ones.</p>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="burn.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="search.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="shell.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="comic-relief.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -380,7 +381,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jennybc/happy-git-with-r/edit/master/44_prompt-practice-resets.Rmd",
+"link": "https://github.com/jennybc/happy-git-with-r/edit/master/81_github-api-tokens.Rmd",
 "text": null
 },
 "download": null,
