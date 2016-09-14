@@ -33,8 +33,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="usage-git-cmds.html">
-<link rel="next" href="fork.html">
+<link rel="prev" href="shell.html">
+<link rel="next" href="comic-relief.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -324,31 +324,65 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="clone" class="section level1">
-<h1><span class="header-section-number">23</span> Clone a repo</h1>
-<p>Clone someone else’s repository on GitHub where you just want a copy. But you also want to track its evolution. That is what differentiates a GitHub clone from, say, simply downloading the ZIP archive at a specific point in time.</p>
-<p>Pick a GitHub repository that interests you. Inspiration:</p>
+<div id="github-pat" class="section level1">
+<h1><span class="header-section-number">B</span> GitHub Personal Access Tokens</h1>
+<p>If you Git push or pull via the command line, you can avoid the constant authentication challenge by <a href="credential-caching.html#credential-caching">caching your username and password</a> for HTTPS access or by <a href="ssh-keys.html#ssh-keys">setting up SSH keys</a>. This includes any Git operations done by RStudio on your behalf.</p>
+<p>But for some operations you must call the <a href="https://developer.github.com/v3/">GitHub API</a> (<strong>A</strong>pplication <strong>P</strong>rogramming <strong>I</strong>interface). And this requires that you <a href="https://developer.github.com/v3/#authentication">authenticate yourself</a> in a different way.</p>
+<div id="github-api" class="section level2">
+<h2><span class="header-section-number">B.1</span> GitHub API</h2>
+<p>The first reason most people need GitHub API access is because they want to use the <a href="https://cran.r-project.org/web/packages/devtools/index.html"><code>devtools</code></a> package. It is popular for the <code>devtools::install_github()</code> function to install directly from GitHub. This is in contrast to installing a package from CRAN via <code>install.packages()</code>.</p>
+<p>Why install from GitHub instead of CRAN?</p>
 <ul>
-<li>an R package you care about</li>
-<li>a data analytic project you find interesting
-<ul>
-<li>Example: The GitHub repo that underpins <a href="http://polygraph.cool/films/">Polygraphing’s blog post</a> analyzing 2,000 screenplays is here: <a href="https://github.com/brandles/scripts" class="uri">https://github.com/brandles/scripts</a></li>
-<li>Example: FiveThirtyEight shared the data and code behind their <a href="http://fivethirtyeight.com/gun-deaths/">Gun Deaths in America</a> project on GitHub: <a href="https://github.com/fivethirtyeight/guns-data" class="uri">https://github.com/fivethirtyeight/guns-data</a>. Have a look around their other repos as well.</li>
-</ul></li>
+<li>The package is developed on GitHub and you prefer the development version because it has some features or bug fixes not yet on CRAN.</li>
+<li>You contribute to or use R packages that are in private repositories on GitHub (or GitHub Enterprise). CRAN is not an option.</li>
 </ul>
-<p>Create a new RStudio Project from this GitHub repo. Refresh your memory of how to do that by re-visiting our “GitHub first” workflow in chapter <a href="new-github-first.html#new-github-first">16</a>.</p>
-<p>Once you have the code locally, try to run some of it. Try to understand how it works.</p>
-<p>Do you want to make a change? Fine do that!</p>
-<p>Do you want to send changes back to the original author? Now you have firsthand knowledge of when you should <em>fork instead of clone</em>. See chapter <a href="fork.html#fork">24</a>.</p>
+<p>Other reasons to call the GitHub API include doing almost anything you might do in the browser, especially if you need to do it on a grand scale, i.e., create repositories or users or fetch data. I recommend the <a href="https://github.com/gaborcsardi/gh"><code>gh</code> package</a> for this. Which you must install from GitHub!</p>
+</div>
+<div id="how-do-you-authenticate-yourself" class="section level2">
+<h2><span class="header-section-number">B.2</span> How do you authenticate yourself?</h2>
+<p>With access via API, what plays the role of the HTTPS username/password or SSH keys? For the GitHub API, we use a <em>personal access token</em> (PAT), which is a convention followed by many other APIs.</p>
+<p>You will need to:</p>
+<ul>
+<li>Obtain a PAT. This is done in the browser.</li>
+<li>Store it so packages like <code>devtools</code> can find it and use it on your behalf. The path of least resistance is to define it in your <code>.Renviron</code> file as the environment variable named <code>GITHUB_PAT</code>.</li>
+</ul>
+</div>
+<div id="step-by-step" class="section level2">
+<h2><span class="header-section-number">B.3</span> Step-by-step</h2>
+<p>Login to your GitHub account. Go to <a href="https://github.com/settings/tokens" class="uri">https://github.com/settings/tokens</a>.</p>
+<p>“Generate new token”. Give it a nickname that reminds you of the intended purpose, e.g., “devtools”.</p>
+<p>Pick scopes that confer the privileges you need. When in doubt, check the <code>repo</code> scope, which is required for typical <code>devtools</code> operations. There used to be a set of default scopes, but that no longer appears to be true.</p>
+<p>After you click “Generate token”, the token will be displayed. It’s a string of 40 random letters and digits. This is the last time you will see it SO COPY IT TO THE CLIPBOARD. Leave this window open until you’re done. If you somehow goof this up, just generate a new one and try again.</p>
+<p>Put your PAT in your <code>.Renviron</code> file. Have a line that looks like this:</p>
+<pre><code>GITHUB_PAT=8c70fd8419398999c9ac5bacf3192882193cadf2</code></pre>
+<p>but with <em>your</em> PAT instead of mine. Don’t worry, I’ve revoked this one! This file should live in your home directory. Not sure what that is? In R, do:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">normalizePath</span>(<span class="st">&quot;~/&quot;</span>)</code></pre></div>
+<p>If you have no idea how to do any of this, here’s one way from R:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="st">&quot;8c70fd8419398999c9ac5bacf3192882193cadf2</span><span class="ch">\n</span><span class="st">&quot;</span>,
+    <span class="dt">file =</span> <span class="kw">file.path</span>(<span class="kw">normalizePath</span>(<span class="st">&quot;~/&quot;</span>), <span class="st">&quot;.Renviron&quot;</span>), <span class="dt">append =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p>but with <em>your</em> PAT instead of mine.</p>
+<p>Here’s another way with RStudio (or other text editor): Do <em>File &gt; New File &gt; Text file</em>. Create a line like this:</p>
+<pre><code>GITHUB_PAT=8c70fd8419398999c9ac5bacf3192882193cadf2</code></pre>
+<p>Put a line break at the end! If you’re using an editor that shows line numbers, there should be two lines, where the second one is empty.</p>
+<p>Save in your home directory with the filename <code>.Renviron</code>. If questioned, YES you do want to use a filename that begins with a dot <code>.</code>. Note that, by default, dotfiles are hidden in RStudio, but <code>.Renviron</code> should always be visible and therefore easy to edit in the future.</p>
+<p>Restart R (<em>Session &gt; Restart R</em> in the RStudio menu bar), as environment variables are loaded from <code>.Renviron</code> only <a href="http://stat.ethz.ch/R-manual/R-patched/library/base/html/Startup.html">at the start of an R session</a>. Check that the PAT is now available like so:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.getenv</span>(<span class="st">&quot;GITHUB_PAT&quot;</span>)</code></pre></div>
+<p>You should see your PAT print to screen.</p>
+<p>Now commands you run from the <code>devtools</code> package, which consults <code>GITHUB_PAT</code> by default, will be able to access private GitHub repositories to which you have access, and you can install them with <code>devtools::install_github('username/reponame')</code>.</p>
+</div>
+<div id="a-note-about-security" class="section level2">
+<h2><span class="header-section-number">B.4</span> A note about security</h2>
+<p>Many R packages that access web services, such as <a href="http://ropensci.org/packages/">those maintained by rOpenSci</a>, give the option of storing API “tokens” or “keys” as environment variables in your <code>.Renviron</code> file. These tokens and this file, should <em>never be committed to GitHub, stored in Dropbox, or on any other online service</em>. They should not appear in your code or code comments. This is one reason why this file is stored <em>outside</em> your project folder. These tokens can be used to access your accounts <a href="https://securosis.com/blog/my-500-cloud-security-screwup">and wreak all kinds of havoc</a>. If you mistakenly share your tokens, log into the relevant site via the browser, revoke the compromised token, and generate a new one.</p>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="usage-git-cmds.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="fork.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="shell.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="comic-relief.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -375,7 +409,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jennybc/happy-git-with-r/edit/master/40_prompt-clone.Rmd",
+"link": "https://github.com/jennybc/happy-git-with-r/edit/master/81_github-api-tokens.Rmd",
 "text": null
 },
 "download": null,
