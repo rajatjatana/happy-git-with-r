@@ -299,6 +299,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="B.2" data-path="github-pat.html"><a href="github-pat.html#how-do-you-authenticate-yourself"><i class="fa fa-check"></i><b>B.2</b> How do you authenticate yourself?</a></li>
 <li class="chapter" data-level="B.3" data-path="github-pat.html"><a href="github-pat.html#step-by-step"><i class="fa fa-check"></i><b>B.3</b> Step-by-step</a></li>
 <li class="chapter" data-level="B.4" data-path="github-pat.html"><a href="github-pat.html#a-note-about-security"><i class="fa fa-check"></i><b>B.4</b> A note about security</a></li>
+<li class="chapter" data-level="B.5" data-path="github-pat.html"><a href="github-pat.html#why-.renviron-instead-of-bash-config"><i class="fa fa-check"></i><b>B.5</b> Why <code>.Renviron</code> instead of bash config?</a></li>
 </ul></li>
 <li class="chapter" data-level="C" data-path="comic-relief.html"><a href="comic-relief.html"><i class="fa fa-check"></i><b>C</b> Comic relief</a></li>
 <li class="chapter" data-level="D" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>D</b> References</a><ul>
@@ -373,6 +374,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="a-note-about-security" class="section level2">
 <h2><span class="header-section-number">B.4</span> A note about security</h2>
 <p>Many R packages that access web services, such as <a href="http://ropensci.org/packages/">those maintained by rOpenSci</a>, give the option of storing API “tokens” or “keys” as environment variables in your <code>.Renviron</code> file. These tokens and this file, should <em>never be committed to GitHub, stored in Dropbox, or on any other online service</em>. They should not appear in your code or code comments. This is one reason why this file is stored <em>outside</em> your project folder. These tokens can be used to access your accounts <a href="https://securosis.com/blog/my-500-cloud-security-screwup">and wreak all kinds of havoc</a>. If you mistakenly share your tokens, log into the relevant site via the browser, revoke the compromised token, and generate a new one.</p>
+</div>
+<div id="why-.renviron-instead-of-bash-config" class="section level2">
+<h2><span class="header-section-number">B.5</span> Why <code>.Renviron</code> instead of bash config?</h2>
+<p><strong>FAQ</strong>: Why define this environment variable via <code>.Renviron</code> instead of in <code>.bash_profile</code> or <code>.bashrc</code>?*</p>
+<p>Because there are many combinations of OS and ways of running R where the <code>.Renviron</code> approach “just works” and the bash stuff does not. When R is a child process of, say, Emacs or RStudio, you can’t always count on environment variables being passed to R. Put them in an R-specific start-up file and save yourself some grief.</p>
 
 </div>
 </div>
