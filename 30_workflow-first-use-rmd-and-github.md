@@ -60,7 +60,7 @@ You can make some changes via the RStudio IDE: click on the "gear" in the top ba
     ---
     title: "Something fascinating"
     author: "Jenny Bryan"
-    date: "2016-09-26"
+    date: "2016-11-29"
     output:
       html_document:
         keep_md: true
@@ -75,7 +75,7 @@ In fact this hand-edit is necessary if you want to keep only markdown and get Gi
     ---
     title: "Something fascinating"
     author: "Jenny Bryan"
-    date: "2016-09-26"
+    date: "2016-11-29"
     output: github_document
     ---
 ```

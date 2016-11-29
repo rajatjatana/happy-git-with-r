@@ -51,7 +51,7 @@ If you have no idea how to do any of this, here's one way from R:
 
 
 ```r
-cat("8c70fd8419398999c9ac5bacf3192882193cadf2\n",
+cat("GITHUB_PAT=8c70fd8419398999c9ac5bacf3192882193cadf2\n",
     file = file.path(normalizePath("~/"), ".Renviron"), append = TRUE)
 ```
 
