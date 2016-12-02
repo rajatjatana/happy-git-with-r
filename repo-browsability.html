@@ -8,7 +8,7 @@
   <title>Happy Git and GitHub for the useR</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="Using Git and GitHub with R, Rstudio, and R Markdown">
-  <meta name="generator" content="bookdown 0.2.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.3.1 and GitBook 2.6.7">
 
   <meta property="og:title" content="Happy Git and GitHub for the useR" />
   <meta property="og:type" content="book" />
@@ -26,7 +26,7 @@
 <meta name="author" content="Jenny Bryan and the STAT 545 TAs">
 
 
-<meta name="date" content="2016-11-29">
+<meta name="date" content="2016-12-02">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -351,7 +351,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">21.2</span> Get over your hang ups re: committing derived products</h2>
 <p>Let’s acknowledge the discomfort some people feel about putting derived products under version control. Specifically, if you’ve got an R Markdown document <code>foo.Rmd</code>, it can be <code>knit()</code> to produce the intermediate product <code>foo.md</code>, which can be converted to the ultimate output <code>foo.html</code>. Which of those files are you “allowed” to put under version control? Source-is-real hardliners will say only <code>foo.Rmd</code> but pragmatists know this can be a serious bummer in real life. Just because I <em>can</em> rebuild everything from scratch, it doesn’t mean I <em>want</em> to.</p>
 <p>The taboo of keeping derived products under version control originates from compilation of binary executables from source. Software built on a Mac would not work on Windows and so it made sense to keep these binaries out of the holy source code repository. Also, you could assume the people with access to the repository have the full development stack and relish opportunities to use it. None of these arguments really apply to the <code>foo.Rmd --&gt; foo.md --&gt; foo.html</code> workflow. We don’t have to blindly follow traditions from the compilation domain!</p>
-<p>In fact, looking at the diffs for <code>foo.md</code> or <code>foo-figure-01.png</code> can be extremely informative. This is also true in larger data analytic projects projects after a <code>make clean; make all</code> operation. By looking at the diffs in the downstream products, you often catch unexpected changes. This can tip you off to changes in the underlying data and/or the behavior of packages you depend on.</p>
+<p>In fact, looking at the diffs for <code>foo.md</code> or <code>foo-figure-01.png</code> can be extremely informative. This is also true in larger data analytic projects after a <code>make clean; make all</code> operation. By looking at the diffs in the downstream products, you often catch unexpected changes. This can tip you off to changes in the underlying data and/or the behavior of packages you depend on.</p>
 <p>This chapter explores cool things GitHub can do with various file types, if they happen to end up in your repo. I won’t ask you how they got there.</p>
 </div>
 <div id="markdown" class="section level2">
