@@ -8,7 +8,7 @@ Otherwise, find installation instructions below for your operating system.
 
 ## Git already installed?
 
-Go to the shell (Appendix \@ref(shell)). Enter `which git` to request the path to your Git exectuable
+Go to the shell (Appendix \@ref(shell)). Enter `which git` to request the path to your Git executable:
 
 
 ```bash
@@ -16,7 +16,7 @@ which git
 ## /usr/bin/git
 ```
 
-and `git --version` to see its version.
+and `git --version` to see its version:
  
 
 ```bash
