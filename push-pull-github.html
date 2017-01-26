@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Happy Git and GitHub for the useR</title>
   <meta name="description" content="Using Git and GitHub with R, Rstudio, and R Markdown">
-  <meta name="generator" content="bookdown 0.3.8 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.3.9 and GitBook 2.6.7">
 
   <meta property="og:title" content="Happy Git and GitHub for the useR" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Jenny Bryan and the STAT 545 TAs">
 
 
-<meta name="date" content="2017-01-21">
+<meta name="date" content="2017-01-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -34,7 +34,6 @@
   
 <link rel="prev" href="git-client.html">
 <link rel="next" href="credential-caching.html">
-
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -363,7 +362,7 @@ YES Initialize this repository with a README</p>
 <p>Make this new repo your working directory, list its files, display the README, and get some information on its connection to GitHub:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> myrepo
 <span class="kw">ls</span>
-<span class="kw">less</span> README.md
+<span class="kw">head</span> README.md
 <span class="kw">git</span> remote show origin</code></pre></div>
 <p>This should look something like this:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">jenny@2015-mbp</span> ~ $ cd myrepo
@@ -371,7 +370,7 @@ YES Initialize this repository with a README</p>
 <span class="kw">jenny@2015-mbp</span> myrepo $ ls
 <span class="kw">README.md</span>
 
-<span class="kw">jenny@2015-mbp</span> myrepo $ less README.md 
+<span class="kw">jenny@2015-mbp</span> myrepo $ head README.md 
 <span class="co"># myrepo</span>
 <span class="kw">tutorial</span> development
 
@@ -408,6 +407,7 @@ YES Initialize this repository with a README</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> add -A
 <span class="kw">git</span> commit -m <span class="st">&quot;A commit from my local computer&quot;</span>
 <span class="kw">git</span> push</code></pre></div>
+<p>The <code>-m</code> flag is an important message that must be included with every commit! Git requires a commit message for every commit, so if you forget the <code>-m</code> flag, git will prompt you for a commit message anyways. It is good practice to write meaningful commit messages so in the future, potential collaborators (and your future self) will understand the progression of a project.</p>
 <p>This should look something like this:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">jenny@2015-mbp</span> myrepo $ git add -A
 

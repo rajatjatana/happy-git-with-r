@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Happy Git and GitHub for the useR</title>
   <meta name="description" content="Using Git and GitHub with R, Rstudio, and R Markdown">
-  <meta name="generator" content="bookdown 0.3.8 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.3.9 and GitBook 2.6.7">
 
   <meta property="og:title" content="Happy Git and GitHub for the useR" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Jenny Bryan and the STAT 545 TAs">
 
 
-<meta name="date" content="2017-01-21">
+<meta name="date" content="2017-01-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -34,7 +34,6 @@
   
 <link rel="prev" href="install-git.html">
 <link rel="next" href="git-client.html">
-
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -343,6 +342,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="more-about-git-config" class="section level2">
 <h2><span class="header-section-number">8.1</span> More about <code>git config</code></h2>
 <p>From RStudio, go to <em>Tools &gt; Shell</em> and tell Git your name and <strong>GitHub email</strong> by typing (use your own name and email):</p>
+<p>Note: If you are on Windows, check the title bar of the shell that was opened! If you see <code>cmd.exe</code> at the end of the status bar, this is the Windows Command Prompt. If you instead see <code>MINGW64</code> at the beginning, you have successfully opened Git Bash!</p>
+<p>Note: If you are <strong>not</strong> in an R Project that is version controlled with git, <em>Tools &gt; Shell</em> will open Windows Command Prompt. If this is the case and RStudio still opens <code>cmd.exe</code>, check <em>Tools &gt; Global Options &gt; Git/SVN</em> and tick the box for “Use Git Bash as shell for Git projects”. You may need to restart RStudio.</p>
 <ul>
 <li><p><code>git config --global user.name 'Jennifer Bryan'</code></p>
 <ul>
