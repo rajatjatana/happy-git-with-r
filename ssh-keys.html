@@ -25,7 +25,7 @@
 <meta name="author" content="Jenny Bryan and the STAT 545 TAs">
 
 
-<meta name="date" content="2017-01-26">
+<meta name="date" content="2017-01-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -337,7 +337,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>If you plan to push/pull using SSH, you need to set up SSH keys. You want to do this (or cache your username and password, chapter <a href="credential-caching.html#credential-caching">11</a>), so you don’t have to authenticate yourself interactively with GitHub over and over again. You’ll need to set this up on each computer you want to connect to GitHub from.</p>
 <div id="ssh-keys" class="section level2">
 <h2><span class="header-section-number">12.1</span> SSH keys</h2>
-<p>SSH keys provide a more secure way of logging into a server than using a password alone. While a password can eventually be cracked with a brute force attack, SSH keys are nearly impossible to decipher by brute force alone. Generating a key pair provides you with two long string of characters: a public and a private key. You can place the public key on any server, and then unlock it by connecting to it with a client that already has the private key. When the two match up, the system unlocks without the need for a password. You can increase security even more by protecting the private key with a passphrase.</p>
+<p>SSH keys provide a more secure way of logging into a server than using a password alone. While a password can eventually be cracked with a brute force attack, SSH keys are nearly impossible to decipher by brute force alone. Generating a key pair provides you with two long strings of characters: a public and a private key. You can place the public key on any server, and then unlock it by connecting to it with a client that already has the private key. When the two match up, the system unlocks without the need for a password. You can increase security even more by protecting the private key with a passphrase.</p>
 <p>Adapted from instructions provided by <a href="https://help.github.com/categories/ssh/">GitHub</a> and <a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2">Digital Ocean</a>.</p>
 </div>
 <div id="check-for-existing-keys" class="section level2">
@@ -415,7 +415,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>In the “Title” field, add a descriptive label for the new key. For example, if you’re using a personal Mac, you might call this key “Personal MacBook Air”.</p>
 <p>Paste your key into the “Key” field.</p>
 <p>Click Add SSH key.</p>
-<p>Confirm the action by entering your GitHub password</p>
+<p>Confirm the action by entering your GitHub password.</p>
 
 </div>
 </div>
