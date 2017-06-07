@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Happy Git and GitHub for the useR</title>
   <meta name="description" content="Using Git and GitHub with R, Rstudio, and R Markdown">
-  <meta name="generator" content="bookdown 0.3.19 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="Happy Git and GitHub for the useR" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Jenny Bryan and the STAT 545 TAs">
 
 
-<meta name="date" content="2017-05-07">
+<meta name="date" content="2017-06-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -293,7 +293,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="30.1" data-path="classroom-overview.html"><a href="classroom-overview.html#benefits"><i class="fa fa-check"></i><b>30.1</b> Benefits</a></li>
 <li class="chapter" data-level="30.2" data-path="classroom-overview.html"><a href="classroom-overview.html#the-stat-545-student-setup"><i class="fa fa-check"></i><b>30.2</b> The STAT 545 student setup</a></li>
 <li class="chapter" data-level="30.3" data-path="classroom-overview.html"><a href="classroom-overview.html#the-homework-flow"><i class="fa fa-check"></i><b>30.3</b> The homework-flow</a></li>
-<li class="chapter" data-level="30.4" data-path="classroom-overview.html"><a href="classroom-overview.html#repo-as-sampler"><i class="fa fa-check"></i><b>30.4</b> Repo as sampler</a></li>
+<li class="chapter" data-level="30.4" data-path="classroom-overview.html"><a href="classroom-overview.html#github-as-course-management-system"><i class="fa fa-check"></i><b>30.4</b> GitHub as course management system</a><ul>
+<li class="chapter" data-level="30.4.1" data-path="classroom-overview.html"><a href="classroom-overview.html#use-a-github-organization"><i class="fa fa-check"></i><b>30.4.1</b> Use a GitHub Organization</a></li>
+<li class="chapter" data-level="30.4.2" data-path="classroom-overview.html"><a href="classroom-overview.html#github-pages-for-course-website"><i class="fa fa-check"></i><b>30.4.2</b> GitHub Pages for course website</a></li>
+<li class="chapter" data-level="30.4.3" data-path="classroom-overview.html"><a href="classroom-overview.html#student-specific-private-repos"><i class="fa fa-check"></i><b>30.4.3</b> Student-specific private repos</a></li>
+</ul></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>A</b> The shell</a><ul>
@@ -400,9 +404,30 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>TAs leave feedback here. Actual marks are stored elsewhere and distributed via email. As the TAs mark, they close the issues.</p>
 <p>After homework submission, we randomly assign each student to review the work of two peers. Each peer review assignment takes the form of an issue, assigned to the reviewer. Students leave feedback for each other here. As the TAs mark, they read and assess these peer reviews (also marked!) and close the issues.</p>
 </div>
-<div id="repo-as-sampler" class="section level2">
-<h2><span class="header-section-number">30.4</span> Repo as sampler</h2>
+<div id="github-as-course-management-system" class="section level2">
+<h2><span class="header-section-number">30.4</span> GitHub as course management system</h2>
+<p><em>2017-05-29 This section was excised from an article I am writing. It is partially redundant with the above and the the two will be merged.</em></p>
+<p><a href="http://stat545.com">STAT 545</a> is a data wrangling and analysis course at the University of British Columbia. I was the instructor in charge for several years, which coincided with my own adoption of Git/GitHub. GitHub is used to manage the development of course material, to serve the course website, to create a discussion forum, and to host all student-submitted work.</p>
+<p>Given that students must submit their work and provide peer review of others’ work via GitHub, the use of hosted version control is an explicit, though modest, part of the course. The website <a href="http://happygitwithr.com">Happy Git and GitHub for the useR</a> holds our battle-tested instructions for setup and early usage. The students achieve basic competence quite quickly and find it gratifying to see their formatted, figure-rich R Markdown reports up on the internet. Since it’s easy to expose their work within the class, we conduct peer review, which helps expertise to spread quickly through the group.</p>
+<div id="use-a-github-organization" class="section level3">
+<h3><span class="header-section-number">30.4.1</span> Use a GitHub Organization</h3>
+<p><a href="https://help.github.com/articles/differences-between-user-and-organization-accounts/">GitHub Organizations</a> are “shared accounts where groups of people can collaborate across many projects at once”. This is the most appropriate structure for stewarding course resources, since I can grant TAs and students different levels of access to various repositories. Access can be controlled at the individual user level or, more conveniently, for entire <a href="https://help.github.com/articles/setting-up-teams/">Teams</a>. The TA Team shares write access with me on a private repository for internal matters. I provide each student with their own private repository for coursework and grant other members of the Students Team read access, in order to facilitate peer review. There is a public repository that underpins the course website (see below). We have one other public repository that exists solely so the <a href="https://github.com/STAT545-UBC/Discussion/issues">Issues</a> can be used as a discussion forum.</p>
+<p>GitHub actively encourages the use of its platform in teaching. As an instructor you can request a <a href="https://help.github.com/articles/discounted-organization-accounts/">free Organization account</a> that provides features normally available only on paid plans, such as private repositories. In fact, GitHub provides tooling for specific teaching workflows via <a href="https://classroom.github.com/">GitHub Classroom</a>, although I do not use it. That is not an intentional knock on their tools. I started teaching with GitHub several years before this existed and developed a different way of using the platform. I also find the <a href="https://education.github.com">GitHub Education</a> resources to be geared more towards computer science than data science.</p>
+</div>
+<div id="github-pages-for-course-website" class="section level3">
+<h3><span class="header-section-number">30.4.2</span> GitHub Pages for course website</h3>
+<p>All course content is provided on the <a href="http://stat545.com">STAT 545 website</a>. Each page is generated from an R Markdown document that is rendered to HTML locally using the rmarkdown package, retaining the intermediate Markdown. These pages are a mix of prose and rendered R code, reflecting the live coding done in class. All of these files and their history can be explored in the <a href="https://github.com/STAT545-UBC/STAT545-UBC.github.io">source repository</a>. The TA team has permission to write to this repo, meaning they can (and do!) help me maintain the website. I rejoice that I am no longer the webmaster. We also get typo corrections and other input from the world at large, since this is entirely public.</p>
+<p>If I were starting from scratch today, I would continue to use R Markdown, RStudio, and GitHub Pages (see below), but would upgrade to a more modern, automated approach to rendering the pages. I now recommend <a href="http://rmarkdown.rstudio.com/rmarkdown_websites.html">R Markdown websites</a>, <a href="https://bookdown.org">bookdown</a>, or <a href="https://bookdown.org/yihui/blogdown/">blogdown</a> to manage the process of creating a static website from a large and inter-related set of <code>.Rmd</code> files.</p>
+<p>GitHub offers several ways to host a website directly from a repository, collectively known as <a href="https://help.github.com/categories/github-pages-basics/">GitHub Pages</a>. The STAT 545 website is a very simple <a href="https://help.github.com/articles/user-organization-and-project-pages/">Organization Page</a> that uses a <a href="https://help.github.com/articles/custom-domain-redirects-for-github-pages-sites/">custom domain</a>, <code>stat545.com</code>, instead of the default <code>orgname.github.io</code>.</p>
+<p>This system for managing course content is a great example of integrating the doing of work and the sharing of it. We analyze data live in class, using R, based on the scripts on the website. I re-render the associated <code>.R</code> or <code>.Rmd</code>, commit the changed files, push, and see it reflected right away on <a href="http://stat545.com" class="uri">http://stat545.com</a>. There is no separation between having an idea, implementing it, and posting on the website.</p>
+</div>
+<div id="student-specific-private-repos" class="section level3">
+<h3><span class="header-section-number">30.4.3</span> Student-specific private repos</h3>
+<p>Early in the course I elicit GitHub usernames for registered students, via a <a href="https://shiny.rstudio.com">Shiny app</a>, and invite them to join the course Organization. I then create one private repository per student, in the STAT 545 Organization. The targeted student has write access and the other students have read access. This is somewhat controversial, due to the possibility of cheating, but I have seen more pros than cons for this setup, in the STAT 545 context. In other settings, I have also used one repo per student <em>per homework assignment</em>, which allows you to keep the repos completely private until homework submission, then increase their visibility during marking and peer review. Some courses will work better with one model or the other.</p>
+<p>Each student does their work in this repo, submitting a major assignment approximately once a week. The first assignment is simply to claim the repository and create a README, which proves they have all the relevant software setup and they can write a little Markdown. Each week we tackle some new data analysis or wrangling task, with increasing latitude for independence. Homework is implemented in R Markdown documents, rendered to Markdown, and pushed to GitHub. Students submit their work by opening an issue in their repo, naming the assignment in the title, providing the SHA of the associated final commit, and linking to the main <code>.md</code> file. We leave feedback as comments in the issue thread or, occasionally, propose changes to code via “pull requests”. Two peers are selected at random to review each assignment, a process that we also implement via GitHub Issues.</p>
+<p>At the end of term, the student (and their instructor!) can visit the repo to find an organized, navigable sequence of ~10 assignments. Each student leaves with self-written documentation of everything they’ve done, ready to consult in future projects. The last assignments require writing an R package or Shiny app, which they generally do in public repositories under their own accounts. They finish STAT 545 with several months of Git/GitHub experience and the start of a data science portfolio.</p>
 
+</div>
 </div>
 </div>
 
@@ -425,7 +450,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
-require(["gitbook"], function(gitbook) {
+gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
