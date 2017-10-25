@@ -488,7 +488,7 @@ knitr::opts_chunk$set(error = TRUE)
 <li><code>getwd()</code> will display working directory at <strong>run time</strong>. If you monkeyed around with working directory with, e.g., the mouse, maybe it’s set to one place for your interactive development and another when “Knit HTML” takes over?</li>
 <li><code>list.files()</code> will list the files in working directory. Is the file you want even there?</li>
 </ul>
-<p><strong>Don’t try to change working directory within an R Markdown document</strong>. <a href="https://github.com/yihui/knitr/blob/master/FAQ.md">Just don’t</a>. That is all.</p>
+<p><strong>Don’t try to change working directory within an R Markdown document</strong>. Just don’t. See <a href="https://yihui.name/knitr/faq/">knitr FAQ #5</a>. That is all.</p>
 <p><strong>Don’t be in a hurry to create a complicated sub-directory structure.</strong> RStudio/<code>knitr</code>/<code>rmarkdown</code> (which bring you the “Knit HTML” button) are rather opinionated about the working directory being set to the <code>.Rmd</code> file’s location and about all files living together in one big happy directory. This can all be worked around. For example, I <a href="https://github.com/jennybc/here_here#readme">recommend the here package</a> for building file paths, once you requires sub-directories. But don’t do this until you really need it.</p>
 
 </div>
