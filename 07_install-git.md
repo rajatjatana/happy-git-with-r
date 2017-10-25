@@ -21,7 +21,7 @@ and `git --version` to see its version:
 
 ```bash
 git --version
-## git version 1.8.5.6
+## git version 2.14.1
 ```
 
 If you are successful, that's great! You have Git already. No need to install! Move on.
