@@ -60,7 +60,7 @@ You can make some changes via the RStudio IDE: click on the "gear" in the top ba
     ---
     title: "Something fascinating"
     author: "Jenny Bryan"
-    date: "2017-10-25"
+    date: "2017-11-14"
     output:
       html_document:
         keep_md: true
@@ -75,7 +75,7 @@ In fact this hand-edit is necessary if you want to keep only markdown and get Gi
     ---
     title: "Something fascinating"
     author: "Jenny Bryan"
-    date: "2017-10-25"
+    date: "2017-11-14"
     output: github_document
     ---
 ```
@@ -164,7 +164,7 @@ I have more [general ideas](#repo-browsability) about how to make a GitHub repo 
 
 __Make sure RStudio and the `rmarkdown` package (and its dependencies) are up-to-date.__ In case of catastrophic failure to render the boilerplate R Markdown document, consider that your software may be too old. Details on the system used to render this document and how to check your setup:
 
-  * rmarkdown version 1.6. Use `packageVersion("rmarkdown")` to check yours.
+  * rmarkdown version 1.7. Use `packageVersion("rmarkdown")` to check yours.
   * R version 3.4.2 (2017-01-27). Use `R.version.string` to check yours.
   * RStudio IDE 1.1.383. Use *RStudio > About RStudio* to check yours.
 
