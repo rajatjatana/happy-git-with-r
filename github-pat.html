@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Happy Git and GitHub for the useR</title>
   <meta name="description" content="Using Git and GitHub with R, Rstudio, and R Markdown">
-  <meta name="generator" content="bookdown 0.5.9 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5.10 and GitBook 2.6.7">
 
   <meta property="og:title" content="Happy Git and GitHub for the useR" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Jenny Bryan and the STAT 545 TAs">
 
 
-<meta name="date" content="2017-11-14">
+<meta name="date" content="2017-12-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -340,7 +340,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="github-pat" class="section level1">
 <h1><span class="header-section-number">B</span> GitHub Personal Access Tokens</h1>
 <p>If you Git push or pull via the command line, you can avoid the constant authentication challenge by <a href="credential-caching.html#credential-caching">caching your username and password</a> for HTTPS access or by <a href="ssh-keys.html#ssh-keys">setting up SSH keys</a>. This includes any Git operations done by RStudio on your behalf.</p>
-<p>But for some operations you must call the <a href="https://developer.github.com/v3/">GitHub API</a> (<strong>A</strong>pplication <strong>P</strong>rogramming <strong>I</strong>interface). And this requires that you <a href="https://developer.github.com/v3/#authentication">authenticate yourself</a> in a different way.</p>
+<p>But for some operations you must call the <a href="https://developer.github.com/v3/">GitHub API</a> (<strong>A</strong>pplication <strong>P</strong>rogramming <strong>I</strong>nterface). And this requires that you <a href="https://developer.github.com/v3/#authentication">authenticate yourself</a> in a different way.</p>
 <div id="github-api" class="section level2">
 <h2><span class="header-section-number">B.1</span> GitHub API</h2>
 <p>The first reason most people need GitHub API access is because they want to use the <a href="https://cran.r-project.org/web/packages/devtools/index.html"><code>devtools</code></a> package. It is popular for the <code>devtools::install_github()</code> function to install directly from GitHub. This is in contrast to installing a package from CRAN via <code>install.packages()</code>.</p>
