@@ -25,7 +25,7 @@
 <meta name="author" content="Jenny Bryan and the STAT 545 TAs">
 
 
-<meta name="date" content="2017-12-08">
+<meta name="date" content="2017-12-13">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -194,13 +194,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="15" data-path="troubleshooting.html"><a href="troubleshooting.html"><i class="fa fa-check"></i><b>15</b> RStudio, Git, GitHub Hell</a><ul>
 <li class="chapter" data-level="15.1" data-path="troubleshooting.html"><a href="troubleshooting.html#i-think-i-have-installed-git-but-damn-if-i-can-find-it"><i class="fa fa-check"></i><b>15.1</b> I think I have installed Git but damn if I can find it</a></li>
-<li class="chapter" data-level="15.2" data-path="troubleshooting.html"><a href="troubleshooting.html#dysfunctional-path"><i class="fa fa-check"></i><b>15.2</b> Dysfunctional PATH</a></li>
-<li class="chapter" data-level="15.3" data-path="troubleshooting.html"><a href="troubleshooting.html#pushpull-buttons-greyed-out-in-rstudio"><i class="fa fa-check"></i><b>15.3</b> Push/Pull buttons greyed out in RStudio</a></li>
-<li class="chapter" data-level="15.4" data-path="troubleshooting.html"><a href="troubleshooting.html#i-have-no-idea-if-my-local-repo-and-my-remote-repo-are-connected."><i class="fa fa-check"></i><b>15.4</b> I have no idea if my local repo and my remote repo are connected.</a></li>
-<li class="chapter" data-level="15.5" data-path="troubleshooting.html"><a href="troubleshooting.html#push-fail-at-the-rstudio-level"><i class="fa fa-check"></i><b>15.5</b> Push fail at the RStudio level</a></li>
-<li class="chapter" data-level="15.6" data-path="troubleshooting.html"><a href="troubleshooting.html#push-rejected-i.e.fail-at-the-gitgithub-level"><i class="fa fa-check"></i><b>15.6</b> Push rejected, i.e. fail at the Git/GitHub level</a></li>
-<li class="chapter" data-level="15.7" data-path="troubleshooting.html"><a href="troubleshooting.html#rstudio-is-not-making-certain-files-available-for-stagingcommitting"><i class="fa fa-check"></i><b>15.7</b> RStudio is not making certain files available for staging/committing</a></li>
-<li class="chapter" data-level="15.8" data-path="troubleshooting.html"><a href="troubleshooting.html#i-hear-you-have-some-git-repo-inside-your-git-repo"><i class="fa fa-check"></i><b>15.8</b> I hear you have some Git repo inside your Git repo</a></li>
+<li class="chapter" data-level="15.2" data-path="troubleshooting.html"><a href="troubleshooting.html#rstudio-git-pane-disappears-on-mac-os"><i class="fa fa-check"></i><b>15.2</b> RStudio Git pane disappears on Mac OS</a></li>
+<li class="chapter" data-level="15.3" data-path="troubleshooting.html"><a href="troubleshooting.html#dysfunctional-path"><i class="fa fa-check"></i><b>15.3</b> Dysfunctional PATH</a></li>
+<li class="chapter" data-level="15.4" data-path="troubleshooting.html"><a href="troubleshooting.html#pushpull-buttons-greyed-out-in-rstudio"><i class="fa fa-check"></i><b>15.4</b> Push/Pull buttons greyed out in RStudio</a></li>
+<li class="chapter" data-level="15.5" data-path="troubleshooting.html"><a href="troubleshooting.html#i-have-no-idea-if-my-local-repo-and-my-remote-repo-are-connected."><i class="fa fa-check"></i><b>15.5</b> I have no idea if my local repo and my remote repo are connected.</a></li>
+<li class="chapter" data-level="15.6" data-path="troubleshooting.html"><a href="troubleshooting.html#push-fail-at-the-rstudio-level"><i class="fa fa-check"></i><b>15.6</b> Push fail at the RStudio level</a></li>
+<li class="chapter" data-level="15.7" data-path="troubleshooting.html"><a href="troubleshooting.html#push-rejected-i.e.fail-at-the-gitgithub-level"><i class="fa fa-check"></i><b>15.7</b> Push rejected, i.e. fail at the Git/GitHub level</a></li>
+<li class="chapter" data-level="15.8" data-path="troubleshooting.html"><a href="troubleshooting.html#rstudio-is-not-making-certain-files-available-for-stagingcommitting"><i class="fa fa-check"></i><b>15.8</b> RStudio is not making certain files available for staging/committing</a></li>
+<li class="chapter" data-level="15.9" data-path="troubleshooting.html"><a href="troubleshooting.html#i-hear-you-have-some-git-repo-inside-your-git-repo"><i class="fa fa-check"></i><b>15.9</b> I hear you have some Git repo inside your Git repo</a></li>
 </ul></li>
 <li class="part"><span><b>III Early GitHub Usage</b></span></li>
 <li class="chapter" data-level="16" data-path="new-github-first.html"><a href="new-github-first.html"><i class="fa fa-check"></i><b>16</b> New project, GitHub first</a><ul>
@@ -353,8 +354,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <p>It is not entirely crazy to just re-install Git, using a method that leaves it in a more conventional location, and to pay very close attention to where it’s being installed. Live and learn.</p>
 </div>
+<div id="rstudio-git-pane-disappears-on-mac-os" class="section level2">
+<h2><span class="header-section-number">15.2</span> RStudio Git pane disappears on Mac OS</h2>
+<p>After a Mac OS upgrade, you might need to trigger the Xcode command line tools to prompt you for what it needs, i.e. to re-install or re-agree to the license agreement. We have seen this cause the RStudio Git pane to disappear on a system where it was previously working. Use commands like these below to tickle Xcode:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">xcode-select</span> --install</code></pre></div>
+<p>or</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> config --global --list</code></pre></div>
+<p>Then <strong>restart RStudio</strong>.</p>
+</div>
 <div id="dysfunctional-path" class="section level2">
-<h2><span class="header-section-number">15.2</span> Dysfunctional PATH</h2>
+<h2><span class="header-section-number">15.3</span> Dysfunctional PATH</h2>
 <p>I’m pretty sure that most cases of RStudio <em>not</em> automatically detecting the Git executable stem from problems with <code>PATH</code>. This is the set of directories where your computer will look for executables, such as Git (today) or <code>make</code> (later in this course). Certain methods of Git installation, especially on Windows and/or older OSes, have a higher tendency to put Git in an unconventional location or to fail to add the relevant directory to <code>PATH</code>.</p>
 <p>How to see your <code>PATH</code>?</p>
 <p>In the shell:</p>
@@ -363,7 +372,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Go <a href="http://www.troubleshooters.com/linux/prepostpath.htm">here</a> for instructions on what to put in your <code>.bash_profile</code> in order to add a directory to <code>PATH</code>.</p>
 </div>
 <div id="pushpull-buttons-greyed-out-in-rstudio" class="section level2">
-<h2><span class="header-section-number">15.3</span> Push/Pull buttons greyed out in RStudio</h2>
+<h2><span class="header-section-number">15.4</span> Push/Pull buttons greyed out in RStudio</h2>
 <p>Are you sure your local repository is tracking a remote repository, e.g. a GitHub repo? In a shell with working directory set to the local Git repo, enter these commands:</p>
 <pre class="sh"><code>jenny@2015-mbp myrepo $ git remote -v
 origin  https://github.com/jennybc/myrepo (fetch)
@@ -383,29 +392,29 @@ jenny@2015-mbp myrepo $ git branch -vv
 </ul>
 </div>
 <div id="i-have-no-idea-if-my-local-repo-and-my-remote-repo-are-connected." class="section level2">
-<h2><span class="header-section-number">15.4</span> I have no idea if my local repo and my remote repo are connected.</h2>
+<h2><span class="header-section-number">15.5</span> I have no idea if my local repo and my remote repo are connected.</h2>
 <p>See the above section on “Push/Pull buttons greyed out in RStudio.”</p>
 </div>
 <div id="push-fail-at-the-rstudio-level" class="section level2">
-<h2><span class="header-section-number">15.5</span> Push fail at the RStudio level</h2>
+<h2><span class="header-section-number">15.6</span> Push fail at the RStudio level</h2>
 <p>Do you get this error in RStudio?</p>
 <pre><code>error: unable to read askpass response from &#39;rpostback-askpass&#39;</code></pre>
 <p>Open the shell: <em>Tools &gt; Shell</em>.</p>
 <pre class="shell"><code>git push -u origin master</code></pre>
 </div>
 <div id="push-rejected-i.e.fail-at-the-gitgithub-level" class="section level2">
-<h2><span class="header-section-number">15.6</span> Push rejected, i.e. fail at the Git/GitHub level</h2>
+<h2><span class="header-section-number">15.7</span> Push rejected, i.e. fail at the Git/GitHub level</h2>
 <p>You might have changes on the remote AND on your local repo. Just because you don’t remember making any edits in the browser doesn’t mean you didn’t. Humor me.</p>
 <p>Pull first. Resolve any conflicts. Then try your push again.</p>
 </div>
 <div id="rstudio-is-not-making-certain-files-available-for-stagingcommitting" class="section level2">
-<h2><span class="header-section-number">15.7</span> RStudio is not making certain files available for staging/committing</h2>
+<h2><span class="header-section-number">15.8</span> RStudio is not making certain files available for staging/committing</h2>
 <p>Do you have a space in your directory or file names? <a href="https://twitter.com/aaronquinlan/status/711593127551733761">A space in a file name is a space in your soul.</a> Get rid of it.</p>
 <p>Is your Git repo / RStudio Project inside a folder that … eventually rolls up to Google Drive, DropBox, Microsoft OneDrive, or a network drive? If yes, I recommend you move the repo / Project into a plain old directory that lives directly on your computer and that is not managed by, e.g., Google Drive.</p>
 <p>If you cannot deal with the two root causes identified above, then it is possible that a more powerful Git client (chapter <a href="git-client.html#git-client">9</a>) will be able to cope with these situations. But I make no promises. You should also try Git operations from the command line.</p>
 </div>
 <div id="i-hear-you-have-some-git-repo-inside-your-git-repo" class="section level2">
-<h2><span class="header-section-number">15.8</span> I hear you have some Git repo inside your Git repo</h2>
+<h2><span class="header-section-number">15.9</span> I hear you have some Git repo inside your Git repo</h2>
 <p>Do not create a Git repository inside another Git repository. Just don’t.</p>
 <p>If you have a genuine need for this, which is really rare, the proper way to do it is via <a href="http://git-scm.com/book/en/v2/Git-Tools-Submodules">submodules</a>.</p>
 <p>In STAT 545, we certainly do not need to do this and when we’ve seen it, it’s been a mistake. This has resulted in the unexpected and complete loss of the inner Git repository. To be sure, there was more going on here (cough, GitHub Desktop client), but non-standard usage of Git repos makes it much easier to make costly mistakes.</p>
