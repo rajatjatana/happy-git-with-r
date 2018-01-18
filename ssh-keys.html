@@ -25,7 +25,7 @@
 <meta name="author" content="Jenny Bryan and the STAT 545 TAs">
 
 
-<meta name="date" content="2018-01-14">
+<meta name="date" content="2018-01-18">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -399,19 +399,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="option-1-set-up-from-rstudio" class="section level3">
 <h3><span class="header-section-number">12.4.1</span> Option 1: Set up from RStudio</h3>
 <p>Go to <em>Tools &gt; Global Options…&gt; Git/SVN &gt; Create RSA Key…</em>.</p>
-<p>RStudio prompts you for a passphrase. It is optional, but also a best practice. Configuring your system for smooth operation with a passphrase-protected key introduces more moving parts. If you’re completely new at all this, skip the passphrase and implement it next time, when you are more comfortable with system configuration. I did not use a passphrase at first, but I do now, and record it in a password manager.</p>
+<p>RStudio prompts you for a passphrase. It is optional, but also a best practice. Configuring your system for smooth operation with a passphrase-protected key introduces more moving parts. If you’re completely new at all this, skip the passphrase (or use HTTPS!) and implement it next time, when you are more comfortable with system configuration. I did not use a passphrase at first, but I do now, and record it in a password manager.</p>
 <p>Click “Create” and RStudio will generate an SSH key pair, stored in the files <code>~/.ssh/id_rsa</code> and <code>~/.ssh/id_rsa.pub</code>.</p>
 </div>
 <div id="option-2-set-up-from-the-shell" class="section level3">
 <h3><span class="header-section-number">12.4.2</span> Option 2: Set up from the shell</h3>
-<p>Create the key pair like so, but substitute a comment that means something to you, especially if you’ll have multiple SSH keys in your life. Consider the email associated with your GitHub account or the name of your computer, e.g. <code>jenny@example.com</code> or <code>2018-mbp</code>.</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ssh-keygen</span> -t rsa -b 4096 -C <span class="st">&quot;USEFUL-COMMENT-GOES-HERE&quot;</span></code></pre></div>
+<p>Create the key pair like so, but substitute a comment that means something to you, especially if you’ll have multiple SSH keys in your life. Consider the email associated with your GitHub account or the name of your computer, e.g. <code>you@example.com</code> or <code>2018-mbp</code>.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ssh-keygen</span> -t rsa -b 4096 -C <span class="st">&quot;USEFUL-COMMENT&quot;</span></code></pre></div>
 <p>Accept the proposal to save the key in the default location. Just press Enter here:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Enter</span> file in which to save the key (/Users/jenny/.ssh/id_rsa)<span class="kw">:</span></code></pre></div>
 <p>You have the option to protect the key with a passphrase. It is optional, but also a best practice. Configuring your system for smooth operation with a passphrase-protected key introduces more moving parts. If you’re completely new at all this, skip the passphrase and implement it next time, when you are more comfortable with system configuration. I did not use a passphrase at first, but I do now, and record it in a password manager.</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Enter</span> passphrase (empty for no passphrase)<span class="kw">:</span></code></pre></div>
 <p>The process should complete now and should have looked like this:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">jenny@2015-mbp</span> ~ $ ssh-keygen -t rsa -b 4096 -C <span class="st">&quot;USEFUL-COMMENT-GOES-HERE&quot;</span>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">jenny@2015-mbp</span> ~ $ ssh-keygen -t rsa -b 4096 -C <span class="st">&quot;USEFUL-COMMENT&quot;</span>
 <span class="kw">Generating</span> public/private rsa key pair.
 <span class="kw">Enter</span> file in which to save the key (/Users/jenny/.ssh/id_rsa)<span class="kw">:</span>     
 <span class="kw">Enter</span> passphrase (empty for no passphrase)<span class="kw">:</span> 
@@ -419,7 +419,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="kw">Your</span> identification has been saved in /Users/jenny/.ssh/id_rsa.
 <span class="kw">Your</span> public key has been saved in /Users/jenny/.ssh/id_rsa.pub.
 <span class="kw">The</span> key fingerprint is:
-<span class="kw">SHA256</span>:ki0TNHm8qIvpH7/c0qQmdv2xxhYHCwlpn3+rVhKVeDo USEFUL-COMMENT-GOES-HERE
+<span class="kw">SHA256</span>:ki0TNHm8qIvpH7/c0qQmdv2xxhYHCwlpn3+rVhKVeDo USEFUL-COMMENT
 <span class="kw">The</span> key<span class="st">&#39;s randomart image is:</span>
 <span class="st">+---[RSA 4096]----+</span>
 <span class="st">|      o+   . .   |</span>
