@@ -32,11 +32,14 @@ Mac OS users might get an immediate offer to install command line developer tool
 
 ## Windows
 
-**Option 1** (*recommended*): Install [Git for Windows](https://git-for-windows.github.io/), previously known as `msysgit` or "Git Bash", to get Git in addition to some other useful tools, such as the Bash shell. Yes, all those names are totally confusing. You must select the "Use Git from the Windows Command Prompt" option during installation. You may accept all of the other default settings during installation.
+**Option 1** (*highly recommended*): Install [Git for Windows](https://git-for-windows.github.io/), also known as `msysgit` or "Git Bash", to get Git in addition to some other useful tools, such as the Bash shell. Yes, all those names are totally confusing, but you might encounter them elsewhere and I want you to be well-informed.
 
-  * This approach leaves the Git executable in a conventional location, which will help you and other programs, e.g. RStudio, find it and use it. This also supports a transition to more expert use, because the Bash shell will be useful as you venture outside of R/RStudio.
-  * This also leaves you with a Git client, though not a very good one. So check out Git clients we recommend (chapter \@ref(git-client)).
-  *RStudio for windows likes for git to be in the \Program Files(x86)\ folder. If not in this location, RStudio may not detect it, and may cause headaches for you later.
+We like this because Git for Windows leaves the Git executable in a conventional location, which will help you and other programs, e.g. RStudio, find it and use it. This also supports a transition to more expert use, because the "Git Bash" shell will be useful as you venture outside of R/RStudio.
+
+  *  **NOTE:** Select "Use Git from the Windows Command Prompt" during installation. Otherwise, we believe it's OK to accept the defaults.
+  * Note that RStudio for Windows prefers for Git to be installed below `C:/Program Files`, for example the Git executable on my Windows system is found at `C:/Program Files/Git/bin/git.exe`. Unless you have specific reasons to otherwise, follow this convention.
+
+This also leaves you with a Git client, though not a very good one. So check out Git clients we recommend (chapter \@ref(git-client)).
   
 **Option 2** (*NOT recommended*): The GitHub hosting site offers [GitHub Desktop for Windows](https://desktop.github.com/) that provides Git itself, a client, and smooth integration with GitHub.
 
@@ -45,7 +48,7 @@ Mac OS users might get an immediate offer to install command line developer tool
 
 ## Mac OS
 
-**Option 1** (*highly recommended*): Install the Xcode command line tools (not all of Xcode), which includes Git. If your OS is older than 10.11 El Capitan, it is possible that you **must** install the Xcode command line tools in order for RStudio to find and use Git.
+**Option 1** (*highly recommended*): Install the Xcode command line tools (**not all of Xcode**), which includes Git. If your OS is older than 10.11 El Capitan, it is possible that you **must** install the Xcode command line tools in order for RStudio to find and use Git.
 
 Go to the shell and enter one of these commands to elicit an offer to install developer command line tools:
 

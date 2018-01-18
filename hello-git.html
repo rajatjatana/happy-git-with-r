@@ -361,20 +361,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>substituting your name and <strong>the email associated with your GitHub account</strong>.</p>
 <div id="more-about-git-config" class="section level2">
 <h2><span class="header-section-number">8.1</span> More about <code>git config</code></h2>
-<p>From RStudio, go to <em>Tools &gt; Shell</em> and tell Git your name and <strong>GitHub email</strong> by typing (use your own name and email):</p>
-<p>Note: If you are on Windows, check the title bar of the shell that was opened! If you see <code>cmd.exe</code> at the end of the status bar, this is the Windows Command Prompt. If you instead see <code>MINGW64</code> at the beginning, you have successfully opened Git Bash!</p>
-<p>Note: If you are <strong>not</strong> in an R Project that is version controlled with git, <em>Tools &gt; Shell</em> will open Windows Command Prompt. If this is the case and RStudio still opens <code>cmd.exe</code>, check <em>Tools &gt; Global Options &gt; Git/SVN</em> and tick the box for “Use Git Bash as shell for Git projects”. You may need to restart RStudio.</p>
-<ul>
-<li><p><code>git config --global user.name 'Jennifer Bryan'</code></p>
-<ul>
-<li>This does <strong>NOT</strong> have to be your GitHub username, although it can be. Another good option is your actual first name and last name. Your commits will be labelled with this name, so this should be informative to potential collaborators.</li>
-</ul></li>
-<li><p><code>git config --global user.email 'jenny@stat.ubc.ca'</code></p>
-<ul>
-<li>This <strong>must</strong> be the email that you used to sign up for GitHub.</li>
-</ul></li>
-</ul>
+<p>An easy way to get into a shell from RStudio is <em>Tools &gt; Terminal</em> or <em>Tools &gt; Shell</em>. More about the shell in the Appendix <a href="ssh-keys.html#shell">12.3.2</a>.</p>
+<p>Special Windows gotchas: If you are struggling on Windows, consider there are different types of shell and you might be in the wrong one. Short version: you want to see <code>MSYS</code> or <code>MINGW64</code> in the status bar, not <code>cmd.exe</code>.</p>
+<p>What user name should you give to Git? This does not have to be your GitHub username, although it can be. Another good option is your actual first name and last name. Your commits will be labelled with this name, so this should be informative to potential collaborators.</p>
+<p>What email should you give to Git? This <strong>must</strong> be the email associated with your GitHub account.</p>
 <p>These commands return nothing. You can check that Git understood what you typed by looking at the output of <code>git config --global --list</code>.</p>
+<p>Another Git option that many people eventually configure is the editor. At some point, you will fail to give Git what it wants in terms of a commit message and it will kick you into an editor. This can be distressing, if it’s not your editor of choice and you don’t even know how to save and quit. You can enforce your will with something along these lines:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> config --global core.editor emacs</code></pre></div>
+<p>Substitute your preferred editor for <code>emacs</code> here.</p>
 
 </div>
 </div>
