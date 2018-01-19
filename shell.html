@@ -320,7 +320,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="A.2" data-path="shell.html"><a href="shell.html#starting-the-shell"><i class="fa fa-check"></i><b>A.2</b> Starting the shell</a></li>
 <li class="chapter" data-level="A.3" data-path="shell.html"><a href="shell.html#windows-is-special-and-not-in-a-good-way"><i class="fa fa-check"></i><b>A.3</b> Windows is special … and not in a good way</a></li>
 <li class="chapter" data-level="A.4" data-path="shell.html"><a href="shell.html#using-the-shell"><i class="fa fa-check"></i><b>A.4</b> Using the shell</a></li>
-<li class="chapter" data-level="A.5" data-path="shell.html"><a href="shell.html#note-for-windows-users"><i class="fa fa-check"></i><b>A.5</b> Note for Windows users</a></li>
 </ul></li>
 <li class="chapter" data-level="B" data-path="github-pat.html"><a href="github-pat.html"><i class="fa fa-check"></i><b>B</b> GitHub Personal Access Tokens</a><ul>
 <li class="chapter" data-level="B.1" data-path="github-pat.html"><a href="github-pat.html#github-api"><i class="fa fa-check"></i><b>B.1</b> GitHub API</a></li>
@@ -401,6 +400,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <p>Notice the <code>cmd.exe</code> in the title bar.</p>
 <p>In Command Prompt, <code>echo %comspec%</code> gives <code>C:\WINDOWS\system32\cmd.exe</code>.</p>
+<p>If you get an error message such as <code>'pwd' is not recognized as an internal or external command, operable program or batch file.</code> from any of the previous commands, that suggests you have somehow launched into <code>cmd.exe</code>.</p>
 </div>
 <div id="power-shell" class="section level4">
 <h4><span class="header-section-number">A.3.0.3</span> Power Shell</h4>
@@ -455,11 +455,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><code>git remote set-url origin GITHUB_URL</code> changes the remote url of <code>origin</code> to <code>GITHUB_URL</code>. This way you can fix typos in the remote url.</li>
 <li><em>we should add more</em></li>
 </ul>
-</div>
-<div id="note-for-windows-users" class="section level2">
-<h2><span class="header-section-number">A.5</span> Note for Windows users</h2>
-<p>On Windows, the program that runs the shell is called <em>Command Prompt</em> or <em>cmd.exe</em>. Unfortunately, the default Windows shell does not support all the commands that other operating systems do. This is where GitBash comes in handy: it installs a light version of a shell that does support all the above commands. When you access the shell through RStudio, RStudio actually tries to open GitBash if it can find it, but it will open the default Windows Command Prompt if GitBash is not found.</p>
-<p>If you get an error message such as <code>'pwd' is not recognized as an internal or external command, operable program or batch file.</code> from any of the previous commands, that means that RStudio could not find GitBash. The most likely cause of this is that you did not install git using the recommended method from this book, so try re-installing git.</p>
 
 </div>
 </div>
