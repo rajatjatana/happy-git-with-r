@@ -171,8 +171,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="12.1" data-path="ssh-keys.html"><a href="ssh-keys.html#ssh-keys"><i class="fa fa-check"></i><b>12.1</b> SSH keys</a></li>
 <li class="chapter" data-level="12.2" data-path="ssh-keys.html"><a href="ssh-keys.html#ssh-outline-and-advice"><i class="fa fa-check"></i><b>12.2</b> SSH outline and advice</a></li>
 <li class="chapter" data-level="12.3" data-path="ssh-keys.html"><a href="ssh-keys.html#do-you-already-have-keys"><i class="fa fa-check"></i><b>12.3</b> Do you already have keys?</a><ul>
-<li class="chapter" data-level="12.3.1" data-path="ssh-keys.html"><a href="ssh-keys.html#rstudio"><i class="fa fa-check"></i><b>12.3.1</b> RStudio</a></li>
-<li class="chapter" data-level="12.3.2" data-path="ssh-keys.html"><a href="ssh-keys.html#shell"><i class="fa fa-check"></i><b>12.3.2</b> Shell</a></li>
+<li class="chapter" data-level="12.3.1" data-path="ssh-keys.html"><a href="ssh-keys.html#from-rstudio"><i class="fa fa-check"></i><b>12.3.1</b> From RStudio</a></li>
+<li class="chapter" data-level="12.3.2" data-path="ssh-keys.html"><a href="ssh-keys.html#from-the-shell"><i class="fa fa-check"></i><b>12.3.2</b> From the shell</a></li>
 </ul></li>
 <li class="chapter" data-level="12.4" data-path="ssh-keys.html"><a href="ssh-keys.html#create-an-ssh-key-pair"><i class="fa fa-check"></i><b>12.4</b> Create an SSH key pair</a><ul>
 <li class="chapter" data-level="12.4.1" data-path="ssh-keys.html"><a href="ssh-keys.html#option-1-set-up-from-rstudio"><i class="fa fa-check"></i><b>12.4.1</b> Option 1: Set up from RStudio</a></li>
@@ -315,8 +315,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="ssh-keys.html"><a href="ssh-keys.html#shell"><i class="fa fa-check"></i><b>A</b> The shell</a><ul>
-<li class="chapter" data-level="A.1" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>A.1</b> What is the shell?</a></li>
+<li class="chapter" data-level="A" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>A</b> The shell</a><ul>
+<li class="chapter" data-level="A.1" data-path="shell.html"><a href="shell.html#what-is-the-shell"><i class="fa fa-check"></i><b>A.1</b> What is the shell?</a></li>
 <li class="chapter" data-level="A.2" data-path="shell.html"><a href="shell.html#starting-the-shell"><i class="fa fa-check"></i><b>A.2</b> Starting the shell</a></li>
 <li class="chapter" data-level="A.3" data-path="shell.html"><a href="shell.html#windows-is-special-and-not-in-a-good-way"><i class="fa fa-check"></i><b>A.3</b> Windows is special … and not in a good way</a></li>
 <li class="chapter" data-level="A.4" data-path="shell.html"><a href="shell.html#using-the-shell"><i class="fa fa-check"></i><b>A.4</b> Using the shell</a></li>
@@ -354,14 +354,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="hello-git" class="section level1">
 <h1><span class="header-section-number">8</span> Introduce yourself to Git</h1>
-<p>In the shell (Appendix <a href="ssh-keys.html#shell">12.3.2</a>):</p>
+<p>In the shell (Appendix <a href="shell.html#shell">A</a>):</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> config --global user.name <span class="st">&#39;Jennifer Bryan&#39;</span>
 <span class="kw">git</span> config --global user.email <span class="st">&#39;jenny@stat.ubc.ca&#39;</span>
 <span class="kw">git</span> config --global --list</code></pre></div>
 <p>substituting your name and <strong>the email associated with your GitHub account</strong>.</p>
 <div id="more-about-git-config" class="section level2">
 <h2><span class="header-section-number">8.1</span> More about <code>git config</code></h2>
-<p>An easy way to get into a shell from RStudio is <em>Tools &gt; Terminal</em> or <em>Tools &gt; Shell</em>. More about the shell in the Appendix <a href="ssh-keys.html#shell">12.3.2</a>.</p>
+<p>An easy way to get into a shell from RStudio is <em>Tools &gt; Terminal</em> or <em>Tools &gt; Shell</em>. More about the shell in the Appendix <a href="shell.html#shell">A</a>.</p>
 <p>Special Windows gotchas: If you are struggling on Windows, consider there are different types of shell and you might be in the wrong one. Short version: you want to see <code>MSYS</code> or <code>MINGW64</code> in the status bar, not <code>cmd.exe</code>.</p>
 <p>What user name should you give to Git? This does not have to be your GitHub username, although it can be. Another good option is your actual first name and last name. Your commits will be labelled with this name, so this should be informative to potential collaborators.</p>
 <p>What email should you give to Git? This <strong>must</strong> be the email associated with your GitHub account.</p>

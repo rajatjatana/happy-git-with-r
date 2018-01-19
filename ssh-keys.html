@@ -171,8 +171,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="12.1" data-path="ssh-keys.html"><a href="ssh-keys.html#ssh-keys"><i class="fa fa-check"></i><b>12.1</b> SSH keys</a></li>
 <li class="chapter" data-level="12.2" data-path="ssh-keys.html"><a href="ssh-keys.html#ssh-outline-and-advice"><i class="fa fa-check"></i><b>12.2</b> SSH outline and advice</a></li>
 <li class="chapter" data-level="12.3" data-path="ssh-keys.html"><a href="ssh-keys.html#do-you-already-have-keys"><i class="fa fa-check"></i><b>12.3</b> Do you already have keys?</a><ul>
-<li class="chapter" data-level="12.3.1" data-path="ssh-keys.html"><a href="ssh-keys.html#rstudio"><i class="fa fa-check"></i><b>12.3.1</b> RStudio</a></li>
-<li class="chapter" data-level="12.3.2" data-path="ssh-keys.html"><a href="ssh-keys.html#shell"><i class="fa fa-check"></i><b>12.3.2</b> Shell</a></li>
+<li class="chapter" data-level="12.3.1" data-path="ssh-keys.html"><a href="ssh-keys.html#from-rstudio"><i class="fa fa-check"></i><b>12.3.1</b> From RStudio</a></li>
+<li class="chapter" data-level="12.3.2" data-path="ssh-keys.html"><a href="ssh-keys.html#from-the-shell"><i class="fa fa-check"></i><b>12.3.2</b> From the shell</a></li>
 </ul></li>
 <li class="chapter" data-level="12.4" data-path="ssh-keys.html"><a href="ssh-keys.html#create-an-ssh-key-pair"><i class="fa fa-check"></i><b>12.4</b> Create an SSH key pair</a><ul>
 <li class="chapter" data-level="12.4.1" data-path="ssh-keys.html"><a href="ssh-keys.html#option-1-set-up-from-rstudio"><i class="fa fa-check"></i><b>12.4.1</b> Option 1: Set up from RStudio</a></li>
@@ -315,8 +315,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="ssh-keys.html"><a href="ssh-keys.html#shell"><i class="fa fa-check"></i><b>A</b> The shell</a><ul>
-<li class="chapter" data-level="A.1" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>A.1</b> What is the shell?</a></li>
+<li class="chapter" data-level="A" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>A</b> The shell</a><ul>
+<li class="chapter" data-level="A.1" data-path="shell.html"><a href="shell.html#what-is-the-shell"><i class="fa fa-check"></i><b>A.1</b> What is the shell?</a></li>
 <li class="chapter" data-level="A.2" data-path="shell.html"><a href="shell.html#starting-the-shell"><i class="fa fa-check"></i><b>A.2</b> Starting the shell</a></li>
 <li class="chapter" data-level="A.3" data-path="shell.html"><a href="shell.html#windows-is-special-and-not-in-a-good-way"><i class="fa fa-check"></i><b>A.3</b> Windows is special … and not in a good way</a></li>
 <li class="chapter" data-level="A.4" data-path="shell.html"><a href="shell.html#using-the-shell"><i class="fa fa-check"></i><b>A.4</b> Using the shell</a></li>
@@ -381,13 +381,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">12.3</span> Do you already have keys?</h2>
 <p>You can check this from RStudio or from the shell.</p>
 <p>Global advice: if you do have existing keys, but have no clue where they came from or why you created them, you should seriously consider creating a new SSH key pair. It’s up to you to figure out whether/how to delete the old ones. But don’t let that keep you from creating new keys and moving forward.</p>
-<div id="rstudio" class="section level3">
-<h3><span class="header-section-number">12.3.1</span> RStudio</h3>
+<div id="from-rstudio" class="section level3">
+<h3><span class="header-section-number">12.3.1</span> From RStudio</h3>
 <p>Go to <em>Tools &gt; Global Options…&gt; Git/SVN</em>. If you see <code>~/.ssh/id_rsa</code> in the SSH RSA Key box, you definitely have existing keys. Caveat: RStudio only looks for a key pair named <code>id_rsa</code> and <code>id_rsa.pub</code>. This makes sense, because it’s the default and very common. But SSH keys <em>can</em> have other names. If you want to be completely certain, you should also check in the shell.</p>
 </div>
-<div id="shell" class="section level3">
-<h3><span class="header-section-number">12.3.2</span> Shell</h3>
-<p>Go to the shell (appendix <a href="ssh-keys.html#shell">12.3.2</a>).</p>
+<div id="from-the-shell" class="section level3">
+<h3><span class="header-section-number">12.3.2</span> From the shell</h3>
+<p>Go to the shell (appendix <a href="shell.html#shell">A</a>).</p>
 <p>List existing keys:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ls</span> -al ~/.ssh/</code></pre></div>
 <p>If you are told <code>~/.ssh/</code> doesn’t exist, you don’t have SSH keys!</p>
