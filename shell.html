@@ -25,7 +25,7 @@
 <meta name="author" content="Jenny Bryan and the STAT 545 TAs">
 
 
-<meta name="date" content="2018-01-18">
+<meta name="date" content="2018-01-19">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -318,8 +318,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="A" data-path="ssh-keys.html"><a href="ssh-keys.html#shell"><i class="fa fa-check"></i><b>A</b> The shell</a><ul>
 <li class="chapter" data-level="A.1" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>A.1</b> What is the shell?</a></li>
 <li class="chapter" data-level="A.2" data-path="shell.html"><a href="shell.html#starting-the-shell"><i class="fa fa-check"></i><b>A.2</b> Starting the shell</a></li>
-<li class="chapter" data-level="A.3" data-path="shell.html"><a href="shell.html#using-the-shell"><i class="fa fa-check"></i><b>A.3</b> Using the shell</a></li>
-<li class="chapter" data-level="A.4" data-path="shell.html"><a href="shell.html#note-for-windows-users"><i class="fa fa-check"></i><b>A.4</b> Note for Windows users</a></li>
+<li class="chapter" data-level="A.3" data-path="shell.html"><a href="shell.html#windows-is-special-and-not-in-a-good-way"><i class="fa fa-check"></i><b>A.3</b> Windows is special … and not in a good way</a></li>
+<li class="chapter" data-level="A.4" data-path="shell.html"><a href="shell.html#using-the-shell"><i class="fa fa-check"></i><b>A.4</b> Using the shell</a></li>
+<li class="chapter" data-level="A.5" data-path="shell.html"><a href="shell.html#note-for-windows-users"><i class="fa fa-check"></i><b>A.5</b> Note for Windows users</a></li>
 </ul></li>
 <li class="chapter" data-level="B" data-path="github-pat.html"><a href="github-pat.html"><i class="fa fa-check"></i><b>B</b> GitHub Personal Access Tokens</a><ul>
 <li class="chapter" data-level="B.1" data-path="github-pat.html"><a href="github-pat.html#github-api"><i class="fa fa-check"></i><b>B.1</b> GitHub API</a></li>
@@ -354,15 +355,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="shell" class="section level1">
 <h1><span class="header-section-number">A</span> The shell</h1>
-<p>Even if you do most of your Git operations via a client, such as RStudio or GitKraken, you must sometimes work in the shell. As you get more comfortable with Git, you might prefer to do more and more via the command line.</p>
+<p>Even if you do most of your Git operations via a client, such as RStudio or GitKraken, you must sometimes work in the shell. As you get more comfortable with Git, you might prefer to do more and more via the command line. You might also need to use Git or file system operations on a server that lacks your usual Git client. For all these reasons, you have to know a little bit about this.</p>
 <div id="what-is-the-shell" class="section level2">
 <h2><span class="header-section-number">A.1</span> What is the shell?</h2>
-<p>The <code>shell</code> (or <code>bash</code> or terminal or Command Prompt on Windows) is a program on your computer whose job is to run other programs, rather than do calculations itself. The <code>shell</code> is a very old program and in a time before the mouse it was the only way to interact with a computer. It is still extremely popular among programmers because it is very fast, concise, and is particularly powerful at automating repetitive tasks.</p>
-<p>Here we use the <code>shell</code> for quite modest goals: to navigate the file system, confirm the present working directory, configure Git, and configure Git remotes.</p>
+<p>The <code>shell</code> is a program on your computer whose job is to run other programs. Pseudo-synonyms are “terminal”, “command line”, and “console”. There’s a whole StackExchange thread on the differences (<a href="https://askubuntu.com/questions/506510/what-is-the-difference-between-terminal-console-shell-and-command-line">What is the difference between Terminal, Console, Shell, and Command Line?</a>), but I don’t find it to be terribly enlightening. Your mileage may vary.</p>
+<p>Many programmers spend lots of time in a shell, as opposed to in GUIs, because it is very fast, concise, and ubiquitous in their relevant computing environments. This is how all work was done before we got the mouse and GUIs.</p>
+<p>The most common shell is <code>bash</code> and it gets thrown around as a proxy for “shell” sometimes, just like “Coke” and “Kleenex” are proxies for cola and tissues.</p>
+<p>Here we demo the use of a shell for quite modest goals: to navigate the file system, confirm the present working directory, configure Git, and configure Git remotes.</p>
 </div>
 <div id="starting-the-shell" class="section level2">
 <h2><span class="header-section-number">A.2</span> Starting the shell</h2>
-<p>In RStudio, go to <em>Tools &gt; Shell</em>. This should take you to the shell (on Mac: Terminal, on Windows: GitBash or equivalent). It should be a simple blinking cursor, waiting for input and look similar to this (white text on black background, or black text on white background):</p>
+<p>In RStudio, go to <em>Tools &gt; Terminal</em> or <em>Tools &gt; Shell</em>. The main difference is that <em>Tools &gt; Terminal</em> launches a shell within RStudio, whereas <em>Tools &gt; Shell</em> launches one external to RStudio. In both cases, RStudio makes every effort to launch the shell in a sane working directory, i.e. in the current project.</p>
+<p>You should see a simple blinking cursor, waiting for input and look similar to this (white text on black background, or black text on white background):</p>
 <!-- why can bookdown not find this?!?
 ![](http://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Bash_screenshot.png/440px-Bash_screenshot.png)
 -->
@@ -371,8 +375,63 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 </div>
 </div>
+<div id="windows-is-special-and-not-in-a-good-way" class="section level2">
+<h2><span class="header-section-number">A.3</span> Windows is special … and not in a good way</h2>
+<p>Windows is not the ideal platform for scientific computing and software development. A lot of the functionality is going to feel janky and strapped on. Because it is.</p>
+<p>There are no fewer than 4 possible shells you can end up in. Unless you know better, you almost certainly want to be in a Git Bash shell.</p>
+<div id="git-bash" class="section level4">
+<h4><span class="header-section-number">A.3.0.1</span> Git Bash</h4>
+<p>This is a bash shell that ships with Git for Windows. It is hopefully what RStudio will launch for you, especially from v1.1.383 and on. You can inspect and influence this directly via <em>Tools &gt; Global Options &gt; Terminal</em>. Unless you have good reason to do otherwise, you want to select “Git Bash” here.</p>
+<p>A Git Bash shell should look something like this:</p>
+<div class="figure">
+<img src="img/2018-01-15_git-bash.png" alt="" />
+
+</div>
+<p>Notice <code>MSYS</code> in the title bar. You might also see <code>MINGW64</code>.</p>
+<p>If you execute <code>echo $SHELL</code> in Git Bash, you should see <code>/usr/bin/bash</code>.</p>
+<p>If you’re seeing different shell-launching behavior <em>and you are running a very current version of RStudio and you followed the Happy Git installation instructions</em>, we <a href="https://github.com/jennybc/happy-git-with-r/issues">want to know</a>. Because that’s not right.</p>
+<p>Older versions of RStudio have a tick box in <em>Tools &gt; Global Options &gt; Terminal</em> for “Use Git Bash as shell for Git projects”. If you won’t or can’t upgrade, then by all means select that. You might need to restart RStudio to see the effect and you must realize it only affects Projects that use Git. Let me be clear: my real advice to you is to upgrade RStudio.</p>
+</div>
+<div id="command-prompt" class="section level4">
+<h4><span class="header-section-number">A.3.0.2</span> Command prompt</h4>
+<p>This is the native Windows command line interpreter. It’s rarely what you want, at least for the work described in this book. It looks something like this:</p>
+<div class="figure">
+<img src="img/2018-01-15_command-prompt.png" alt="" />
+
+</div>
+<p>Notice the <code>cmd.exe</code> in the title bar.</p>
+<p>In Command Prompt, <code>echo %comspec%</code> gives <code>C:\WINDOWS\system32\cmd.exe</code>.</p>
+</div>
+<div id="power-shell" class="section level4">
+<h4><span class="header-section-number">A.3.0.3</span> Power Shell</h4>
+<p>Another Windows shell, more modern than the command prompt. Also probably not what you want. It looks something like this:</p>
+<div class="figure">
+<img src="img/2018-01-15_power-shell.png" alt="" />
+
+</div>
+<p>Notice the <code>powershell.exe</code> in the title bar.</p>
+<p>In PowerShell … wait for it … <code>Get-ChildItem Env:ComSpec</code> gives:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Name</span>                 Value
+<span class="kw">-------</span>              --------
+<span class="kw">ComSpec</span>              C:\WINDOWS\system32\cmd.exe</code></pre></div>
+</div>
+<div id="bash-via-windows-services-for-linux" class="section level4">
+<h4><span class="header-section-number">A.3.0.4</span> Bash via Windows Services for Linux</h4>
+<p>In 2017, Microsoft launched the Windows Subsystem for Linux (WSL), “a new Windows 10 feature that enables you to run native Linux command-line tools directly on Windows”. At the time of writing (January 2018), you will only have this if you’re running Windows 10 64-bit and have chosen to install the optional WSL system component. Therefore, I expect only keeners to have this and, in that case, you probably don’t need this chapter. It looks something like this:</p>
+<div class="figure">
+<img src="img/2018-01-15_bash-windows-services-for-linux.png" alt="" />
+
+</div>
+<p>In this bash shell, <code>echo $SHELL</code> returns <code>/bin/bash</code>.</p>
+<p>FYI Microsoft also refers to WSL as Bash on Ubuntu on Windows.</p>
+</div>
+<div id="windows-bottom-line" class="section level4">
+<h4><span class="header-section-number">A.3.0.5</span> Windows bottom line</h4>
+<p>When in doubt, you probably want to be in a Git Bash shell.</p>
+</div>
+</div>
 <div id="using-the-shell" class="section level2">
-<h2><span class="header-section-number">A.3</span> Using the shell</h2>
+<h2><span class="header-section-number">A.4</span> Using the shell</h2>
 <p>The most basic commands are listed below:</p>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Pwd"><code>pwd</code></a> (<strong>p</strong>rint <strong>w</strong>orking <strong>d</strong>irectory). Shows directory or “folder” you are currently operating in. This is not necessarily the same as the <code>R</code> working directory you get from <code>getwd()</code>.</li>
@@ -398,7 +457,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 </div>
 <div id="note-for-windows-users" class="section level2">
-<h2><span class="header-section-number">A.4</span> Note for Windows users</h2>
+<h2><span class="header-section-number">A.5</span> Note for Windows users</h2>
 <p>On Windows, the program that runs the shell is called <em>Command Prompt</em> or <em>cmd.exe</em>. Unfortunately, the default Windows shell does not support all the commands that other operating systems do. This is where GitBash comes in handy: it installs a light version of a shell that does support all the above commands. When you access the shell through RStudio, RStudio actually tries to open GitBash if it can find it, but it will open the default Windows Command Prompt if GitBash is not found.</p>
 <p>If you get an error message such as <code>'pwd' is not recognized as an internal or external command, operable program or batch file.</code> from any of the previous commands, that means that RStudio could not find GitBash. The most likely cause of this is that you did not install git using the recommended method from this book, so try re-installing git.</p>
 
