@@ -549,7 +549,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><p><a href="https://www.howtogeek.com/howto/16226/complete-guide-to-symbolic-links-symlinks-on-windows-or-linux/">Create a symbolic link</a> so that <code>.ssh/</code> in R’s home directory points to your actual <code>.ssh/</code> directory. Example contributed by Ian Lyttle on Windows 7 using Command Prompt:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">MKLINK</span> /D <span class="st">&quot;C:\Users\username\Documents\.ssh&quot;</span> <span class="st">&quot;C:\Users\username\.ssh&quot;</span></code></pre></div></li>
 </ul>
-<p>Finally, if git2r seems unable to get your SSH passphrase from ssh-agent, install the askPass package:</p>
+<p>Finally, if git2r seems unable to get your SSH passphrase from ssh-agent, install the getPass package:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;getPass&quot;</span>)</code></pre></div>
 <p>and git2r should launch a popup where you can enter your passphrase. Thanks to Ian Lyttle for this tip.</p>
 </div>
