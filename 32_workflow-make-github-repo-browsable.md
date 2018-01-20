@@ -71,7 +71,7 @@ Since 2016, `rmarkdown` offers a [custom output format for GitHub-flavored markd
 
 ``` yaml
 ---
-output: github_document:
+output: github_document
 ---
 ```
 
@@ -79,7 +79,7 @@ or like this for `.R`:
 
 ``` yaml
 #' ---
-#' output: github_document:
+#' output: github_document
 #' ---
 ```
 

@@ -411,11 +411,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>The <code>keep_md: TRUE</code> part says to keep the intermediate Markdown. In RStudio, when editing <code>.Rmd</code>, click on the gear next to “Knit HTML” for YAML authoring help.</p>
 <p>Since 2016, <code>rmarkdown</code> offers a <a href="http://rmarkdown.rstudio.com/github_document_format.html">custom output format for GitHub-flavored markdown, <code>github_document</code></a>. Read about <a href="rmd-test-drive.html#rmd-test-drive">R Markdown workflows</a> for explicit examples of how to use this. If Markdown is your target output format, your <a href="https://gist.github.com/jennybc/402761e30b9be8023af9">YAML can be even simpler</a> and look like this for <code>.Rmd</code>:</p>
 <div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="ot">---</span>
-<span class="fu">output:</span> github_document:
+<span class="fu">output:</span> github_document
 <span class="ot">---</span></code></pre></div>
 <p>or like this for <code>.R</code>:</p>
 <div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="co">#&#39; ---</span>
-<span class="co">#&#39; output: github_document:</span>
+<span class="co">#&#39; output: github_document</span>
 <span class="co">#&#39; ---</span></code></pre></div>
 <p>For a quick, stand-alone document that doesn’t fit neatly into a repository or project (yet), make it a <a href="https://gist.github.com">Gist</a>. Example: Hadley Wickham’s <a href="https://gist.github.com/hadley/820f09ded347c62c2864">advice on what you need to do to become a data scientist</a>. Gists can contain multiple files, so you can still provide the R script or R Markdown source <strong>and</strong> the resulting Markdown, as I’ve done in this write-up of <a href="https://gist.github.com/jennybc/04b71bfaaf0f88d9d2eb">Twitter-sourced tips for cross-tabulation</a>. I’ve collected <a href="https://gist.github.com/jennybc/402761e30b9be8023af9">YAML examples</a> for all the above scenarios in a gist.</p>
 </div>
