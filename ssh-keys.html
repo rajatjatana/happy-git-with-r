@@ -25,7 +25,7 @@
 <meta name="author" content="Jenny Bryan and the STAT 545 TAs">
 
 
-<meta name="date" content="2018-01-19">
+<meta name="date" content="2018-01-20">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -186,7 +186,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="12.6" data-path="ssh-keys.html"><a href="ssh-keys.html#troubleshooting"><i class="fa fa-check"></i><b>12.6</b> Troubleshooting</a><ul>
 <li class="chapter" data-level="12.6.1" data-path="ssh-keys.html"><a href="ssh-keys.html#https-vs-ssh"><i class="fa fa-check"></i><b>12.6.1</b> HTTPS vs SSH</a></li>
-<li class="chapter" data-level="12.6.2" data-path="ssh-keys.html"><a href="ssh-keys.html#other"><i class="fa fa-check"></i><b>12.6.2</b> Other</a></li>
+<li class="chapter" data-level="12.6.2" data-path="ssh-keys.html"><a href="ssh-keys.html#git2r-cant-find-ssh-keys-on-windows"><i class="fa fa-check"></i><b>12.6.2</b> git2r can’t find SSH keys on Windows</a></li>
+<li class="chapter" data-level="12.6.3" data-path="ssh-keys.html"><a href="ssh-keys.html#other"><i class="fa fa-check"></i><b>12.6.3</b> Other</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="rstudio-git-github.html"><a href="rstudio-git-github.html"><i class="fa fa-check"></i><b>13</b> Connect RStudio to Git and GitHub</a><ul>
@@ -372,7 +373,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li>If you are new to programming and the shell, you’ll probably find HTTPS easier at first (chapter <a href="credential-caching.html#credential-caching">11</a>). You can always switch to SSH later. You can use one method from computer A and the other from computer B.</li>
 <li>You should swap out your SSH keys periodically. Something like once a year.</li>
-<li>It’s best practice to protect your private key with a passphrase.</li>
+<li>It’s best practice to protect your private key with a passphrase. This can make setup and usage harder, so if you’re not up for that (yet), either don’t use a passphrase or seriously consider using HTTPS instead.</li>
 <li>Don’t do weird gymnastics in order to have only one key pair, re-used over multiple computers. You should probably have one key per computer (I do this). Some people even have one key per computer, per service (I do not do this).</li>
 <li>It is normal to associate multiple public keys with your GitHub account. For example, one public key for each computer you connect with.</li>
 </ul>
@@ -383,7 +384,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Global advice: if you do have existing keys, but have no clue where they came from or why you created them, you should seriously consider creating a new SSH key pair. It’s up to you to figure out whether/how to delete the old ones. But don’t let that keep you from creating new keys and moving forward.</p>
 <div id="from-rstudio" class="section level3">
 <h3><span class="header-section-number">12.3.1</span> From RStudio</h3>
-<p>Go to <em>Tools &gt; Global Options…&gt; Git/SVN</em>. If you see <code>~/.ssh/id_rsa</code> in the SSH RSA Key box, you definitely have existing keys. Caveat: RStudio only looks for a key pair named <code>id_rsa</code> and <code>id_rsa.pub</code>. This makes sense, because it’s the default and very common. But SSH keys <em>can</em> have other names. If you want to be completely certain, you should also check in the shell.</p>
+<p>Go to <em>Tools &gt; Global Options…&gt; Git/SVN</em>. If you see something like <code>~/.ssh/id_rsa</code> in the SSH RSA Key box, you definitely have existing keys. Caveat: RStudio only looks for a key pair named <code>id_rsa</code> and <code>id_rsa.pub</code>. This makes sense, because it’s the default and very common. But SSH keys <em>can</em> have other names. If you want to be completely certain, you should also check in the shell.</p>
 </div>
 <div id="from-the-shell" class="section level3">
 <h3><span class="header-section-number">12.3.2</span> From the shell</h3>
@@ -498,7 +499,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="https-vs-ssh" class="section level3">
 <h3><span class="header-section-number">12.6.1</span> HTTPS vs SSH</h3>
 <p>If you think you have SSH set up correctly and yet you are still challenged for credentials, consider this: for the repo in question, have you possibly set up GitHub, probably called <code>origin</code>, as an HTTPS remote?</p>
-<p>How to see the remote URL associated with the current repo in the shell:</p>
+<p>How to see the remote URL(s) associated with the current repo in the shell:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> remote -v</code></pre></div>
 <p>An SSH remote will look like this:</p>
 <pre><code>git@github.com:USERNAME/REPOSITORY.git</code></pre>
@@ -509,8 +510,51 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="https://help.github.com/articles/changing-a-remote-s-url/" class="uri">https://help.github.com/articles/changing-a-remote-s-url/</a></li>
 </ul>
 </div>
+<div id="git2r-cant-find-ssh-keys-on-windows" class="section level3">
+<h3><span class="header-section-number">12.6.2</span> git2r can’t find SSH keys on Windows</h3>
+<p>Have you seen this error message?</p>
+<pre><code>Error in .local(object, ...) : 
+  Error in &#39;git2r_push&#39;: error authenticating: failed connecting agent</code></pre>
+<p>We’ve seen it when working with Git/GitHub from R via the <a href="https://cran.r-project.org/web/packages/git2r/index.html">git2r</a> package, which is used under the hood by many R packages, such as devtools, ghit, and usethis.</p>
+<p>git2r uses the libgit2 library, not the Git you installed. This means you can have SSH keys configured properly for Git work in a Git Bash shell and from RStudio and still have problems with git2r! Ugh.</p>
+<p>The root cause is confusion about the location of <code>.ssh/</code> on Windows. R’s idea of your home directory on Windows often differs from the default location of config files for Git and ssh, such as <code>.ssh/</code>. On *nix systems, these generally coincide and there’s no problem.</p>
+<p>Two important directories on Windows are the user’s HOME and USERPROFILE. R usually associates <code>~</code> with HOME, but Git and ssh often consult USERPROFILE for their config files. On my Windows 10 VM, I see:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">normalizePath</span>(<span class="st">&quot;~&quot;</span>)
+<span class="co">#&gt; [1] &quot;C:\\Users\\JennyVM\\Documents&quot;</span>
+
+<span class="kw">as.list</span>(<span class="kw">Sys.getenv</span>(
+  <span class="kw">c</span>(<span class="st">&quot;HOME&quot;</span>, <span class="st">&quot;USERPROFILE&quot;</span>)
+))
+<span class="co">#&gt; $HOME</span>
+<span class="co">#&gt; [1] &quot;C:/Users/JennyVM/Documents&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $USERPROFILE</span>
+<span class="co">#&gt; [1] &quot;C:\\Users\\JennyVM&quot;</span>
+
+<span class="kw">list.files</span>(
+  <span class="kw">Sys.getenv</span>(<span class="st">&quot;USERPROFILE&quot;</span>),
+  <span class="dt">pattern =</span> <span class="st">&quot;ssh|git&quot;</span>,
+  <span class="dt">include.dirs =</span> <span class="ot">TRUE</span>,
+  <span class="dt">all.files =</span> <span class="ot">TRUE</span>
+)
+<span class="co">#&gt; [1] &quot;.gitconfig&quot; &quot;.ssh&quot;</span></code></pre></div>
+<p>Two workarounds:</p>
+<ul>
+<li><p>Tell git2r explicitly where to find your public and private key. Example using <code>usethis::use_github()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cred &lt;-<span class="st"> </span><span class="kw">cred_ssh_key</span>(
+  <span class="dt">publickey =</span> <span class="st">&quot;~/../.ssh/id_rsa.pub&quot;</span>,
+  <span class="dt">privatekey =</span> <span class="st">&quot;~/../.ssh/id_rsa&quot;</span>
+)
+<span class="kw">use_github</span>(<span class="dt">credentials =</span> cred)</code></pre></div></li>
+<li><p><a href="https://www.howtogeek.com/howto/16226/complete-guide-to-symbolic-links-symlinks-on-windows-or-linux/">Create a symbolic link</a> so that <code>.ssh/</code> in R’s home directory points to your actual <code>.ssh/</code> directory. Example contributed by Ian Lyttle on Windows 7 using Command Prompt:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">MKLINK</span> /D <span class="st">&quot;C:\Users\username\Documents\.ssh&quot;</span> <span class="st">&quot;C:\Users\username\.ssh&quot;</span></code></pre></div></li>
+</ul>
+<p>Finally, if git2r seems unable to get your SSH passphrase from ssh-agent, install the askPass package:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;getPass&quot;</span>)</code></pre></div>
+<p>and git2r should launch a popup where you can enter your passphrase. Thanks to Ian Lyttle for this tip.</p>
+</div>
 <div id="other" class="section level3">
-<h3><span class="header-section-number">12.6.2</span> Other</h3>
+<h3><span class="header-section-number">12.6.3</span> Other</h3>
 <p>Other things to double-check:</p>
 <ul>
 <li>Did you add the SSH to your ssh-agent?</li>
