@@ -541,7 +541,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Two workarounds:</p>
 <ul>
 <li><p>Tell git2r explicitly where to find your public and private key. Example using <code>usethis::use_github()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cred &lt;-<span class="st"> </span><span class="kw">cred_ssh_key</span>(
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cred &lt;-<span class="st"> </span>git2r::<span class="kw">cred_ssh_key</span>(
   <span class="dt">publickey =</span> <span class="st">&quot;~/../.ssh/id_rsa.pub&quot;</span>,
   <span class="dt">privatekey =</span> <span class="st">&quot;~/../.ssh/id_rsa&quot;</span>
 )
