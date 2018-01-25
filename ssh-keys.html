@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Happy Git and GitHub for the useR</title>
   <meta name="description" content="Using Git and GitHub with R, Rstudio, and R Markdown">
-  <meta name="generator" content="bookdown 0.5.15 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.6.1 and GitBook 2.6.7">
 
   <meta property="og:title" content="Happy Git and GitHub for the useR" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Jenny Bryan and the STAT 545 TAs">
 
 
-<meta name="date" content="2018-01-23">
+<meta name="date" content="2018-01-25">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -186,7 +186,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="12.6" data-path="ssh-keys.html"><a href="ssh-keys.html#troubleshooting"><i class="fa fa-check"></i><b>12.6</b> Troubleshooting</a><ul>
 <li class="chapter" data-level="12.6.1" data-path="ssh-keys.html"><a href="ssh-keys.html#https-vs-ssh"><i class="fa fa-check"></i><b>12.6.1</b> HTTPS vs SSH</a></li>
-<li class="chapter" data-level="12.6.2" data-path="ssh-keys.html"><a href="ssh-keys.html#git2r-cant-find-ssh-keys-on-windows"><i class="fa fa-check"></i><b>12.6.2</b> git2r can’t find SSH keys on Windows</a></li>
+<li class="chapter" data-level="12.6.2" data-path="ssh-keys.html"><a href="ssh-keys.html#git2r-or-some-other-tool-cant-find-ssh-keys-on-windows"><i class="fa fa-check"></i><b>12.6.2</b> git2r – or some other tool – can’t find SSH keys on Windows</a></li>
 <li class="chapter" data-level="12.6.3" data-path="ssh-keys.html"><a href="ssh-keys.html#other"><i class="fa fa-check"></i><b>12.6.3</b> Other</a></li>
 </ul></li>
 </ul></li>
@@ -505,7 +505,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">12.6</span> Troubleshooting</h2>
 <div id="https-vs-ssh" class="section level3">
 <h3><span class="header-section-number">12.6.1</span> HTTPS vs SSH</h3>
-<p>If you think you have SSH set up correctly and yet you are still challenged for credentials, consider this: for the repo in question, have you possibly set up GitHub, probably called <code>origin</code>, as an HTTPS remote?</p>
+<p>If you think you have SSH set up correctly and yet you are still challenged for credentials, consider this: for the repo in question, have you possibly set up GitHub, probably called <code>origin</code>, as an HTTPS remote, instead of SSH?</p>
 <p>How to see the remote URL(s) associated with the current repo in the shell:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> remote -v</code></pre></div>
 <p>An SSH remote will look like this:</p>
@@ -517,8 +517,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="https://help.github.com/articles/changing-a-remote-s-url/" class="uri">https://help.github.com/articles/changing-a-remote-s-url/</a></li>
 </ul>
 </div>
-<div id="git2r-cant-find-ssh-keys-on-windows" class="section level3">
-<h3><span class="header-section-number">12.6.2</span> git2r can’t find SSH keys on Windows</h3>
+<div id="git2r-or-some-other-tool-cant-find-ssh-keys-on-windows" class="section level3">
+<h3><span class="header-section-number">12.6.2</span> git2r – or some other tool – can’t find SSH keys on Windows</h3>
 <p>Have you seen this error message?</p>
 <pre><code>Error in .local(object, ...) : 
   Error in &#39;git2r_push&#39;: error authenticating: failed connecting agent</code></pre>
@@ -559,6 +559,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Finally, if git2r seems unable to get your SSH passphrase from ssh-agent, install the getPass package:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;getPass&quot;</span>)</code></pre></div>
 <p>and git2r should launch a popup where you can enter your passphrase. Thanks to Ian Lyttle for this tip.</p>
+<p>This link provides a great explanation of the uncertainty about where <code>.ssh/</code> and user’s <code>.gitconfig</code> are located on Windows: <a href="https://www.onwebsecurity.com/configuration/git-on-windows-location-of-global-configuration-file.html">git on Windows - location of configuration files</a>. Bottom line: locate where your main tool expects and create symbolic links to help other tools find this stuff.</p>
 </div>
 <div id="other" class="section level3">
 <h3><span class="header-section-number">12.6.3</span> Other</h3>
