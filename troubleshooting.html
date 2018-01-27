@@ -393,23 +393,25 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="pushpull-buttons-greyed-out-in-rstudio" class="section level2">
 <h2><span class="header-section-number">15.4</span> Push/Pull buttons greyed out in RStudio</h2>
-<p>Are you sure your local repository is tracking a remote repository, e.g. a GitHub repo? In a shell with working directory set to the local Git repo, enter these commands:</p>
+<p>Are you sure your local repository is associated with a remote repository, e.g. a GitHub repo? In a shell with working directory set to the local Git repo, enter this command:</p>
 <pre class="sh"><code>jenny@2015-mbp myrepo $ git remote -v
 origin  https://github.com/jennybc/myrepo (fetch)
-origin  https://github.com/jennybc/myrepo (push)
-
-jenny@2015-mbp myrepo $ git branch -vv
+origin  https://github.com/jennybc/myrepo (push)</code></pre>
+<p>We want to see that fetch and push are set to remote URLs that point to the remote repo. Note also that the GitHub repo is a remote named <code>origin</code>, as far as your local repo is concerned. This is typical and, though I think <code>github</code> is a vastly superior name, <code>origin</code> is such a strong convention that I follow it.</p>
+<p>If you discover you still need to set a remote, get the HTTPS or SSH URL, as appropriate, for your GitHub repo. This is easy to get onto your clipboard from the repo’s GitHub page. Do this in the shell:</p>
+<pre class="sh"><code>git remote add origin https://github.com/jennybc/myrepo.git</code></pre>
+<p>Download all the files from the online GitHub repository and deal with any conflicts.</p>
+<pre class="sh"><code>git pull origin master</code></pre>
+<p>Call <code>git remote -v</code> again. Once you can prove that your GitHub remote is set properly, you can move on to the next step.</p>
+<p>Are you sure the current branch is <em>tracking</em> a branch on the remote? In that same shell, in your repo, do this:</p>
+<pre class="sh"><code>jenny@2015-mbp myrepo $ git branch -vv
 * master b8e03e3 [origin/master] line added locally</code></pre>
-<p>We want to see that fetch and push are set to remote URLs that point to the remote repo. We also want to see that your local master branch has your GitHub master branch as upstream remote.</p>
-<p>If you discover you still need to set a remote, go to the shell and get into the working directory of the RStudio Project and Git repo of interest.</p>
-<ul>
-<li><p>Initiate the “upstream” or “tracking” relationship by adding a remote. Substitute the HTTPS URL for <strong>your GitHub repo</strong>.</p>
-<pre class="shell"><code>git remote add origin https://github.com/jennybc/myrepo.git</code></pre></li>
-<li><p>Download all the files from the online GitHub repository and deal with any conflicts.</p>
-<pre class="shell"><code>git pull origin master</code></pre></li>
-<li><p>Cement the tracking relationship between your GitHub repository and the local repo by pushing and setting the “upstream” remote:</p>
-<pre class="shell"><code>git push -u origin master</code></pre></li>
-</ul>
+<p>The above shows successful confirmation that the local <code>master</code> branch is tracking <code>origin/master</code>, i.e. the master branch on GitHub. If you don’t see the <code>[origin/master]</code> bit, that is a problem. By the way, <code>git branch -r</code> is another handy way to examine your remote-tracking branches. (If you’re working with a branch other than <code>master</code>, adjust everything accordingly.)</p>
+<p>When connecting a local repo to a new GitHub repo, a lot of people remember to add the GitHub remote, but forget to also cement this tracking relationship for any relevant branches.</p>
+<p>If you discover your local <code>master</code> branch is not yet tracking <code>master</code> on GitHub, fix that like so:</p>
+<pre class="sh"><code>git push --set-upstream origin master</code></pre>
+<p>This is equivalent to <code>git push -u origin master</code> but conveys more about what you are doing.</p>
+<p>Call <code>git branch -vv</code> or <code>git branch -r</code> again to confirm that the <code>master</code> branch on GitHub is the upstream or tracking branch for the local <code>master</code> branch.</p>
 </div>
 <div id="i-have-no-idea-if-my-local-repo-and-my-remote-repo-are-connected." class="section level2">
 <h2><span class="header-section-number">15.5</span> I have no idea if my local repo and my remote repo are connected.</h2>
