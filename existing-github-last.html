@@ -25,7 +25,7 @@
 <meta name="author" content="Jenny Bryan and the STAT 545 TAs">
 
 
-<meta name="date" content="2018-01-27">
+<meta name="date" content="2018-01-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -410,11 +410,11 @@ DO NOT initialize this repository with a README.</p>
 </div>
 <div id="connect-to-github" class="section level2">
 <h2><span class="header-section-number">18.5</span> Connect to GitHub</h2>
-<p>Initiate the “upstream” or “tracking” relationship by adding a remote. Go to <em>Tools &gt; shell</em> and do this, substituting the HTTPS or SSH URL for <strong>your GitHub repo</strong>, according to your setup:</p>
+<p>Add your GitHub repo as a remote on your local repo. Go to <em>Tools &gt; shell</em> and do this, substituting the HTTPS or SSH URL for <strong>your GitHub repo</strong>, according to your setup:</p>
 <pre><code>    git remote add origin https://github.com/jennybc/myrepo.git</code></pre>
 <ul>
-<li><p>Push and cement the tracking relationship between your GitHub repository and the local repo by pushing and setting the “upstream” remote:</p>
-<pre><code>git push -u origin master</code></pre></li>
+<li><p>Push and cement the tracking relationship between your local <code>master</code> branch and <code>master</code> on GitHub:</p>
+<pre><code>git push --set-upstream origin master</code></pre></li>
 </ul>
 </div>
 <div id="confirm-the-local-change-propagated-to-the-github-remote-4" class="section level2">
