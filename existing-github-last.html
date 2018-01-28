@@ -240,9 +240,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="18.1" data-path="existing-github-last.html"><a href="existing-github-last.html#make-or-verify-an-rstudio-project"><i class="fa fa-check"></i><b>18.1</b> Make or verify an RStudio Project</a></li>
 <li class="chapter" data-level="18.2" data-path="existing-github-last.html"><a href="existing-github-last.html#make-or-verify-a-git-repo"><i class="fa fa-check"></i><b>18.2</b> Make or verify a Git repo</a></li>
 <li class="chapter" data-level="18.3" data-path="existing-github-last.html"><a href="existing-github-last.html#stage-and-commit-1"><i class="fa fa-check"></i><b>18.3</b> Stage and commit</a></li>
-<li class="chapter" data-level="18.4" data-path="existing-github-last.html"><a href="existing-github-last.html#make-a-repo-on-github-3"><i class="fa fa-check"></i><b>18.4</b> Make a repo on GitHub</a></li>
-<li class="chapter" data-level="18.5" data-path="existing-github-last.html"><a href="existing-github-last.html#connect-to-github"><i class="fa fa-check"></i><b>18.5</b> Connect to GitHub</a></li>
-<li class="chapter" data-level="18.6" data-path="existing-github-last.html"><a href="existing-github-last.html#confirm-the-local-change-propagated-to-the-github-remote-4"><i class="fa fa-check"></i><b>18.6</b> Confirm the local change propagated to the GitHub remote</a></li>
+<li class="chapter" data-level="18.4" data-path="existing-github-last.html"><a href="existing-github-last.html#make-and-connect-a-github-repo-option-1"><i class="fa fa-check"></i><b>18.4</b> Make and connect a GitHub repo, option 1</a></li>
+<li class="chapter" data-level="18.5" data-path="existing-github-last.html"><a href="existing-github-last.html#make-and-connect-a-github-repo-option-2"><i class="fa fa-check"></i><b>18.5</b> Make and connect a GitHub repo, option 2</a><ul>
+<li class="chapter" data-level="18.5.1" data-path="existing-github-last.html"><a href="existing-github-last.html#make-a-new-repo-on-github-1"><i class="fa fa-check"></i><b>18.5.1</b> Make a new repo on GitHub</a></li>
+<li class="chapter" data-level="18.5.2" data-path="existing-github-last.html"><a href="existing-github-last.html#connect-local-repo-to-github-repo"><i class="fa fa-check"></i><b>18.5.2</b> Connect local repo to GitHub repo</a></li>
+<li class="chapter" data-level="18.5.3" data-path="existing-github-last.html"><a href="existing-github-last.html#in-rstudio"><i class="fa fa-check"></i><b>18.5.3</b> In RStudio</a></li>
+<li class="chapter" data-level="18.5.4" data-path="existing-github-last.html"><a href="existing-github-last.html#in-the-shell"><i class="fa fa-check"></i><b>18.5.4</b> In the shell</a></li>
+</ul></li>
+<li class="chapter" data-level="18.6" data-path="existing-github-last.html"><a href="existing-github-last.html#confirm-the-local-files-propagated-to-the-github-remote"><i class="fa fa-check"></i><b>18.6</b> Confirm the local files propagated to the GitHub remote</a></li>
 <li class="chapter" data-level="18.7" data-path="existing-github-last.html"><a href="existing-github-last.html#the-end-2"><i class="fa fa-check"></i><b>18.7</b> The end</a></li>
 </ul></li>
 <li class="part"><span><b>IV Workflows</b></span></li>
@@ -363,25 +368,29 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="existing-github-last" class="section level1">
 <h1><span class="header-section-number">18</span> Existing project, GitHub last</h1>
 <p>An explicit workflow for connecting an existing local R project to GitHub, when for some reason you cannot or don’t want to do a “GitHub first” workflow (see chapters <a href="new-github-first.html#new-github-first">16</a> and <a href="existing-github-first.html#existing-github-first">17</a>).</p>
-<p>When might this come up? Maybe if it’s an existing project that is also a Git repo with a history you care about? Then you have to do this properly.</p>
-<p>This is less desirable for a novice because it involves command line Git. You can’t stay within RStudio.</p>
+<p>When does this come up? Example: it’s an existing project that is already a Git repo with a history you care about. Then you have to do this properly.</p>
+<p>This is less desirable for a novice because there are more opportunities to get confused and make a mistake. RStudio and the <a href="https://cran.r-project.org/package=usethis">usethis</a> package are gradually making this easier, so you can avoid working with Git in the shell. But command line Git remains a viable option. All are covered below.</p>
 <div id="make-or-verify-an-rstudio-project" class="section level2">
 <h2><span class="header-section-number">18.1</span> Make or verify an RStudio Project</h2>
 <p>We assume you’ve got your existing R project isolated in a directory on your computer.</p>
 <p>If it’s not already an RStudio Project, make it so:</p>
 <ul>
-<li>Create a new RStudio project: <em>File &gt; New Project &gt; Existing Directory</em>.</li>
-<li>Yes: “Open in new session”.</li>
+<li>If you use the <a href="https://cran.r-project.org/package=usethis">usethis</a> package, set the existing directory as the current project with <code>proj_set()</code>, then do <code>usethis::use_rstudio()</code>.</li>
+<li>Within RStudio you can do: <em>File &gt; New Project &gt; Existing Directory</em> and, if you wish, “Open in new session”.</li>
 </ul>
-<p>If it’s already an RStudio Project, launch it.</p>
+<p>If your project is already an RStudio Project, launch it.</p>
 </div>
 <div id="make-or-verify-a-git-repo" class="section level2">
 <h2><span class="header-section-number">18.2</span> Make or verify a Git repo</h2>
 <p>You should be in RStudio now, in your project.</p>
 <p>Is it already a Git repository? The presence of the Git pane should tip you off. If yes, you’re done.</p>
-<p>If not:</p>
-<p><em>Tools &gt; Project Options … &gt; Git/SVN</em> Under Version control system, select “Git”. Confirm New Git Repository? Yes!</p>
-<p>Project should re-launch in RStudio and you should now have a Git pane.</p>
+<p>If not, you have several options:</p>
+<ul>
+<li>If you have the <a href="https://cran.r-project.org/package=usethis">usethis</a> package, call <code>usethis::use_git()</code>.</li>
+<li>In RStudio, go to <em>Tools &gt; Project Options … &gt; Git/SVN</em>. Under “Version control system”, select “Git”. Confirm New Git Repository? Yes!</li>
+<li>In the shell, in Project’s directory, do <code>git init</code>.</li>
+</ul>
+<p>If you used RStudio or usethis, the Project should re-launch in RStudio. Do that yourself if you did <code>git init</code>. RStudio should now have a Git pane.</p>
 </div>
 <div id="stage-and-commit-1" class="section level2">
 <h2><span class="header-section-number">18.3</span> Stage and commit</h2>
@@ -390,16 +399,24 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Click the “Git” tab in upper right pane</li>
 <li>Check “Staged” box for all files you want to commit.
 <ul>
-<li>Default: stage it.</li>
-<li>When to reconsider: this will all go to GitHub. So do consider if that is appropriate for each file. <strong>You can absolutely keep a file locally, without committing it to the Git repo and sending to GitHub</strong>. Just let it sit there in your Git pane, without being staged. No harm will be done. If this is a long-term situation, list the file in <code>.gitignore</code>.</li>
+<li>Default: stage everything</li>
+<li>When to do otherwise: this will all go to GitHub. So consider if that is appropriate for each file. <strong>You can absolutely keep a file locally, without committing it to the Git repo and sending to GitHub</strong>. Just let it sit there in your Git pane, without being staged. No harm will be done. If this is a long-term situation, list the file in <code>.gitignore</code>.</li>
 </ul></li>
 <li>If you’re not already in the Git pop-up, click “Commit”</li>
 <li>Type a message in “Commit message”.</li>
 <li>Click “Commit”</li>
 </ul>
 </div>
-<div id="make-a-repo-on-github-3" class="section level2">
-<h2><span class="header-section-number">18.4</span> Make a repo on GitHub</h2>
+<div id="make-and-connect-a-github-repo-option-1" class="section level2">
+<h2><span class="header-section-number">18.4</span> Make and connect a GitHub repo, option 1</h2>
+<p>If you use the <a href="https://cran.r-project.org/package=usethis">usethis</a> package AND you have configured a GitHub Personal Access Token (PAT), do this in R:</p>
+<pre><code>usethis::use_github()</code></pre>
+<p>This will create a new repo on GitHub, add it as a remote, set up a tracking branch, and open it in your browser. Read the <code>use_github()</code> help to learn about its arguments and advice on configuring a PAT.</p>
+</div>
+<div id="make-and-connect-a-github-repo-option-2" class="section level2">
+<h2><span class="header-section-number">18.5</span> Make and connect a GitHub repo, option 2</h2>
+<div id="make-a-new-repo-on-github-1" class="section level3">
+<h3><span class="header-section-number">18.5.1</span> Make a new repo on GitHub</h3>
 <p>Go to <a href="https://github.com" class="uri">https://github.com</a> and make sure you are logged in.</p>
 <p>Click the green “New repository” button. Or, if you are on your own profile page, click on “Repositories”, then click the green “New” button.</p>
 <p>Pick a repository name – it should probably match the name of your local Project and directory. Why confuse yourself?</p>
@@ -408,26 +425,34 @@ DO NOT initialize this repository with a README.</p>
 <p>Click the big green button “Create repository.”</p>
 <p>Copy the HTTPS clone URL to your clipboard via the green “Clone or Download” button. Or copy the SSH URL if you chose to set up SSH keys.</p>
 </div>
-<div id="connect-to-github" class="section level2">
-<h2><span class="header-section-number">18.5</span> Connect to GitHub</h2>
-<p>Add your GitHub repo as a remote on your local repo. Go to <em>Tools &gt; shell</em> and do this, substituting the HTTPS or SSH URL for <strong>your GitHub repo</strong>, according to your setup:</p>
-<pre><code>    git remote add origin https://github.com/jennybc/myrepo.git</code></pre>
-<ul>
-<li><p>Push and cement the tracking relationship between your local <code>master</code> branch and <code>master</code> on GitHub:</p>
-<pre><code>git push --set-upstream origin master</code></pre></li>
-</ul>
+<div id="connect-local-repo-to-github-repo" class="section level3">
+<h3><span class="header-section-number">18.5.2</span> Connect local repo to GitHub repo</h3>
+<p>You can do this in the shell or, with recent versions of RStudio, via RStudio.</p>
 </div>
-<div id="confirm-the-local-change-propagated-to-the-github-remote-4" class="section level2">
-<h2><span class="header-section-number">18.6</span> Confirm the local change propagated to the GitHub remote</h2>
+<div id="in-rstudio" class="section level3">
+<h3><span class="header-section-number">18.5.3</span> In RStudio</h3>
+<p>Click on the “two purple boxes and a white square” in the Git pane. Click “Add remote”. Paste the URL here and pick a remote name, almost certainly <code>origin</code>. Now “Add”.</p>
+<p>We should be back in the “New Branch” dialog (if not, click on the “two purple boxes and a white square” in the Git pane again). I assume you’re on the <code>master</code> branch want it to track <code>master</code> on GitHub. Enter <code>master</code> as the branch name and make sure “Sync branch with remote” is checked. Click “Create” (yes, even though the branch already exists). In the next dialog, choose “overwrite”.</p>
+</div>
+<div id="in-the-shell" class="section level3">
+<h3><span class="header-section-number">18.5.4</span> In the shell</h3>
+<p>In a shell, do this, substituting your URL:</p>
+<pre><code>    git remote add origin https://github.com/jennybc/myrepo.git</code></pre>
+<p>Push and cement the tracking relationship between your local <code>master</code> branch and <code>master</code> on GitHub:</p>
+<pre><code>    git push --set-upstream origin master</code></pre>
+</div>
+</div>
+<div id="confirm-the-local-files-propagated-to-the-github-remote" class="section level2">
+<h2><span class="header-section-number">18.6</span> Confirm the local files propagated to the GitHub remote</h2>
 <p>Go back to the browser. I assume we’re still viewing your new GitHub repo.</p>
 <p>Refresh.</p>
 <p>You should see all the project files you committed there.</p>
-<p>If you click on “commits,” you should see one with the message “init”.</p>
+<p>If this project already had a Git history, it should be reflected on GitHub.</p>
 </div>
 <div id="the-end-2" class="section level2">
 <h2><span class="header-section-number">18.7</span> The end</h2>
-<p>Now just … repeat. Do work somewhere. Commit it. Push it or pull it* depending on where you did it, but get local and remote “synced up”. Repeat.</p>
-<p>* Note that in general (and especially in future when collaborating with other developers) you will usually need to pull changes from the remote (GitHub) before pushing the local changes you have made. For this reason, it’s a good idea to try and get into the habit of pulling before you attempt to push.</p>
+<p>Now just … repeat. Do work somewhere. Commit it. Push it or pull it depending on where you did it, but get local and remote “synced up”. Repeat.</p>
+<p>Note that in general (and especially in future when collaborating with other developers) you will usually need to pull changes from the remote (GitHub) before pushing the local changes you have made. For this reason, it’s a good idea to try and get into the habit of pulling before you attempt to push.</p>
 
 </div>
 </div>
