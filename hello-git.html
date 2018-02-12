@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Happy Git and GitHub for the useR</title>
   <meta name="description" content="Using Git and GitHub with R, Rstudio, and R Markdown">
-  <meta name="generator" content="bookdown 0.6.1 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.6.2 and GitBook 2.6.7">
 
   <meta property="og:title" content="Happy Git and GitHub for the useR" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Jenny Bryan and the STAT 545 TAs">
 
 
-<meta name="date" content="2018-01-28">
+<meta name="date" content="2018-02-12">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -331,7 +331,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="A" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>A</b> The shell</a><ul>
 <li class="chapter" data-level="A.1" data-path="shell.html"><a href="shell.html#what-is-the-shell"><i class="fa fa-check"></i><b>A.1</b> What is the shell?</a></li>
 <li class="chapter" data-level="A.2" data-path="shell.html"><a href="shell.html#starting-the-shell"><i class="fa fa-check"></i><b>A.2</b> Starting the shell</a></li>
-<li class="chapter" data-level="A.3" data-path="shell.html"><a href="shell.html#windows-is-special-and-not-in-a-good-way"><i class="fa fa-check"></i><b>A.3</b> Windows is special … and not in a good way</a></li>
+<li class="chapter" data-level="A.3" data-path="shell.html"><a href="shell.html#windows-shell-hell"><i class="fa fa-check"></i><b>A.3</b> Windows is special … and not in a good way</a></li>
 <li class="chapter" data-level="A.4" data-path="shell.html"><a href="shell.html#using-the-shell"><i class="fa fa-check"></i><b>A.4</b> Using the shell</a></li>
 </ul></li>
 <li class="chapter" data-level="B" data-path="github-pat.html"><a href="github-pat.html"><i class="fa fa-check"></i><b>B</b> GitHub Personal Access Tokens</a><ul>
@@ -375,7 +375,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="more-about-git-config" class="section level2">
 <h2><span class="header-section-number">8.1</span> More about <code>git config</code></h2>
 <p>An easy way to get into a shell from RStudio is <em>Tools &gt; Terminal</em> or <em>Tools &gt; Shell</em>. More about the shell in the Appendix <a href="shell.html#shell">A</a>.</p>
-<p>Special Windows gotchas: If you are struggling on Windows, consider there are different types of shell and you might be in the wrong one. Short version: you want to see <code>MSYS</code> or <code>MINGW64</code> in the status bar, not <code>cmd.exe</code>.</p>
+<p>Special Windows gotchas: If you are struggling on Windows, consider there are different types of shell and you might be in the wrong one. Short version: you want to see <code>MSYS</code> or <code>MINGW64</code> in the status bar, not <code>cmd.exe</code>. Read more in <a href="shell.html#windows-shell-hell">the Appendix</a>.</p>
 <p>What user name should you give to Git? This does not have to be your GitHub username, although it can be. Another good option is your actual first name and last name. Your commits will be labelled with this name, so this should be informative to potential collaborators.</p>
 <p>What email should you give to Git? This <strong>must</strong> be the email associated with your GitHub account.</p>
 <p>These commands return nothing. You can check that Git understood what you typed by looking at the output of <code>git config --global --list</code>.</p>
@@ -409,10 +409,11 @@ gitbook.start({
 "facebook": true,
 "twitter": true,
 "google": false,
+"linkedin": false,
 "weibo": false,
 "instapper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
