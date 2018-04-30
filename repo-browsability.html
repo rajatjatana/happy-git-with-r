@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Happy Git and GitHub for the useR</title>
   <meta name="description" content="Using Git and GitHub with R, Rstudio, and R Markdown">
-  <meta name="generator" content="bookdown 0.7.1 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7.8 and GitBook 2.6.7">
 
   <meta property="og:title" content="Happy Git and GitHub for the useR" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Jenny Bryan and the STAT 545 TAs">
 
 
-<meta name="date" content="2018-03-16">
+<meta name="date" content="2018-04-30">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -279,9 +279,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="21.8" data-path="repo-browsability.html"><a href="repo-browsability.html#source-code"><i class="fa fa-check"></i><b>21.8</b> Source code</a></li>
 <li class="chapter" data-level="21.9" data-path="repo-browsability.html"><a href="repo-browsability.html#delimited-files"><i class="fa fa-check"></i><b>21.9</b> Delimited files</a></li>
 <li class="chapter" data-level="21.10" data-path="repo-browsability.html"><a href="repo-browsability.html#pngs"><i class="fa fa-check"></i><b>21.10</b> PNGs</a></li>
-<li class="chapter" data-level="21.11" data-path="repo-browsability.html"><a href="repo-browsability.html#linking-to-a-zip-archive-of-your-repo"><i class="fa fa-check"></i><b>21.11</b> Linking to a ZIP archive of your repo</a></li>
-<li class="chapter" data-level="21.12" data-path="repo-browsability.html"><a href="repo-browsability.html#links-and-embedded-figures"><i class="fa fa-check"></i><b>21.12</b> Links and embedded figures</a></li>
-<li class="chapter" data-level="21.13" data-path="repo-browsability.html"><a href="repo-browsability.html#let-people-correct-you-on-the-internet"><i class="fa fa-check"></i><b>21.13</b> Let people correct you on the internet</a></li>
+<li class="chapter" data-level="21.11" data-path="repo-browsability.html"><a href="repo-browsability.html#other-document-formats"><i class="fa fa-check"></i><b>21.11</b> Other document formats</a></li>
+<li class="chapter" data-level="21.12" data-path="repo-browsability.html"><a href="repo-browsability.html#linking-to-a-zip-archive-of-your-repo"><i class="fa fa-check"></i><b>21.12</b> Linking to a ZIP archive of your repo</a></li>
+<li class="chapter" data-level="21.13" data-path="repo-browsability.html"><a href="repo-browsability.html#links-and-embedded-figures"><i class="fa fa-check"></i><b>21.13</b> Links and embedded figures</a></li>
+<li class="chapter" data-level="21.14" data-path="repo-browsability.html"><a href="repo-browsability.html#let-people-correct-you-on-the-internet"><i class="fa fa-check"></i><b>21.14</b> Let people correct you on the internet</a></li>
 </ul></li>
 <li class="chapter" data-level="22" data-path="usage-git-cmds.html"><a href="usage-git-cmds.html"><i class="fa fa-check"></i><b>22</b> Git commands</a></li>
 <li class="part"><span><b>V Tutorial prompts</b></span></li>
@@ -488,21 +489,32 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <p>Hopefully we are moving towards a world where you can have “web friendly” and “vector” at the same time, without undue headaches. As of <a href="https://github.com/blog/1902-svg-viewing-diffing">October 2014</a>, GitHub provides enhanced viewing and diffing of SVGs. So don’t read this advice as discouraging SVGs. Make them! But consider keeping a PNG around as emergency back up for now.</p>
 </div>
+<div id="other-document-formats" class="section level2">
+<h2><span class="header-section-number">21.11</span> Other document formats</h2>
+<p>You may also have a document you want others to be able to browse and interact with, but it is not in the markdown format. Fortunately, the open-source Pandoc program, written by John MacFarlane, allows you to convert a range of formats into markdown, including the widely used <code>.docx</code> format.</p>
+<p>When you click the Knit button in RStudio it is actually Pandoc which performs the final conversion to HTML or Microsoft Word (<code>.docx</code>) formats. If you are willing to use the command-line, you can perform the opposite conversion (eg <code>.docx</code> to <code>.md</code>), commonly retaining features such as headings, tables, equations and even figures.</p>
+<p>As some boilerplate, running in Windows PowerShell <code>pandoc --extract-media .\media  -f docx .\example.docx -t markdown_github -o example_image.md</code> converts a word document called <code>example.docx</code> to markdown, and extracts the images into a directory which corresponds to a filepath in the newly created <code>example.md</code> document. A full list of supported formats and example code for conversions are available at <a href="https://pandoc.org/" class="uri">https://pandoc.org/</a>.</p>
+<p>You can also perform simple conversions to GitHub-flavored markdown from different markdown flavours (Pandoc supports <code>markdown_mmd</code>, <code>markdown_php_extra</code> and <code>markdown_strict</code>) from within RStudio. To do so you need to rename the file by changing the extension (eg from <code>foo.md</code> to <code>foo.Rmd</code>), then open the renamed file in RStudio and add the following text to the top of the document.</p>
+<div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="ot">---</span>
+<span class="fu">output:</span> github_document
+<span class="ot">---</span></code></pre></div>
+<p>You can then click on “Knit” then “Knit to github document” to perform the conversion. See <a href="##%20Output%20format">Output format</a> for more details of controlling output formats with the YAML frontmatter.</p>
+</div>
 <div id="linking-to-a-zip-archive-of-your-repo" class="section level2">
-<h2><span class="header-section-number">21.11</span> Linking to a ZIP archive of your repo</h2>
+<h2><span class="header-section-number">21.12</span> Linking to a ZIP archive of your repo</h2>
 <p>The browsability of GitHub makes your work accessible to people who care about your content but who don’t (yet) use Git themselves. What if such a person wants all the files? Yes, there is a clickable “Download ZIP” button offered by GitHub. But what if you want a link to include in an email or other document? If you add <code>/archive/master.zip</code> <em>to the end</em> of the URL for your repo, you construct a link that will download a ZIP archive of your repository. Click here to try this out on a very small repo:</p>
 <p><a href="https://github.com/jennybc/lotr/archive/master.zip" class="uri">https://github.com/jennybc/lotr/archive/master.zip</a></p>
 <p>Go look in your downloads folder!</p>
 </div>
 <div id="links-and-embedded-figures" class="section level2">
-<h2><span class="header-section-number">21.12</span> Links and embedded figures</h2>
+<h2><span class="header-section-number">21.13</span> Links and embedded figures</h2>
 <ul>
 <li><p>To link to another page in your repo, just use a relative link: <code>[admin](courseAdmin/)</code> will link to the <code>courseAdmin/</code> directory inside the current directory. <code>[admin](/courseAdmin/)</code> will link to the top-level <code>courseAdmin/</code> directory from any where in the repo</p></li>
 <li><p>The same idea also works for images. <code>![](image.png)</code> will include <code>image.png</code> located in the current directory</p></li>
 </ul>
 </div>
 <div id="let-people-correct-you-on-the-internet" class="section level2">
-<h2><span class="header-section-number">21.13</span> Let people correct you on the internet</h2>
+<h2><span class="header-section-number">21.14</span> Let people correct you on the internet</h2>
 <p>They love that!</p>
 <p>You can create a link that takes people directly to an editing interface in the browser. Behind the scenes, assuming the click-er is signed into GitHub but is not you, this will create a fork in their account and send you a pull request. When I click the link below, I am able to actually commit directly to <code>master</code> for this repo.</p>
 <p><a href="https://github.com/jennybc/happy-git-with-r/edit/master/32_workflow-make-github-repo-browsable.Rmd">CLICK HERE to suggest an edit to this page!</a></p>
