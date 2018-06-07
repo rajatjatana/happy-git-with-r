@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Happy Git and GitHub for the useR</title>
   <meta name="description" content="Using Git and GitHub with R, Rstudio, and R Markdown">
-  <meta name="generator" content="bookdown 0.7.8 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7.12 and GitBook 2.6.7">
 
   <meta property="og:title" content="Happy Git and GitHub for the useR" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Jenny Bryan and the STAT 545 TAs">
 
 
-<meta name="date" content="2018-04-30">
+<meta name="date" content="2018-06-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -50,41 +50,69 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -170,7 +198,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="ssh-keys.html"><a href="ssh-keys.html"><i class="fa fa-check"></i><b>12</b> Set up keys for SSH</a><ul>
-<li class="chapter" data-level="12.1" data-path="ssh-keys.html"><a href="ssh-keys.html#ssh-keys"><i class="fa fa-check"></i><b>12.1</b> SSH keys</a></li>
+<li class="chapter" data-level="12.1" data-path="ssh-keys.html"><a href="ssh-keys.html#ssh-keys-1"><i class="fa fa-check"></i><b>12.1</b> SSH keys</a></li>
 <li class="chapter" data-level="12.2" data-path="ssh-keys.html"><a href="ssh-keys.html#ssh-outline-and-advice"><i class="fa fa-check"></i><b>12.2</b> SSH outline and advice</a></li>
 <li class="chapter" data-level="12.3" data-path="ssh-keys.html"><a href="ssh-keys.html#do-you-already-have-keys"><i class="fa fa-check"></i><b>12.3</b> Do you already have keys?</a><ul>
 <li class="chapter" data-level="12.3.1" data-path="ssh-keys.html"><a href="ssh-keys.html#from-rstudio"><i class="fa fa-check"></i><b>12.3.1</b> From RStudio</a></li>
@@ -284,51 +312,58 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="21.13" data-path="repo-browsability.html"><a href="repo-browsability.html#links-and-embedded-figures"><i class="fa fa-check"></i><b>21.13</b> Links and embedded figures</a></li>
 <li class="chapter" data-level="21.14" data-path="repo-browsability.html"><a href="repo-browsability.html#let-people-correct-you-on-the-internet"><i class="fa fa-check"></i><b>21.14</b> Let people correct you on the internet</a></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="usage-git-cmds.html"><a href="usage-git-cmds.html"><i class="fa fa-check"></i><b>22</b> Git commands</a></li>
-<li class="part"><span><b>V Tutorial prompts</b></span></li>
-<li class="chapter" data-level="23" data-path="clone.html"><a href="clone.html"><i class="fa fa-check"></i><b>23</b> Clone a repo</a></li>
-<li class="chapter" data-level="24" data-path="fork.html"><a href="fork.html"><i class="fa fa-check"></i><b>24</b> Fork a repo</a><ul>
-<li class="chapter" data-level="24.1" data-path="fork.html"><a href="fork.html#fork-then-clone"><i class="fa fa-check"></i><b>24.1</b> Fork then clone</a></li>
-<li class="chapter" data-level="24.2" data-path="fork.html"><a href="fork.html#fork-and-pull"><i class="fa fa-check"></i><b>24.2</b> Fork and pull</a></li>
-<li class="chapter" data-level="24.3" data-path="fork.html"><a href="fork.html#updating-your-fork"><i class="fa fa-check"></i><b>24.3</b> Updating your fork</a></li>
+<li class="chapter" data-level="22" data-path="pr-extend.html"><a href="pr-extend.html"><i class="fa fa-check"></i><b>22</b> Explore and extend a pull request</a><ul>
+<li class="chapter" data-level="22.1" data-path="pr-extend.html"><a href="pr-extend.html#terminology"><i class="fa fa-check"></i><b>22.1</b> Terminology</a></li>
+<li class="chapter" data-level="22.2" data-path="pr-extend.html"><a href="pr-extend.html#official-github-advice-version-1"><i class="fa fa-check"></i><b>22.2</b> Official GitHub advice, Version 1</a></li>
+<li class="chapter" data-level="22.3" data-path="pr-extend.html"><a href="pr-extend.html#official-github-advice-version-2"><i class="fa fa-check"></i><b>22.3</b> Official GitHub advice, Version 2</a></li>
+<li class="chapter" data-level="22.4" data-path="pr-extend.html"><a href="pr-extend.html#official-github-advice-version-3"><i class="fa fa-check"></i><b>22.4</b> Official GitHub advice, Version 3</a></li>
+<li class="chapter" data-level="22.5" data-path="pr-extend.html"><a href="pr-extend.html#my-under-development-workflow"><i class="fa fa-check"></i><b>22.5</b> My under-development workflow</a></li>
 </ul></li>
-<li class="chapter" data-level="25" data-path="bingo.html"><a href="bingo.html"><i class="fa fa-check"></i><b>25</b> Create a bingo card</a></li>
-<li class="chapter" data-level="26" data-path="burn.html"><a href="burn.html"><i class="fa fa-check"></i><b>26</b> Burn it all down</a></li>
-<li class="chapter" data-level="27" data-path="reset.html"><a href="reset.html"><i class="fa fa-check"></i><b>27</b> Resetting</a></li>
-<li class="chapter" data-level="28" data-path="search.html"><a href="search.html"><i class="fa fa-check"></i><b>28</b> Search GitHub</a><ul>
-<li class="chapter" data-level="28.1" data-path="search.html"><a href="search.html#basic-resources"><i class="fa fa-check"></i><b>28.1</b> Basic resources</a></li>
-<li class="chapter" data-level="28.2" data-path="search.html"><a href="search.html#use-case"><i class="fa fa-check"></i><b>28.2</b> Use case</a></li>
+<li class="chapter" data-level="23" data-path="usage-git-cmds.html"><a href="usage-git-cmds.html"><i class="fa fa-check"></i><b>23</b> Git commands</a></li>
+<li class="part"><span><b>V Tutorial prompts</b></span></li>
+<li class="chapter" data-level="24" data-path="clone.html"><a href="clone.html"><i class="fa fa-check"></i><b>24</b> Clone a repo</a></li>
+<li class="chapter" data-level="25" data-path="fork.html"><a href="fork.html"><i class="fa fa-check"></i><b>25</b> Fork a repo</a><ul>
+<li class="chapter" data-level="25.1" data-path="fork.html"><a href="fork.html#fork-then-clone"><i class="fa fa-check"></i><b>25.1</b> Fork then clone</a></li>
+<li class="chapter" data-level="25.2" data-path="fork.html"><a href="fork.html#fork-and-pull"><i class="fa fa-check"></i><b>25.2</b> Fork and pull</a></li>
+<li class="chapter" data-level="25.3" data-path="fork.html"><a href="fork.html#updating-your-fork"><i class="fa fa-check"></i><b>25.3</b> Updating your fork</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="bingo.html"><a href="bingo.html"><i class="fa fa-check"></i><b>26</b> Create a bingo card</a></li>
+<li class="chapter" data-level="27" data-path="burn.html"><a href="burn.html"><i class="fa fa-check"></i><b>27</b> Burn it all down</a></li>
+<li class="chapter" data-level="28" data-path="reset.html"><a href="reset.html"><i class="fa fa-check"></i><b>28</b> Resetting</a></li>
+<li class="chapter" data-level="29" data-path="search.html"><a href="search.html"><i class="fa fa-check"></i><b>29</b> Search GitHub</a><ul>
+<li class="chapter" data-level="29.1" data-path="search.html"><a href="search.html#basic-resources"><i class="fa fa-check"></i><b>29.1</b> Basic resources</a></li>
+<li class="chapter" data-level="29.2" data-path="search.html"><a href="search.html#use-case"><i class="fa fa-check"></i><b>29.2</b> Use case</a></li>
 </ul></li>
 <li class="part"><span><b>VI Classroom</b></span></li>
-<li class="chapter" data-level="29" data-path="classroom-overview.html"><a href="classroom-overview.html"><i class="fa fa-check"></i><b>29</b> Run a course with GitHub</a><ul>
-<li class="chapter" data-level="29.1" data-path="classroom-overview.html"><a href="classroom-overview.html#benefits"><i class="fa fa-check"></i><b>29.1</b> Benefits</a></li>
-<li class="chapter" data-level="29.2" data-path="classroom-overview.html"><a href="classroom-overview.html#the-stat-545-student-setup"><i class="fa fa-check"></i><b>29.2</b> The STAT 545 student setup</a></li>
-<li class="chapter" data-level="29.3" data-path="classroom-overview.html"><a href="classroom-overview.html#the-homework-flow"><i class="fa fa-check"></i><b>29.3</b> The homework-flow</a></li>
-<li class="chapter" data-level="29.4" data-path="classroom-overview.html"><a href="classroom-overview.html#github-as-course-management-system"><i class="fa fa-check"></i><b>29.4</b> GitHub as course management system</a><ul>
-<li class="chapter" data-level="29.4.1" data-path="classroom-overview.html"><a href="classroom-overview.html#use-a-github-organization"><i class="fa fa-check"></i><b>29.4.1</b> Use a GitHub Organization</a></li>
-<li class="chapter" data-level="29.4.2" data-path="classroom-overview.html"><a href="classroom-overview.html#github-pages-for-course-website"><i class="fa fa-check"></i><b>29.4.2</b> GitHub Pages for course website</a></li>
-<li class="chapter" data-level="29.4.3" data-path="classroom-overview.html"><a href="classroom-overview.html#student-specific-private-repos"><i class="fa fa-check"></i><b>29.4.3</b> Student-specific private repos</a></li>
+<li class="chapter" data-level="30" data-path="classroom-overview.html"><a href="classroom-overview.html"><i class="fa fa-check"></i><b>30</b> Run a course with GitHub</a><ul>
+<li class="chapter" data-level="30.1" data-path="classroom-overview.html"><a href="classroom-overview.html#benefits"><i class="fa fa-check"></i><b>30.1</b> Benefits</a></li>
+<li class="chapter" data-level="30.2" data-path="classroom-overview.html"><a href="classroom-overview.html#the-stat-545-student-setup"><i class="fa fa-check"></i><b>30.2</b> The STAT 545 student setup</a></li>
+<li class="chapter" data-level="30.3" data-path="classroom-overview.html"><a href="classroom-overview.html#the-homework-flow"><i class="fa fa-check"></i><b>30.3</b> The homework-flow</a></li>
+<li class="chapter" data-level="30.4" data-path="classroom-overview.html"><a href="classroom-overview.html#github-as-course-management-system"><i class="fa fa-check"></i><b>30.4</b> GitHub as course management system</a><ul>
+<li class="chapter" data-level="30.4.1" data-path="classroom-overview.html"><a href="classroom-overview.html#use-a-github-organization"><i class="fa fa-check"></i><b>30.4.1</b> Use a GitHub Organization</a></li>
+<li class="chapter" data-level="30.4.2" data-path="classroom-overview.html"><a href="classroom-overview.html#github-pages-for-course-website"><i class="fa fa-check"></i><b>30.4.2</b> GitHub Pages for course website</a></li>
+<li class="chapter" data-level="30.4.3" data-path="classroom-overview.html"><a href="classroom-overview.html#student-specific-private-repos"><i class="fa fa-check"></i><b>30.4.3</b> Student-specific private repos</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>VII Meta</b></span></li>
-<li class="chapter" data-level="30" data-path="notes.html"><a href="notes.html"><i class="fa fa-check"></i><b>30</b> Notes</a><ul>
-<li class="chapter" data-level="30.1" data-path="notes.html"><a href="notes.html#common-workflow-questions"><i class="fa fa-check"></i><b>30.1</b> Common workflow questions</a><ul>
-<li class="chapter" data-level="30.1.1" data-path="notes.html"><a href="notes.html#common-predicaments-and-how-to-recoveravoid"><i class="fa fa-check"></i><b>30.1.1</b> Common predicaments and how to recover/avoid</a></li>
-<li class="chapter" data-level="30.1.2" data-path="notes.html"><a href="notes.html#keep-something-out-of-git"><i class="fa fa-check"></i><b>30.1.2</b> Keep something out of Git</a></li>
-<li class="chapter" data-level="30.1.3" data-path="notes.html"><a href="notes.html#i-didnt-mean-to-commit-that"><i class="fa fa-check"></i><b>30.1.3</b> I didn’t mean to commit that</a></li>
+<li class="chapter" data-level="31" data-path="notes.html"><a href="notes.html"><i class="fa fa-check"></i><b>31</b> Notes</a><ul>
+<li class="chapter" data-level="31.1" data-path="notes.html"><a href="notes.html#common-workflow-questions"><i class="fa fa-check"></i><b>31.1</b> Common workflow questions</a><ul>
+<li class="chapter" data-level="31.1.1" data-path="notes.html"><a href="notes.html#common-predicaments-and-how-to-recoveravoid"><i class="fa fa-check"></i><b>31.1.1</b> Common predicaments and how to recover/avoid</a></li>
+<li class="chapter" data-level="31.1.2" data-path="notes.html"><a href="notes.html#keep-something-out-of-git"><i class="fa fa-check"></i><b>31.1.2</b> Keep something out of Git</a></li>
+<li class="chapter" data-level="31.1.3" data-path="notes.html"><a href="notes.html#i-didnt-mean-to-commit-that"><i class="fa fa-check"></i><b>31.1.3</b> I didn’t mean to commit that</a></li>
 </ul></li>
-<li class="chapter" data-level="30.2" data-path="notes.html"><a href="notes.html#git-stuff"><i class="fa fa-check"></i><b>30.2</b> git stuff</a></li>
-<li class="chapter" data-level="30.3" data-path="notes.html"><a href="notes.html#the-repeated-amend"><i class="fa fa-check"></i><b>30.3</b> The repeated amend</a></li>
-<li class="chapter" data-level="30.4" data-path="notes.html"><a href="notes.html#disaster-recovery"><i class="fa fa-check"></i><b>30.4</b> Disaster recovery</a></li>
-<li class="chapter" data-level="30.5" data-path="notes.html"><a href="notes.html#engage-with-r-source-on-github"><i class="fa fa-check"></i><b>30.5</b> Engage with R source on GitHub</a></li>
-<li class="chapter" data-level="30.6" data-path="notes.html"><a href="notes.html#workflow-and-psychology"><i class="fa fa-check"></i><b>30.6</b> Workflow and psychology</a></li>
-<li class="chapter" data-level="30.7" data-path="notes.html"><a href="notes.html#how-the-square-bracket-links-work"><i class="fa fa-check"></i><b>30.7</b> How the square bracket links work</a></li>
+<li class="chapter" data-level="31.2" data-path="notes.html"><a href="notes.html#git-stuff"><i class="fa fa-check"></i><b>31.2</b> git stuff</a></li>
+<li class="chapter" data-level="31.3" data-path="notes.html"><a href="notes.html#the-repeated-amend"><i class="fa fa-check"></i><b>31.3</b> The repeated amend</a></li>
+<li class="chapter" data-level="31.4" data-path="notes.html"><a href="notes.html#disaster-recovery"><i class="fa fa-check"></i><b>31.4</b> Disaster recovery</a></li>
+<li class="chapter" data-level="31.5" data-path="notes.html"><a href="notes.html#engage-with-r-source-on-github"><i class="fa fa-check"></i><b>31.5</b> Engage with R source on GitHub</a></li>
+<li class="chapter" data-level="31.6" data-path="notes.html"><a href="notes.html#workflow-and-psychology"><i class="fa fa-check"></i><b>31.6</b> Workflow and psychology</a></li>
+<li class="chapter" data-level="31.7" data-path="notes.html"><a href="notes.html#how-the-square-bracket-links-work"><i class="fa fa-check"></i><b>31.7</b> How the square bracket links work</a></li>
 </ul></li>
-<li class="chapter" data-level="31" data-path="bookdown-cheat-sheet.html"><a href="bookdown-cheat-sheet.html"><i class="fa fa-check"></i><b>31</b> Bookdown cheat sheet</a><ul>
-<li class="chapter" data-level="31.1" data-path="bookdown-cheat-sheet.html"><a href="bookdown-cheat-sheet.html#heading-blah-blah"><i class="fa fa-check"></i><b>31.1</b> Heading blah blah</a></li>
-<li class="chapter" data-level="31.2" data-path="bookdown-cheat-sheet.html"><a href="bookdown-cheat-sheet.html#id-example"><i class="fa fa-check"></i><b>31.2</b> About labelling things</a></li>
-<li class="chapter" data-level="31.3" data-path="bookdown-cheat-sheet.html"><a href="bookdown-cheat-sheet.html#cross-references"><i class="fa fa-check"></i><b>31.3</b> Cross-references</a></li>
-<li class="chapter" data-level="31.4" data-path="bookdown-cheat-sheet.html"><a href="bookdown-cheat-sheet.html#figures-tables-citations"><i class="fa fa-check"></i><b>31.4</b> Figures, tables, citations</a></li>
+<li class="chapter" data-level="32" data-path="bookdown-cheat-sheet.html"><a href="bookdown-cheat-sheet.html"><i class="fa fa-check"></i><b>32</b> Bookdown cheat sheet</a><ul>
+<li class="chapter" data-level="32.1" data-path="bookdown-cheat-sheet.html"><a href="bookdown-cheat-sheet.html#heading-blah-blah"><i class="fa fa-check"></i><b>32.1</b> Heading blah blah</a></li>
+<li class="chapter" data-level="32.2" data-path="bookdown-cheat-sheet.html"><a href="bookdown-cheat-sheet.html#id-example"><i class="fa fa-check"></i><b>32.2</b> About labelling things</a></li>
+<li class="chapter" data-level="32.3" data-path="bookdown-cheat-sheet.html"><a href="bookdown-cheat-sheet.html#cross-references"><i class="fa fa-check"></i><b>32.3</b> Cross-references</a></li>
+<li class="chapter" data-level="32.4" data-path="bookdown-cheat-sheet.html"><a href="bookdown-cheat-sheet.html#figures-tables-citations"><i class="fa fa-check"></i><b>32.4</b> Figures, tables, citations</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>A</b> The shell</a><ul>
@@ -387,78 +422,78 @@ YES Initialize this repository with a README</p>
 <p>Go to the shell (Appendix <a href="shell.html#shell">A</a>).</p>
 <p>Take charge of – or at least notice! – what directory you’re in. <code>pwd</code> to display working directory. <code>cd</code> to move around. Personally, I would do this sort of thing in <code>~/tmp</code>.</p>
 <p>Clone <code>myrepo</code> from GitHub to your computer. This URL should have <strong>your GitHub username</strong> and the name of <strong>your practice repo</strong>. If your shell (Appendix <a href="shell.html#shell">A</a>) cooperates, you should be able to paste the whole <code>https://....</code> bit that we copied above. But some shells are not (immediately) clipboard aware. In that sad case, you must type it. <strong>Accurately.</strong></p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git</code></pre></div>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git</code></pre>
 <p>This should look something like this:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">jenny@2015-mbp</span> tmp $ git clone https://github.com/jennybc/myrepo.git
-<span class="kw">Cloning</span> into <span class="st">&#39;myrepo&#39;</span>...
-<span class="kw">remote</span>: Counting objects: 3, done.
-<span class="kw">remote</span>: Total 3 (delta 0), <span class="kw">reused</span> 0 (delta 0), <span class="kw">pack-reused</span> 0
-<span class="kw">Unpacking</span> objects: 100% (3/3), <span class="kw">done.</span>
-<span class="kw">Checking</span> connectivity... done.</code></pre></div>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">jenny@2015-mbp</span> tmp $ git clone https://github.com/jennybc/myrepo.git
+<span class="ex">Cloning</span> into <span class="st">&#39;myrepo&#39;</span>...
+<span class="ex">remote</span>: Counting objects: 3, done.
+<span class="ex">remote</span>: Total 3 (delta 0), <span class="ex">reused</span> 0 (delta 0), <span class="ex">pack-reused</span> 0
+<span class="ex">Unpacking</span> objects: 100% (3/3), <span class="kw">done</span><span class="ex">.</span>
+<span class="ex">Checking</span> connectivity... done.</code></pre>
 <p>Make this new repo your working directory, list its files, display the README, and get some information on its connection to GitHub:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> myrepo
-<span class="kw">ls</span>
-<span class="kw">head</span> README.md
-<span class="kw">git</span> remote show origin</code></pre></div>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">cd</span> myrepo
+<span class="fu">ls</span>
+<span class="fu">head</span> README.md
+<span class="fu">git</span> remote show origin</code></pre>
 <p>This should look something like this:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">jenny@2015-mbp</span> ~ $ cd myrepo
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">jenny@2015-mbp</span> ~ $ cd myrepo
 
-<span class="kw">jenny@2015-mbp</span> myrepo $ ls
-<span class="kw">README.md</span>
+<span class="ex">jenny@2015-mbp</span> myrepo $ ls
+<span class="ex">README.md</span>
 
-<span class="kw">jenny@2015-mbp</span> myrepo $ head README.md 
+<span class="ex">jenny@2015-mbp</span> myrepo $ head README.md 
 <span class="co"># myrepo</span>
-<span class="kw">tutorial</span> development
+<span class="ex">tutorial</span> development
 
-<span class="kw">jenny@2015-mbp</span> myrepo $ git remote show origin
-<span class="kw">*</span> remote origin
-  <span class="kw">Fetch</span> URL: https://github.com/jennybc/myrepo.git
-  <span class="kw">Push</span>  URL: https://github.com/jennybc/myrepo.git
-  <span class="kw">HEAD</span> branch: master
-  <span class="kw">Remote</span> branch:
-    <span class="kw">master</span> tracked
-  <span class="kw">Local</span> branch configured for <span class="st">&#39;git pull&#39;</span>:
-    <span class="kw">master</span> merges with remote master
-  <span class="kw">Local</span> ref configured for <span class="st">&#39;git push&#39;</span>:
-    <span class="kw">master</span> pushes to master (up to date)</code></pre></div>
+<span class="ex">jenny@2015-mbp</span> myrepo $ git remote show origin
+<span class="ex">*</span> remote origin
+  <span class="ex">Fetch</span> URL: https://github.com/jennybc/myrepo.git
+  <span class="ex">Push</span>  URL: https://github.com/jennybc/myrepo.git
+  <span class="ex">HEAD</span> branch: master
+  <span class="ex">Remote</span> branch:
+    <span class="ex">master</span> tracked
+  <span class="ex">Local</span> branch configured for <span class="st">&#39;git pull&#39;</span>:
+    <span class="ex">master</span> merges with remote master
+  <span class="ex">Local</span> ref configured for <span class="st">&#39;git push&#39;</span>:
+    <span class="ex">master</span> pushes to master (up to date)</code></pre>
 </div>
 <div id="make-a-local-change-commit-and-push" class="section level2">
 <h2><span class="header-section-number">10.3</span> Make a local change, commit, and push</h2>
 <p>Add a line to README and verify that Git notices the change:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">echo</span> <span class="st">&quot;A line I wrote on my local computer&quot;</span> <span class="kw">&gt;&gt;</span> README.md
-<span class="kw">git</span> status</code></pre></div>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">echo</span> <span class="st">&quot;A line I wrote on my local computer&quot;</span> <span class="op">&gt;&gt;</span> README.md
+<span class="fu">git</span> status</code></pre>
 <p>This should look something like this:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">jenny@2015-mbp</span> myrepo $ echo <span class="st">&quot;A line I wrote on my local computer&quot;</span> <span class="kw">&gt;&gt;</span> README.md
-<span class="kw">jenny@2015-mbp</span> myrepo $ git status
-<span class="kw">On</span> branch master
-<span class="kw">Your</span> branch is up-to-date with <span class="st">&#39;origin/master&#39;</span>.
-<span class="kw">Changes</span> not staged for commit:
-  <span class="kw">(use</span> <span class="st">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="kw">)</span>
-  <span class="kw">(use</span> <span class="st">&quot;git checkout -- &lt;file&gt;...&quot;</span> to discard changes in working directory<span class="kw">)</span>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">jenny@2015-mbp</span> myrepo $ echo <span class="st">&quot;A line I wrote on my local computer&quot;</span> <span class="op">&gt;&gt;</span> README.md
+<span class="ex">jenny@2015-mbp</span> myrepo $ git status
+<span class="ex">On</span> branch master
+<span class="ex">Your</span> branch is up-to-date with <span class="st">&#39;origin/master&#39;</span>.
+<span class="ex">Changes</span> not staged for commit:
+  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="kw">)</span>
+  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git checkout -- &lt;file&gt;...&quot;</span> to discard changes in working directory<span class="kw">)</span>
 
-    <span class="kw">modified</span>:   README.md
+    <span class="ex">modified</span>:   README.md
 
-<span class="kw">no</span> changes added to commit (use <span class="st">&quot;git add&quot;</span> and/or <span class="st">&quot;git commit -a&quot;</span>)</code></pre></div>
+<span class="ex">no</span> changes added to commit (use <span class="st">&quot;git add&quot;</span> and/or <span class="st">&quot;git commit -a&quot;</span>)</code></pre>
 <p>Commit this change and push to your remote repo on GitHub. If you’re a new GitHub user, you will be challenged for your GitHub username and password. Provide them!</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> add -A
-<span class="kw">git</span> commit -m <span class="st">&quot;A commit from my local computer&quot;</span>
-<span class="kw">git</span> push</code></pre></div>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> add -A
+<span class="fu">git</span> commit -m <span class="st">&quot;A commit from my local computer&quot;</span>
+<span class="fu">git</span> push</code></pre>
 <p>The <code>-m</code> flag is an important message that must be included with every commit! Git requires a commit message for every commit, so if you forget the <code>-m</code> flag, git will prompt you for a commit message anyways. It is good practice to write meaningful commit messages so in the future, potential collaborators (and your future self) will understand the progression of a project.</p>
 <p>This should look something like this:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">jenny@2015-mbp</span> myrepo $ git add -A
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">jenny@2015-mbp</span> myrepo $ git add -A
 
-<span class="kw">jenny@2015-mbp</span> myrepo $ git commit -m <span class="st">&quot;A commit from my local computer&quot;</span>
-[<span class="kw">master</span> de669ba] A commit from my local computer
- <span class="kw">1</span> file changed, 1 insertion(+)
+<span class="ex">jenny@2015-mbp</span> myrepo $ git commit -m <span class="st">&quot;A commit from my local computer&quot;</span>
+[<span class="ex">master</span> de669ba] A commit from my local computer
+ <span class="ex">1</span> file changed, 1 insertion(+)
  
-<span class="kw">jenny@2015-mbp</span> myrepo $ git push
-<span class="kw">Counting</span> objects: 3, done.
-<span class="kw">Delta</span> compression using up to 8 threads.
-<span class="kw">Compressing</span> objects: 100% (2/2), <span class="kw">done.</span>
-<span class="kw">Writing</span> objects: 100% (3/3), <span class="kw">311</span> bytes <span class="kw">|</span> <span class="kw">0</span> bytes/s, done.
-<span class="kw">Total</span> 3 (delta 0), <span class="kw">reused</span> 0 (delta 0)
-<span class="kw">To</span> https://github.com/jennybc/myrepo.git
-   <span class="kw">b4112c5..de669ba</span>  master -<span class="kw">&gt;</span> master</code></pre></div>
+<span class="ex">jenny@2015-mbp</span> myrepo $ git push
+<span class="ex">Counting</span> objects: 3, done.
+<span class="ex">Delta</span> compression using up to 8 threads.
+<span class="ex">Compressing</span> objects: 100% (2/2), <span class="kw">done</span><span class="ex">.</span>
+<span class="ex">Writing</span> objects: 100% (3/3), <span class="ex">311</span> bytes <span class="kw">|</span> <span class="ex">0</span> bytes/s, done.
+<span class="ex">Total</span> 3 (delta 0), <span class="ex">reused</span> 0 (delta 0)
+<span class="ex">To</span> https://github.com/jennybc/myrepo.git
+   <span class="ex">b4112c5..de669ba</span>  master -<span class="op">&gt;</span> master</code></pre>
 </div>
 <div id="confirm-the-local-change-propagated-to-the-github-remote" class="section level2">
 <h2><span class="header-section-number">10.4</span> Confirm the local change propagated to the GitHub remote</h2>
@@ -482,8 +517,8 @@ YES Initialize this repository with a README</p>
 <h2><span class="header-section-number">10.6</span> Clean up</h2>
 <p><strong>Local</strong> When you’re ready to clean up, you can delete the local repo any way you like. It’s just a regular directory on your computer.</p>
 <p>Here’s how to do that in the shell, if current working directory is <code>myrepo</code>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ..
-<span class="kw">rm</span> -rf myrepo/</code></pre></div>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">cd</span> ..
+<span class="fu">rm</span> -rf myrepo/</code></pre>
 <p><strong>GitHub</strong> In the browser, go to your repo’s landing page on GitHub. Click on “Settings”.</p>
 <p>Scroll down, click on “delete repository,” and do as it asks.</p>
 
