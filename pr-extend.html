@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Happy Git and GitHub for the useR</title>
   <meta name="description" content="Using Git and GitHub with R, Rstudio, and R Markdown">
-  <meta name="generator" content="bookdown 0.7.12 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
   <meta property="og:title" content="Happy Git and GitHub for the useR" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Jenny Bryan and the STAT 545 TAs">
 
 
-<meta name="date" content="2018-06-11">
+<meta name="date" content="2018-08-09">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -457,84 +457,39 @@ git merge --no-ff janedoe-master</code></pre></li>
 <div id="my-under-development-workflow" class="section level2">
 <h2><span class="header-section-number">22.5</span> My under-development workflow</h2>
 <p><em>work in progress</em></p>
-<p>This combines ideas from the three above approaches, but with a few tweaks. I have the start of a workflow from R, but it’s incomplete, so will sketch with command line Git first, then show my draft R code.</p>
-<p>Tweak #1: figure out the PR parent SHA. You can do this by clicking around in the GitHub UI, but my R code below show how to get via the API.</p>
-<p>Create and check out a new local PR branch based on the PR parent.</p>
-<pre><code>git checkout -b completions a1c46a8
-git checkout -b PR_BRANCH PARENT_SHA</code></pre>
-<p>Pull from the fork and branch associated with the PR. Make a deliberate choice re: HTTPS or SSH, based on what you usually use. I show SSH here. Note the branch name here is the <em>fork branch</em> and recall that this may or may not be same as PR branch.</p>
-<pre><code>git pull --ff git@github.com:jimhester/readxl.git completions
-git pull --ff git@github.com:OWNER/REPO.git FORK_BRANCH</code></pre>
-<p>Experiment with the PR and <strong>make more commits if you need to</strong>.</p>
-<p>Push back to the fork branch associated with the PR.</p>
-<pre><code>git push git@github.com:jimhester/readxl.git HEAD:completions
-git push git@github.com:OWNER/REPO.git HEAD:FORK_BRANCH</code></pre>
-<p>Merge or squash-and-merge the updated PR from GitHub in the browser.</p>
-<p>Partial draft of R code to do the above</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gh)
-<span class="kw">library</span>(git2r)
+<p>This combines ideas from the three above approaches, but with a few tweaks. I am sketching this up in R code, with the hope of putting this into a function and package at some point. This is a revision of an earlier approach, based on feedback from Jim Hester.</p>
+<p>Example of a PR from the <code>master</code> branch (suboptimal but often happens) from fictional GitHub user <code>abcde</code> on usethis.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(git2r)
 
-## the number of the pull request you want to work on
-pr &lt;-<span class="st"> </span><span class="dv">320</span>
-## assuming wd = active project/package, gets OWNER/REPO
-repo_info &lt;-<span class="st"> </span><span class="kw">gh_tree_remote</span>(<span class="st">&quot;.&quot;</span>)
+## add the pull requester&#39;s fork as a named remote
+<span class="kw">remote_add</span>(<span class="dt">name =</span> <span class="st">&quot;abcde&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;git@github.com:abcde/usethis.git&quot;</span>)
 
-x &lt;-<span class="st"> </span><span class="kw">gh</span>(
-  <span class="st">&quot;/repos/:owner/:repo/pulls/:number&quot;</span>,
-  <span class="dt">owner =</span> repo_info<span class="op">$</span>username,
-  <span class="dt">repo =</span> repo_info<span class="op">$</span>repo,
-  <span class="dt">number =</span> pr
-)
+## fetch
+<span class="kw">fetch</span>(<span class="dt">name =</span> <span class="st">&quot;abcde&quot;</span>)
 
-## get name of the fork&#39;s branch used for the PR
-(fork_branch &lt;-<span class="st"> </span>x<span class="op">$</span>head<span class="op">$</span>ref)
+## list remote branches and isolate the one I want
+b &lt;-<span class="st"> </span><span class="kw">branches</span>(<span class="dt">flags =</span> <span class="st">&quot;remote&quot;</span>)
+b &lt;-<span class="st"> </span>b[[<span class="st">&quot;abcde/master&quot;</span>]]
 
-## determine name of local PR branch
-(pr_branch &lt;-<span class="st"> </span><span class="cf">if</span> (fork_branch <span class="op">==</span><span class="st"> &quot;master&quot;</span>) <span class="kw">paste0</span>(<span class="st">&quot;pr-&quot;</span>, pr) <span class="cf">else</span> fork_branch)
+## get the SHA of HEAD on this branch
+sha &lt;-<span class="st"> </span><span class="kw">branch_target</span>(b)
 
-## Suggestion from @jimhester for setting pr_branch
-## remote_name-remote_branch? and maybe without a condition?
+## create local branch
+<span class="kw">branch_create</span>(<span class="dt">commit =</span> <span class="kw">lookup</span>(<span class="dt">sha =</span> sha), <span class="dt">name =</span> <span class="st">&quot;abcde-master&quot;</span>)
 
-## get the parent SHA for the PR
+## check it out
+<span class="kw">checkout</span>(<span class="dt">object =</span> <span class="st">&quot;.&quot;</span>, <span class="dt">branch =</span> <span class="st">&quot;abcde-master&quot;</span>)
 
-## why is this not correct?!?!?
-<span class="co"># (sha &lt;- x$base$sha)</span>
+## set upstream tracking branch
+<span class="kw">branch_set_upstream</span>(<span class="kw">repository_head</span>(), <span class="dt">name =</span> <span class="st">&quot;abcde/master&quot;</span>)
 
-## alternative approach
-## GET all commits for the PR and parent SHA of the first commit
-y &lt;-<span class="st"> </span><span class="kw">gh</span>(
-  <span class="st">&quot;/repos/:owner/:repo/pulls/:number/commits&quot;</span>,
-  <span class="dt">owner =</span> repo_info<span class="op">$</span>username,
-  <span class="dt">repo =</span> repo_info<span class="op">$</span>repo,
-  <span class="dt">number =</span> pr
-)
-(sha &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw">pluck</span>(y, <span class="kw">list</span>(<span class="dv">1</span>, <span class="st">&quot;parents&quot;</span>, <span class="dv">1</span>, <span class="st">&quot;sha&quot;</span>)))
+## confirm upstream tracking branch
+<span class="kw">branch_get_upstream</span>(<span class="kw">repository_head</span>())
 
-## Comment from @jimhester
-## I don&#39;t think this is the right strategy, you should create the new branch
-## directly off of the remote, rather than creating a new branch from the
-## master.
+## make one or more commits here
 
-## create and checkout the local PR branch, with correct parent
-b &lt;-<span class="st"> </span><span class="kw">branch_create</span>(<span class="dt">commit =</span> <span class="kw">lookup</span>(<span class="dt">sha =</span> sha), <span class="dt">name =</span> pr_branch)
-<span class="kw">checkout</span>(b)
-
-## haven&#39;t figured out how to pull / push to arbitrary remote with git2r
-## perhaps you&#39;d have to actually add the fork as a remote?
-## doing with command line Git for now
-
-## comment from @jimhester:
-## It doesn&#39;t look like git2r has an API that lets you use anonymous remotes, I
-## think you need to explicitly add the remote then fetch, then do the branch,
-## e.g. remote_add(), fetch(), branch() etc.
-
-## form the pull command
-glue<span class="op">::</span><span class="kw">glue</span>(<span class="st">&quot;git pull --ff {x$head$repo$ssh_url} {fork_branch}&quot;</span>)
-
-## make commit(s) HERE
-
-## form the push command
-glue<span class="op">::</span><span class="kw">glue</span>(<span class="st">&quot;git push {x$head$repo$ssh_url} HEAD:{fork_branch}&quot;</span>)</code></pre>
+## push to the branch in the fork and, therefore, into the PR
+<span class="kw">push</span>()</code></pre>
 
 </div>
 </div>
