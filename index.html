@@ -22,7 +22,7 @@
   <meta name="twitter:description" content="Using Git and GitHub with R, Rstudio, and R Markdown" />
   
 
-<meta name="author" content="Jenny Bryan and the STAT 545 TAs">
+<meta name="author" content="Jenny Bryan, the STAT 545 TAs, Jim Hester">
 
 
 <meta name="date" content="2018-10-02">
@@ -251,7 +251,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>III Early GitHub Usage</b></span></li>
 <li class="chapter" data-level="16" data-path="new-github-first.html"><a href="new-github-first.html"><i class="fa fa-check"></i><b>16</b> New project, GitHub first</a><ul>
 <li class="chapter" data-level="16.1" data-path="new-github-first.html"><a href="new-github-first.html#make-a-repo-on-github-1"><i class="fa fa-check"></i><b>16.1</b> Make a repo on GitHub</a></li>
-<li class="chapter" data-level="16.2" data-path="new-github-first.html"><a href="new-github-first.html#new-rstudio-project-via-git-clone"><i class="fa fa-check"></i><b>16.2</b> New RStudio Project via git clone</a></li>
+<li class="chapter" data-level="16.2" data-path="new-github-first.html"><a href="new-github-first.html#new-rstudio-project-via-git-clone"><i class="fa fa-check"></i><b>16.2</b> New RStudio Project via git clone</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="new-github-first.html"><a href="new-github-first.html#optional-peek-under-the-hood"><i class="fa fa-check"></i><b>16.2.1</b> Optional: peek under the hood</a></li>
+</ul></li>
 <li class="chapter" data-level="16.3" data-path="new-github-first.html"><a href="new-github-first.html#make-local-changes-save-commit-1"><i class="fa fa-check"></i><b>16.3</b> Make local changes, save, commit</a></li>
 <li class="chapter" data-level="16.4" data-path="new-github-first.html"><a href="new-github-first.html#push-your-local-changes-to-github"><i class="fa fa-check"></i><b>16.4</b> Push your local changes to GitHub</a></li>
 <li class="chapter" data-level="16.5" data-path="new-github-first.html"><a href="new-github-first.html#confirm-the-local-change-propagated-to-the-github-remote-2"><i class="fa fa-check"></i><b>16.5</b> Confirm the local change propagated to the GitHub remote</a></li>
@@ -438,38 +440,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="header">
 <h1 class="title">Happy Git and GitHub for the useR</h1>
-<p class="author"><em>Jenny Bryan and the STAT 545 TAs</em></p>
+<p class="author"><em>Jenny Bryan, the STAT 545 TAs, Jim Hester</em></p>
 <p class="date"><em>2018-10-02</em></p>
 </div>
 <div id="a-living-book" class="section level1 unnumbered">
 <h1>A living book</h1>
 <p><img src="img/watch-me-diff-watch-me-rebase-smaller.png" width="669" height="400" alt="Cover image" /></p>
 <p>Still from <a href="https://www.youtube.com/watch?v=uBWrpVrazzA">Heaven King video</a></p>
-<p>What is already here:</p>
-<ul>
-<li>Instructions for Git/GitHub/R/RStudio set-up and early usage.</li>
-<li>Prompts for workshop activites.</li>
-</ul>
-<p>What is coming:</p>
-<ul>
-<li>More on Git itself, though will mostly rely on rest of the internet for that. I want to add / borrow / link to visual explanations.</li>
-<li>Workflows and policies for individuals and groups.
-<ul>
-<li>How often should I commit? Which files should I commit?</li>
-<li>Data files and the dilemmas they present.</li>
-<li>Most common Git predicaments. How to avoid and recover.</li>
-<li>Clone vs fork.</li>
-<li>Purpose of branches, <a href="https://guides.github.com/features/issues/">issues</a>, <a href="https://help.github.com/articles/using-pull-requests/">pull requests</a>, tags.</li>
-<li>Add-as-collaborator vs “fork and pull”.</li>
-</ul></li>
-<li>Use of the GitHub API for bulk operations.</li>
-<li>Using GitHub to run a course.
-<ul>
-<li>Get an Organization.</li>
-<li>Use of Teams, repos, issues, pushing content into repos.</li>
-</ul></li>
-</ul>
 <p>Repo that makes this site: <a href="https://github.com/jennybc/happy-git-with-r" class="uri">https://github.com/jennybc/happy-git-with-r</a></p>
+<p>Present and quite stable, goal is to stay very current:</p>
+<ul>
+<li>Instructions for Git/GitHub/R/RStudio installation and set-up</li>
+<li>Early and fundamental workflows using Git and GitHub with R and RStudio.</li>
+</ul>
+<p>Present and still growing, within some limits:</p>
+<ul>
+<li>More on Git itself. However we have no ambitions to be a full substitute for other comprehensive Git references.</li>
+<li>Intermediate and advanced workflows.</li>
+</ul>
+<p>Present but stale / stalled.</p>
+<ul>
+<li>Use of the GitHub API for bulk operations.</li>
+<li>Using GitHub to run a course.</li>
+</ul>
 <p>Slides I draw on in live workshops: <a href="https://speakerdeck.com/jennybc/happy-git-and-github-for-the-user" class="uri">https://speakerdeck.com/jennybc/happy-git-and-github-for-the-user</a></p>
 <p><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Happy Git and GitHub for the useR</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/jennybc/happy-git-with-r" property="cc:attributionName" rel="cc:attributionURL">Jennifer Bryan</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.</p>
 

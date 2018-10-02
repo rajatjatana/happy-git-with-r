@@ -22,7 +22,7 @@
   <meta name="twitter:description" content="Using Git and GitHub with R, Rstudio, and R Markdown" />
   
 
-<meta name="author" content="Jenny Bryan and the STAT 545 TAs">
+<meta name="author" content="Jenny Bryan, the STAT 545 TAs, Jim Hester">
 
 
 <meta name="date" content="2018-10-02">
@@ -251,7 +251,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>III Early GitHub Usage</b></span></li>
 <li class="chapter" data-level="16" data-path="new-github-first.html"><a href="new-github-first.html"><i class="fa fa-check"></i><b>16</b> New project, GitHub first</a><ul>
 <li class="chapter" data-level="16.1" data-path="new-github-first.html"><a href="new-github-first.html#make-a-repo-on-github-1"><i class="fa fa-check"></i><b>16.1</b> Make a repo on GitHub</a></li>
-<li class="chapter" data-level="16.2" data-path="new-github-first.html"><a href="new-github-first.html#new-rstudio-project-via-git-clone"><i class="fa fa-check"></i><b>16.2</b> New RStudio Project via git clone</a></li>
+<li class="chapter" data-level="16.2" data-path="new-github-first.html"><a href="new-github-first.html#new-rstudio-project-via-git-clone"><i class="fa fa-check"></i><b>16.2</b> New RStudio Project via git clone</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="new-github-first.html"><a href="new-github-first.html#optional-peek-under-the-hood"><i class="fa fa-check"></i><b>16.2.1</b> Optional: peek under the hood</a></li>
+</ul></li>
 <li class="chapter" data-level="16.3" data-path="new-github-first.html"><a href="new-github-first.html#make-local-changes-save-commit-1"><i class="fa fa-check"></i><b>16.3</b> Make local changes, save, commit</a></li>
 <li class="chapter" data-level="16.4" data-path="new-github-first.html"><a href="new-github-first.html#push-your-local-changes-to-github"><i class="fa fa-check"></i><b>16.4</b> Push your local changes to GitHub</a></li>
 <li class="chapter" data-level="16.5" data-path="new-github-first.html"><a href="new-github-first.html#confirm-the-local-change-propagated-to-the-github-remote-2"><i class="fa fa-check"></i><b>16.5</b> Confirm the local change propagated to the GitHub remote</a></li>
@@ -468,6 +470,18 @@ YES Initialize this repository with a README</p>
 </ul>
 <p>This should download the <code>README.md</code> file that we created on GitHub in the previous step. Look in RStudio’s file browser pane for the <code>README.md</code> file.</p>
 <p>There’s a big advantage to the “GitHub first, then RStudio” workflow: the remote GitHub repo is added as a remote for your local repo and your local <code>master</code> branch is now tracking <code>master</code> on GitHub. This is a technical but important point about Git. The practical implication is that you are now set up to push and pull. No need to fanny around setting up Git remotes and tracking branches on the command line.</p>
+<div id="optional-peek-under-the-hood" class="section level3">
+<h3><span class="header-section-number">16.2.1</span> Optional: peek under the hood</h3>
+<p>Completely optional activity: use command line Git to see what we’re talking about above, i.e. the remote and tracking branch setup.</p>
+<p><code>git remote -v</code>or <code>git remote --verbose</code> shows the remotes you have setup. Here’s how that looks for someone using SSH with GitHub and calling it <code>origin</code> (a convention I hate but am resigned to):</p>
+<pre class="sourceCode sh"><code class="sourceCode bash">$ <span class="fu">git</span> remote -v
+<span class="ex">origin</span>  git@github.com:jennybc/myrepo.git (fetch)
+<span class="ex">origin</span>  git@github.com:jennybc/myrepo.git (push)</code></pre>
+<p><code>git branch -vv</code> prints info about the current branch. In particular, we can see that local <code>master</code> is tracking the <code>master</code> branch on <code>origin</code>, a.k.a. <code>origin/master</code>.</p>
+<pre class="sourceCode sh"><code class="sourceCode bash">$ <span class="fu">git</span> branch -vv
+<span class="ex">*</span> master 7c98308 [origin/master] Initial commit</code></pre>
+<p><code>git clone</code>, which RStudio did for us, sets all of this up automatically. This is why “GitHub first, then RStudio” is the preferred way to start projects early in your Git/GitHub life.</p>
+</div>
 </div>
 <div id="make-local-changes-save-commit-1" class="section level2">
 <h2><span class="header-section-number">16.3</span> Make local changes, save, commit</h2>
