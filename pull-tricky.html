@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="pr-extend.html">
-<link rel="next" href="clone.html">
+<link rel="prev" href="search.html">
+<link rel="next" href="classroom-overview.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -420,49 +420,179 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="usage-git-cmds" class="section level1">
-<h1><span class="header-section-number">23</span> Git commands</h1>
-<p>Here’s a start on the various Git commands that have been largely going on under the hood. We’ve tried to pick workflows that have RStudio doing this for us. But all of this can be done from the command line.</p>
-<p><em>Unless you use the <a href="https://developer.github.com/v3/">GitHub API</a>, most of the GitHub bits really have to be done from the browser.</em></p>
-<p>New local git repo from a repo on GitHub:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> clone https://github.com/jennybc/happy-git-with-r.git</code></pre>
-<p>Check the remote was cloned successfully:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> remote --verbose</code></pre>
-<p>Stage local changes, commit:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> add foo.txt
-<span class="fu">git</span> commit --message <span class="st">&quot;A commit message&quot;</span></code></pre>
-<p>Check on the state of the Git world:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> status
-<span class="fu">git</span> log
-<span class="fu">git</span> log --oneline</code></pre>
-<p>Compare versions:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> diff</code></pre>
-<p>Add a remote to existing local repo:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> remote add origin https://github.com/jennybc/happy-git-with-r
-<span class="fu">git</span> remote --verbose
-<span class="fu">git</span> remote show origin</code></pre>
-<p>Push local master to GitHub master and have local master track master on GitHub:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> push --set-upstream origin master
-<span class="co">## shorter form</span>
-<span class="fu">git</span> push -u origin master
-<span class="co">## you only need to set upstream tracking once!</span></code></pre>
-<p>Regular push:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> push 
-<span class="co">## the above usually implies (and certainly does in our tutorial)</span>
-<span class="fu">git</span> push origin master
-<span class="co">## git push [remote-name] [branch-name]</span></code></pre>
-<p>Pull commits from GitHub:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> pull</code></pre>
-<p>Pull commits and don’t let it put you in a merge conflict pickle:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> pull --ff-only</code></pre>
-<p>Fetch commits</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> fetch</code></pre>
-<p>Switch to a branch</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> checkout [branch-name]</code></pre>
-<p>Checking remote and branch tracking</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> remote -v
-<span class="fu">git</span> branch -vv</code></pre>
+<div id="pull-tricky" class="section level1">
+<h1><span class="header-section-number">30</span> Pull, but you have local work</h1>
+<p>Problem: You want to pull changes from upstream, but you have done some new work locally since the last time you pulled. This often comes up because what you actually want to do is <em>push</em>, but first you must incorporate the upstream changes.</p>
+<p>For the sake of simplicity, assume we’re dealing with the <code>master</code> branch and the upstream remote is called <code>origin</code>.</p>
+<p>Recent commit history of <code>origin/master</code>:</p>
+<pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">A--B--C</span></code></pre>
+<p>Recent commit history of the local <code>master</code> branch:</p>
+<pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">A--B--D</span></code></pre>
+<p>or maybe</p>
+<pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">A--B--</span>(uncommitted changes)</code></pre>
+<p>Your goal: get commit <code>C</code> into your local branch, while retaining the work in commit <code>D</code> or your uncommitted changes.</p>
+<ul>
+<li>Local state is <code>A--B--(uncommitted changes)</code>: You could use <code>git stash</code>. Or you could just make a commit to simplify your life (see next scenario).</li>
+<li>Local state is <code>A--B--D</code>: You can get to <code>A--B--D--C</code> or <code>A--B--(something that includes C and D)</code>.</li>
+<li>Local state is <code>A--B--D--(uncommitted changes)</code>: You could just make a commit – a new one or amend <code>D</code> – to simplify your life (go back previous scenario).</li>
+</ul>
+<div id="local-work-is-uncommitted" class="section level2">
+<h2><span class="header-section-number">30.1</span> Local work is uncommitted</h2>
+<p>Local state is <code>A--B--(uncommitted changes)</code>.</p>
+<div id="happy-simple-cases" class="section level3">
+<h3><span class="header-section-number">30.1.1</span> Happy simple cases</h3>
+<p>There are two happy scenarios, in which <code>git pull</code> will still “just work”:</p>
+<ul>
+<li>You’ve introduced completely new files that don’t exist in the remote branch and, therefore, cannot possibly have conflicting changes. You’re in luck! You can just <code>git pull</code>.</li>
+<li>The files affected by your local work have ZERO overlap with the files affected by the changes you need to pull from the remote. You’re also in luck! You can just <code>git pull</code>.</li>
+</ul>
+<p>Summary of these happy <code>git pull</code> scenarios:</p>
+<pre class="sourceCode sh"><code class="sourceCode bash">      <span class="ex">Remote</span>: A--B--C
 
+<span class="ex">Local</span> before <span class="st">&#39;git pull&#39;</span>: A--B--(uncommitted changes)
+ <span class="ex">Local</span> after <span class="st">&#39;git pull&#39;</span>: A--B--C--(uncommitted changes)</code></pre>
+</div>
+<div id="git-stash-works-sometimes" class="section level3">
+<h3><span class="header-section-number">30.1.2</span> <code>git stash</code> works sometimes</h3>
+<p>If your changes affect a file (<code>foo.R</code> in the example below) that has also been changed in commit <code>C</code>, you cannot <code>git pull</code>. You can try, but you will fail and it will look something like this:</p>
+<pre><code>jenny@2015-mbp ethel $ git pull
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 1), reused 1 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From github.com:jennybc/ethel
+   db046b4..2d33a6f  master     -&gt; origin/master
+Updating db046b4..2d33a6f
+error: Your local changes to the following files would be overwritten by merge:
+        foo.R
+Please commit your changes or stash them before you merge.
+Aborting</code></pre>
+<p>Now what? First, you must safeguard your local changes by either stashing or committing them.</p>
+<p>I am not a big fan of <code>git stash</code>; I think it’s usually better to take every possible chance to solidify your skills around core concepts and operations, e.g., make a commit, possibly in a branch. But I will admit this might be the most appropriate situation for using <code>git stash</code>.</p>
+<p><code>git stash</code> is a way to temporarily store some changes to get them out of the way. Now you can do something else, without a lot of fuss. In our case, “do something else” is to get the upstream changes with a nice, simple <code>git pull</code>. Then you reapply and delete the stash and pick up where you left off.</p>
+<p>For more details about stashing, I recommend the coverage in the “Filesystem interactions” chapter of Git in Practice (<a href="https://gitinpractice.com">book website</a> or <a href="https://github.com/GitInPractice/GitInPractice#readme">read on GitHub</a>).</p>
+<p>Here’s the best case scenario for “stash, pull, unstash” in the example above (FYI: as a policy, I associate a message with a stash, because one of my main objections is how quickly stashes become an unmanageable vat of unlabelled mystery meat):</p>
+<pre><code>jenny@2015-mbp ethel $ git stash save
+Saved working directory and index state WIP on master: db046b4 Merge branch &#39;master&#39;of github.com:jennybc/ethel
+jenny@2015-mbp ethel $ git pull
+Updating db046b4..2d33a6f
+Fast-forward
+ foo.R | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+jenny@2015-mbp ethel $ git stash pop
+Auto-merging foo.R
+On branch master
+Your branch is up-to-date with &#39;origin/master&#39;.
+
+Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+
+        modified:   foo.R
+
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+Dropped refs/stash@{0} (012c4dcd3a4c3af6757c4c3ca99a9eaeff1eb2a4)</code></pre>
+<p>That is what success looks like. You’ve achieved this:</p>
+<pre class="sourceCode sh"><code class="sourceCode bash">      <span class="ex">Remote</span>: A--B--C
+
+<span class="ex">Local</span> before: A--B--(uncommitted changes)
+ <span class="ex">Local</span> after: A--B--C--(uncommitted changes)</code></pre>
+</div>
+<div id="git-stash-with-conflicts" class="section level3">
+<h3><span class="header-section-number">30.1.3</span> <code>git stash</code> with conflicts</h3>
+<p>If your local changes have some overlap with changes you are pulling, you will, instead get a merge conflict from <code>git stash pop</code>. Then you have more work to do. In this case, you have gained nothing by using <code>git stash</code> in the first place, which explains my general lack of enthusiasm for <code>git stash</code>.</p>
+<p>Here how to execute the <code>git stash</code> workflow in our example, in the face of conflicts (based on <a href="https://stackoverflow.com/a/27382210/2825349">this Stack Overflow answer</a>):</p>
+<pre><code>jenny@2015-mbp ethel $ git stash save
+Saved working directory and index state WIP on master: 2d33a6f Back to 5
+
+jenny@2015-mbp ethel $ git pull
+Updating 2d33a6f..1eddf9e
+Fast-forward
+ foo.R | 1 +
+ 1 file changed, 1 insertion(+)
+ 
+jenny@2015-mbp ethel $ git stash pop
+Auto-merging foo.R
+CONFLICT (content): Merge conflict in foo.R
+
+&lt; RESOLVE THE CONFLICT MANUALLY HERE! &gt;
+
+jenny@2015-mbp ethel $ git reset
+Unstaged changes after reset:
+M       foo.R
+
+jenny@2015-mbp ethel $ git stash drop
+Dropped refs/stash@{0} (7928db50288e9b4d934803b6b451a000fd7242ed)</code></pre>
+<p>Phew, we are done. Note that we had to edit the conflicted files to resolve the problems.</p>
+<p>We’ve achieved this:</p>
+<pre class="sourceCode sh"><code class="sourceCode bash">      <span class="ex">Remote</span>: A--B--C
+
+<span class="ex">Local</span> before: A--B--(uncommitted changes)
+ <span class="ex">Local</span> after: A--B--C--(uncommitted changes*)</code></pre>
+<p>The asterisk on <code>uncommitted changes*</code> indicates that your uncommitted changes might now reflect adjustments made when you resolved the conflicts.</p>
+</div>
+</div>
+<div id="local-work-is-committed" class="section level2">
+<h2><span class="header-section-number">30.2</span> Local work is committed</h2>
+<p>Remote state is <code>A--B--C</code>.<br />
+Local state is <code>A--B--D</code>.</p>
+<div id="pull-fetch-and-merge" class="section level3">
+<h3><span class="header-section-number">30.2.1</span> Pull (fetch and merge)</h3>
+<p>The simplest option is to fetch the commits from upstream and merge them, which is what <code>git pull</code> does. This is a good option if you’re new to Git. It leads to a messier history, but if you are new-ish to Git, this is the least of your worries. Merge, be happy, and carry on.</p>
+<pre><code>jenny@2015-mbp ethel $ git pull
+
+&lt; YOU MIGHT BE KICKED INTO AN EDITOR HERE RE: MERGE COMMIT MESSAGE! &gt;
+
+Merge made by the &#39;recursive&#39; strategy.
+ README.md | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)</code></pre>
+<p>Depending on your version of Git, your config, and your use of a GUI, you might be required to confirm/edit a commit message for the merge commit.</p>
+<p>We’ve achieved this:</p>
+<pre class="sourceCode sh"><code class="sourceCode bash">      <span class="ex">Remote</span>: A--B--C
+
+<span class="ex">Local</span> before: A--B--D
+ <span class="ex">Local</span> after: A--B--D--(merge commit)
+                  \<span class="ex">_C_/</span></code></pre>
+<p>TO ADD: what about merge conflict</p>
+</div>
+<div id="pull-and-rebase" class="section level3">
+<h3><span class="header-section-number">30.2.2</span> Pull and rebase</h3>
+<p>This creates a nicer history than <code>git pull</code> when integrating local and remote commits. It avoids a merge commit, so the history is less cluttered and is linear.</p>
+<pre><code>jenny@2015-mbp ethel $ git pull --rebase
+First, rewinding head to replay your work on top of it...
+Applying: Take max</code></pre>
+<p>We’ve achieved this:</p>
+<pre class="sourceCode sh"><code class="sourceCode bash">      <span class="ex">Remote</span>: A--B--C
+
+<span class="ex">Local</span> before: A--B--D
+ <span class="ex">Local</span> after: A--B--C--D</code></pre>
+<p>TO ADD: what about merge conflict</p>
+</div>
+</div>
+<div id="other-scenarios" class="section level2">
+<h2><span class="header-section-number">30.3</span> Other scenarios</h2>
+<p>There are actually more ways to handle this situation, that you can explore as you gain experience and start to care more about the history. We sketch some ideas here.</p>
+<div id="use-a-temporary-branch-for-local-work" class="section level3">
+<h3><span class="header-section-number">30.3.1</span> Use a temporary branch for local work</h3>
+<p>Recall:<br />
+Remote state is <code>A--B--C</code>.<br />
+Local state is <code>A--B--(uncommitted changes)</code>.</p>
+<p>This is an alternative to the stash workflow that has the advantage of giving you practice with Git techniques that are more generally useful. It also leads to a nice history.</p>
+<p>Create a new, temporary branch and commit your uncommitted changes there. Checkout <code>master</code> and <code>git pull</code> to get changes from upstream. You now need to recover the work from the commit in the temporary branch. Options:</p>
+<ul>
+<li>Merge the temporary branch into <code>master</code>.</li>
+<li>Cherry pick the commit from the temporary branch into <code>master</code>.</li>
+</ul>
+<p>In either case, it is still possible you will need to deal with merge conflicts.</p>
+<p>In either case, if you felt forced you to commit before you were ready, you can either do a mixed reset to “uncommit” but keep the changes on <code>master</code> or keep amending until you are satisfied with the commit.</p>
+</div>
+</div>
+<div id="some-local-work-is-committed-some-is-not" class="section level2">
+<h2><span class="header-section-number">30.4</span> Some local work is committed, some is not</h2>
+<p>This is an awkward hybrid situation that can be handled with a combination of strategies seen above: make a pragmatic commit on <code>master</code> or a temporary branch. Integrate the upstream and local changes in <code>master</code>. If you aren’t happy with the final pragmatic commit (which only exists locally), reset or amend until you are.</p>
+
+</div>
 </div>
 
 
@@ -472,8 +602,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="pr-extend.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="clone.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="search.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="classroom-overview.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -503,7 +633,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jennybc/happy-git-with-r/edit/master/38_workflow-git-commands.Rmd",
+"link": "https://github.com/jennybc/happy-git-with-r/edit/master/46_prompt-pull.Rmd",
 "text": "Edit"
 },
 "download": null,
