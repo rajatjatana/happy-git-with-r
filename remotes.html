@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="repo-browsability.html">
-<link rel="next" href="usage-git-cmds.html">
+<link rel="prev" href="branches.html">
+<link rel="next" href="clone.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -436,109 +436,104 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="pr-extend" class="section level1">
-<h1><span class="header-section-number">Chapter 22</span> Explore and extend a pull request</h1>
-<p>Scenario: you maintain an R package on GitHub with pull requests (PRs) from external contributors e.g. Jane Doe, janedoe on GitHub. Sometimes you need to experiment with the PR in order to provide feedback or to decide whether or not to merge. Going further, sometimes you want to add a few commits and then merge. Or maybe there are just some merge conflicts that require your personal, local attention. Let’s also assume that you want the original PR author to get credit for their commits, i.e. you want to preserve history and provenance, not just diffs.</p>
-<p>How do you checkout and possibly extend an external PR?</p>
-<div id="terminology" class="section level2">
-<h2><span class="header-section-number">22.1</span> Terminology</h2>
-<p>Vocabulary I use throughout.</p>
-<p><strong>fork branch</strong> The name of the branch in the fork from which the PR was made. Best case scenario: informative name like <code>fix-fluffy-bunny</code>. Worst case scenario: PR is from <code>master</code>.</p>
-<p><strong>local PR branch</strong> The name of the local branch you’ll use to work with the PR. Best case scenario: can be same as fork branch. Worse case scenario: PR is from <code>master</code>, so you must make up a new name based on something about the PR, e.g. <code>pr-666</code> or <code>janedoe-master</code>.</p>
-<p><strong>PR parent</strong> The SHA of the commit in the main repo that is the base for the PR.</p>
-<p><strong>PR remote</strong> The SSH or HTTPS URL for the fork from which the PR was made. Or the nickname of the remote, if you’ve bothered to set that up.</p>
+<div id="remotes" class="section level1">
+<h1><span class="header-section-number">Chapter 25</span> Remotes</h1>
+<p>Practice managing your remotes.</p>
+<p>Remote repositories are versions of your project that are hosted on the
+Internet or another network. A single project can have 1, 2 or even hundreds of
+remotes. You pull others changes from remotes and push your changes to remotes.</p>
+<div id="listing-what-remotes-exist" class="section level2">
+<h2><span class="header-section-number">25.1</span> Listing what remotes exist</h2>
+<p><code>git remote</code> lists the names of available remotes, but usually it is more
+useful to see what ULRs each note corresponds to (with <code>-v</code>).</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> remote -v</code></pre>
+<pre><code>## origin   https://github.com/jennybc/happy-git-with-r.git (fetch)
+## origin   https://github.com/jennybc/happy-git-with-r.git (push)</code></pre>
 </div>
-<div id="official-github-advice-version-1" class="section level2">
-<h2><span class="header-section-number">22.2</span> Official GitHub advice, Version 1</h2>
-<p>Every PR on GitHub has a link to “command line instructions” on how to merge the PR locally via command line Git. On this journey, there is a point at which you can pause and explore the PR locally.</p>
-<p>Here are their steps with my vocabulary and some example commands:</p>
-<ul>
-<li><p>Create and check out the local PR branch, anticipating its relationship to the fork branch. Template of the Git command, plus an example of how it looks under both naming scenarios:</p>
-<pre><code># Template of the Git command
-git checkout -b LOCAL_PR_BRANCH master 
-# How it looks under both naming scenarios
-git checkout -b fix-fluffy-bunny master 
-git checkout -b janedoe-master master </code></pre></li>
-<li><p>Pull from the fork branch of the PR remote:</p>
-<pre><code># Template of the Git command
-git pull REMOTE FORK_PR_BRANCH
-# How it looks under both naming scenarios
-git pull https://github.com/janedoe/yourpackage.git fix-fluffy-bunny
-git pull https://github.com/janedoe/yourpackage.git master</code></pre></li>
-<li>Satisfy yourself that all is well and you want to merge.</li>
-<li><p>Checkout <code>master</code>:</p>
-<pre><code>git checkout master</code></pre></li>
-<li><p>Merge the local PR branch into master with <code>--no-ff</code>, meaning “no fast forward merge”. This ensures you get a true merge commit, with two parents.</p>
-<pre><code># Template of the Git command
-git merge --no-ff LOCAL_PR_BRANCH
-# How it looks under both naming scenarios
-git merge --no-ff fix-fluffy-bunny
-git merge --no-ff janedoe-master</code></pre></li>
-<li><p>Push <code>master</code> to GitHub.</p>
-<pre><code>git push origin master</code></pre></li>
-</ul>
-<p>What’s not to like? The parent commit of the local PR branch will almost certainly not be the parent commit of the fork PR branch, where the external contributor did their work. This often means you get merge conflicts in <code>git pull</code>, which you’ll have to deal with ASAP. The older the PR, the more likely this is and the hairier the conflicts will be.</p>
-<p>I would prefer to deal with the merge conflicts only <em>after</em> I’ve vetted the PR and to resolve the conflicts locally, not on GitHub. So I don’t use this exact workflow.</p>
+<div id="adding-a-new-remote" class="section level2">
+<h2><span class="header-section-number">25.2</span> Adding a new remote</h2>
+<p><code>git clone</code> automatically adds a new remote, so often you do not need to do
+this manually initially. However after the initial clone it is often useful to
+add additional remotes.</p>
+<p>Use <code>git remote add</code> to add a new remote</p>
+<pre class="shell"><code>git remote add happygit https://github.com/jennybc/happy-git-with-r.git</code></pre>
+<p>Note when you add a remote you give it a name (here <code>happygit</code>), which you can use instead of the entire URL.</p>
+<pre class="shell"><code>git fetch happygit</code></pre>
 </div>
-<div id="official-github-advice-version-2" class="section level2">
-<h2><span class="header-section-number">22.3</span> Official GitHub advice, Version 2</h2>
-<p>GitHub has another set of instructions: <a href="https://help.github.com/articles/checking-out-pull-requests-locally/">Checking out pull requests locally</a></p>
-<p>It starts out by referring to the Version 1 instructions, but goes on to address an inactive pull request“, defined as a PR”whose owner has either stopped responding, or, more likely, has deleted their fork&quot;.</p>
-<p>This workflow may NOT give the original PR author credit (next time it’s easy to test this, I’ll update with a definitive answer). I’ve never used it verbatim because I’ve never had this exact problem re: deleted fork.</p>
+<div id="fetching-data-from-remotes" class="section level2">
+<h2><span class="header-section-number">25.3</span> Fetching data from remotes</h2>
+<p>To get new data from a remote use <code>git fetch &lt;remote_name&gt;</code>. This retrieves the
+data locally, but importantly it does <em>not</em> change the state of your repository
+in any way. To incorporate the data into your repository you need to merge or
+rebase your project with the remote project.</p>
+<pre class="shell"><code># Fetch the data
+git fetch happygit
+
+# Now merge it with our local master
+git merge happygit/master master
+
+# git pull is a shortcut which does the above in one command
+git pull happygit master</code></pre>
 </div>
-<div id="official-github-advice-version-3" class="section level2">
-<h2><span class="header-section-number">22.4</span> Official GitHub advice, Version 3</h2>
-<p>GitHub has yet another set of instructions: <a href="https://help.github.com/articles/committing-changes-to-a-pull-request-branch-created-from-a-fork/">Committing changes to a pull request branch created from a fork</a></p>
-<p>The page linked above explains all the pre-conditions, but the short version is that a maintainer can probably push new commits to a PR, effectively pushing commits to a fork. Strange, but true!</p>
-<p>This set of instructions suggests that you clone the fork, checkout the branch from which the PR was made, make any commits you wish, and then push. Any new commits you make will appear in the PR. And then you could merge.</p>
-<p>My main takeaway: maintainer can push to the branch of a fork associated with a PR.</p>
+<div id="pushing-to-remotes" class="section level2">
+<h2><span class="header-section-number">25.4</span> Pushing to remotes</h2>
+<p>Use <code>git push &lt;remote&gt; &lt;branch&gt;</code> to push your local changes to the <code>&lt;branch&gt;</code>
+branch on the <code>&lt;remote&gt;</code> remote.</p>
+<pre class="shell"><code># push my local changes to the origin remote&#39;s master branch
+git push origin master
+
+# push my local changes to the happygit remote&#39;s test branch
+git push happygit test</code></pre>
 </div>
-<div id="my-under-development-workflow" class="section level2">
-<h2><span class="header-section-number">22.5</span> My under-development workflow</h2>
-<p><em>work in progress</em></p>
-<p>This combines ideas from the three above approaches, but with a few tweaks. I am sketching this up in R code, with the hope of putting this into a function and package at some point. This is a revision of an earlier approach, based on feedback from Jim Hester.</p>
-<p>Example of a PR from the <code>master</code> branch (suboptimal but often happens) from fictional GitHub user <code>abcde</code> on usethis.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(git2r)
-
-## add the pull requester&#39;s fork as a named remote
-<span class="kw">remote_add</span>(<span class="dt">name =</span> <span class="st">&quot;abcde&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;git@github.com:abcde/usethis.git&quot;</span>)
-
-## fetch
-<span class="kw">fetch</span>(<span class="dt">name =</span> <span class="st">&quot;abcde&quot;</span>)
-
-## list remote branches and isolate the one I want
-b &lt;-<span class="st"> </span><span class="kw">branches</span>(<span class="dt">flags =</span> <span class="st">&quot;remote&quot;</span>)
-b &lt;-<span class="st"> </span>b[[<span class="st">&quot;abcde/master&quot;</span>]]
-
-## get the SHA of HEAD on this branch
-sha &lt;-<span class="st"> </span><span class="kw">branch_target</span>(b)
-
-## create local branch
-<span class="kw">branch_create</span>(<span class="dt">commit =</span> <span class="kw">lookup</span>(<span class="dt">sha =</span> sha), <span class="dt">name =</span> <span class="st">&quot;abcde-master&quot;</span>)
-
-## check it out
-<span class="kw">checkout</span>(<span class="dt">object =</span> <span class="st">&quot;.&quot;</span>, <span class="dt">branch =</span> <span class="st">&quot;abcde-master&quot;</span>)
-
-## set upstream tracking branch
-<span class="kw">branch_set_upstream</span>(<span class="kw">repository_head</span>(), <span class="dt">name =</span> <span class="st">&quot;abcde/master&quot;</span>)
-
-## confirm upstream tracking branch
-<span class="kw">branch_get_upstream</span>(<span class="kw">repository_head</span>())
-
-## make one or more commits here
-
-## push to the branch in the fork and, therefore, into the PR
-<span class="kw">push</span>()</code></pre>
+<div id="renaming-and-changing-remotes" class="section level2">
+<h2><span class="header-section-number">25.5</span> Renaming and changing remotes</h2>
+<p><code>git remote rename</code> can be used to rename a remote</p>
+<pre class="shell"><code>git remote rename happygit hg</code></pre>
+<p><code>git remote set-url</code> can be used to change the URL for a remote. This is
+sometimes useful if you initially set up a remote using https, but now want to
+use the SSH URL instead (or vise versa).</p>
+<pre class="shell"><code>git remote set-url happygit git@github.com:jennybc/happy-git-with-r.git</code></pre>
+<p>One fairly common workflow is you initially cloned a repository on GitHub
+locally (without forking it), but now want to create your own fork and push
+changes to it. I generally like to have the main repository called <code>upstream</code>
+and my forked repository called <code>origin</code>. So in this case you will need to
+first rename the repository, then add your fork as a new remote.</p>
+<pre class="shell"><code>git remote rename origin upstream
+git remote add origin git@github.com:jimhester/happy-git-with-r.git</code></pre>
+</div>
+<div id="upstream-tracking-branches" class="section level2">
+<h2><span class="header-section-number">25.6</span> Upstream tracking branches</h2>
+<p>It is possible to set the branch on the remote each of your local remotes
+corresponds to. <code>git clone</code> sets this up automatically, so for your own master
+branch this is not something you will run into. However by default if you
+create a new branch and try to push to it you will see something like this.</p>
+<pre class="shell"><code>git checkout -b mybranch
+git push
+# fatal: The current branch foo has no upstream branch.
+# To push the current branch and set the remote as upstream, use
+#
+#     git push --set-upstream origin foo</code></pre>
+<p>You can do as the error message says and explicitly set the upstream branch
+with <code>--set-upstream</code>. However I would recommend instead changing the default
+behavior of <code>push</code> to automatically set the upstream branch to the branch with
+the same name on the remote.</p>
+<p>You can do this by changing the git <code>push.default</code> option to <code>current</code>.</p>
+<pre class="shell"><code>git config --global push.default current</code></pre>
+<p>See also Working with Remotes:</p>
+<p><a href="https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes" class="uri">https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes</a></p>
 
 </div>
 </div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="repo-browsability.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="usage-git-cmds.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="branches.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="clone.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -568,7 +563,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jennybc/happy-git-with-r/edit/master/36_workflow-explore-extend-pull-request.Rmd",
+"link": "https://github.com/jennybc/happy-git-with-r/edit/master/39_workflow-git-remotes.Rmd",
 "text": "Edit"
 },
 "download": null,
