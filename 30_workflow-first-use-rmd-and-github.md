@@ -1,5 +1,3 @@
-# (PART) Workflows {-} 
-
 # Test drive R Markdown {#rmd-test-drive}
 
 We will author an R Markdown document and render it to HTML. We discuss how to keep the intermediate Markdown file, the figures, and what to commit to Git and push to GitHub. If GitHub is the primary venue, we render directly to GitHub-flavored markdown and never create HTML.
@@ -60,7 +58,7 @@ You can make some changes via the RStudio IDE: click on the "gear" in the top ba
     ---
     title: "Something fascinating"
     author: "Jenny Bryan"
-    date: "2018-10-02"
+    date: "2018-10-03"
     output:
       html_document:
         keep_md: true
@@ -75,7 +73,7 @@ In fact this hand-edit is necessary if you want to keep only markdown and get Gi
     ---
     title: "Something fascinating"
     author: "Jenny Bryan"
-    date: "2018-10-02"
+    date: "2018-10-03"
     output: github_document
     ---
 ```

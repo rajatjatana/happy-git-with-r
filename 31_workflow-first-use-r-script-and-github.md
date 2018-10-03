@@ -48,6 +48,9 @@ Create a new R script and copy/paste this code into it.
 
 
 
+
+
+
 ```r
 #' Here's some prose in a very special comment. Let's summarize the built-in
 #' dataset `VADeaths`.
@@ -96,7 +99,5 @@ dotchart(VADeaths, main = "Death Rates in Virginia - 1940")
 ```
 
 Behind the scenes here we have used `rmarkdown::render()` to render this script and you can go [visit it on GitHub](https://github.com/jennybc/happy-git-with-r/blob/master/render-r-script-demo.md).
-
-
 
 
