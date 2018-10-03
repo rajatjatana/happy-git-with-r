@@ -450,36 +450,31 @@ workflows which create small branches for exploration or new features, often
 merging them back together quickly.</p>
 <div id="create-a-new-branch" class="section level2">
 <h2><span class="header-section-number">22.1</span> Create a new branch</h2>
-<p>You can create a new branch with <code>git branch</code>, then checkout the branch with <code>git checkout</code></p>
+<p>You can create a new branch with <code>git branch</code>, then checkout the branch with <code>git checkout</code>. To distinguish it from the main stream of development, presumably on <code>master</code>, we’ll call this a “feature branch”.</p>
 <pre class="shell"><code>git branch issue-5
 git checkout issue-5</code></pre>
-<p>However you can also use the shortcut <code>git checkout -b issue-5</code>, which does the
-same as above.</p>
-<p>Once you have switched to a branch you can commit to it as you normally would.</p>
+<p>You can also use the shortcut <code>git checkout -b issue-5</code> to create and checkout the branch all at once.</p>
+<p>Once you have switched to a branch, you can commit to it as usual.</p>
 </div>
 <div id="switching-branches" class="section level2">
 <h2><span class="header-section-number">22.2</span> Switching branches</h2>
 <p>You use <code>git checkout</code> to switch between branches.</p>
 <p>But what do you do if you are working on a branch and need to switch,
-but the work on the branch is not complete? One option is the <a href="https://git-scm.com/book/en/v2/ch00/_git_stashing">Git
+but the work on the current branch is not complete? One option is the <a href="https://git-scm.com/book/en/v2/ch00/_git_stashing">Git
 stash</a>, but generally a
-better option is to commit the current state with a temporary commit. Here I
-use ‘WIP’ to indicate work in progress.</p>
-<pre class="shell"><code>git commit --all -m WIP
+better option is to safeguard the current state with a temporary commit. Here I
+use “WIP” as the commit message to indicate work in progress.</p>
+<pre class="shell"><code>git commit --all -m &quot;WIP&quot;
 git checkout master</code></pre>
 <p>Then when you come back to the branch and continue your work, you
-need to remove the temporary commit by <a href="reset.html#reset">resetting</a> your state. The
-current commit’s parent is given by <code>HEAD^</code>. But if this is difficult to
-remember you can alternatively use <code>git log</code> to lookup the SHA value of the
-previous commit.</p>
+need to undo the temporary commit by <a href="reset.html#reset">resetting</a> your state. Specifically, we want a mixed reset. This is “working directory safe”, i.e. it does not affect the state of any files. But it does peel off the temporary WIP commit. Below, the reference <code>HEAD^</code> says to roll the commit state back to the parent of the current commit (<code>HEAD</code>).</p>
 <pre class="shell"><code>git checkout issue-5
 git reset HEAD^</code></pre>
-<p>Now your repository will be back in the state prior to your temporary commit.</p>
+<p>If this is difficult to remember, or to roll the commit state back to a different previous state, the reference can also be given as the SHA of a specific commit, which you can see via <code>git log</code>.</p>
 </div>
 <div id="merging-a-branch" class="section level2">
 <h2><span class="header-section-number">22.3</span> Merging a branch</h2>
-<p>Once you have done your work and commited your results to your branch you can
-then switch back to the master branch to merge the branch.</p>
+<p>Once you have done your work and committed it to the feature branch, you can switch back to <code>master</code> and merge the feature branch.</p>
 <pre class="shell"><code>git checkout master
 git merge issue-5</code></pre>
 </div>
@@ -495,8 +490,8 @@ conflict.</p>
 <p>The first thing to do is <strong>NOT PANIC</strong>. Merge conflicts are not the end of the
 world and most are relatively small and straightforward to resolve.</p>
 <p>The first step to solving a merge conflict is determining which files are in
-conflict, which you can do with <code>git status</code></p>
-<pre><code>git status
+conflict, which you can do with <code>git status</code>:</p>
+<pre class="shell"><code>git status
 # On branch master
 # You have unmerged paths.
 #   (fix conflicts and run &quot;git commit&quot;)
@@ -516,21 +511,19 @@ then open the file to see what lines are in conflict.</p>
  please contact us at support@github.com
 <span class="kw">&lt;/div&gt;</span>
 &gt;&gt;&gt;&gt;&gt;&gt;&gt; issue-5:index.html</code></pre>
-<p>In this conflict the lines between <code>&lt;&lt;&lt;&lt;&lt;&lt; HEAD:index.html</code> and <code>======</code> is
+<p>In this conflict, the lines between <code>&lt;&lt;&lt;&lt;&lt;&lt; HEAD:index.html</code> and <code>======</code> are
 the content from the branch you are currently on. The lines between <code>=======</code>
-and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; issue-5:index.html</code> are the branch we are merging.</p>
-<p>To resolve the conflict edit the lines how you want it to be in the merged
-result, including removing the conflict markers <code>&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>======</code> and
-<code>&gt;&gt;&gt;&gt;&gt;&gt;</code>.</p>
+and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; issue-5:index.html</code> are from the feature branch we are merging.</p>
+<p>To resolve the conflict, edit this section until it reflects the state you want in the merged result. Pick one version or the other or create a hybrid. Also remove the conflict markers <code>&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>======</code> and <code>&gt;&gt;&gt;&gt;&gt;&gt;</code>.</p>
 <pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;div</span><span class="ot"> id=</span><span class="st">&quot;footer&quot;</span><span class="kw">&gt;</span>
 please contact us at email.support@github.com
 <span class="kw">&lt;/div&gt;</span></code></pre>
-<p>Then run <code>git add index.html</code> and <code>git commit</code> to finalize the merge.</p>
+<p>Now run <code>git add index.html</code> and <code>git commit</code> to finalize the merge. CONFLICTS RESOLVED.</p>
 <div id="bailing-out" class="section level3">
 <h3><span class="header-section-number">22.4.1</span> Bailing out</h3>
-<p>If during the merge you get confused about the state of things or make a
+<p>If, during the merge, you get confused about the state of things or make a
 mistake, use <code>git merge --abort</code> to abort the merge and go back to the state
-prior to runnning <code>git merge</code>. Then you can try to complete the merge again.</p>
+prior to running <code>git merge</code>. Then you can try to complete the merge again.</p>
 <p>Git Basic Branching and Merging:</p>
 <p><a href="https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging" class="uri">https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging</a></p>
 
