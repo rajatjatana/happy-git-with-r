@@ -25,7 +25,7 @@
 <meta name="author" content="Jenny Bryan, the STAT 545 TAs, Jim Hester">
 
 
-<meta name="date" content="2018-10-10">
+<meta name="date" content="2018-11-19">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -483,7 +483,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="make-and-connect-a-github-repo-option-1" class="section level2">
 <h2><span class="header-section-number">18.4</span> Make and connect a GitHub repo, option 1</h2>
-<p>If you use the <a href="https://cran.r-project.org/package=usethis">usethis</a> package AND you have configured a GitHub Personal Access Token (PAT), do this in R:</p>
+<p>If you use the <a href="https://cran.r-project.org/package=usethis">usethis</a> package AND you have configured a GitHub Personal Access Token (PAT) (see <a href="github-pat.html#github-pat">the appendix</a> for how to set this up.), do this in R:</p>
 <pre><code>usethis::use_github()</code></pre>
 <p>This will create a new repo on GitHub, add it as a remote, set up a tracking branch, and open it in your browser. Read the <code>use_github()</code> help to learn about its arguments and advice on configuring a PAT. This is extremely handy for a variety of workflows that call the GitHub API. Consider setting this up if you use usethis, devtools, or gh regularly.</p>
 </div>
@@ -556,7 +556,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
@@ -568,6 +568,10 @@ gitbook.start({
 "edit": {
 "link": "https://github.com/jennybc/happy-git-with-r/edit/master/22_usage-existing-project-github-last.Rmd",
 "text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
 },
 "download": null,
 "toc": {

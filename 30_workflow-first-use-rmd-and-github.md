@@ -58,7 +58,7 @@ You can make some changes via the RStudio IDE: click on the "gear" in the top ba
     ---
     title: "Something fascinating"
     author: "Jenny Bryan"
-    date: "2018-10-10"
+    date: "2018-11-19"
     output:
       html_document:
         keep_md: true
@@ -73,7 +73,7 @@ In fact this hand-edit is necessary if you want to keep only markdown and get Gi
     ---
     title: "Something fascinating"
     author: "Jenny Bryan"
-    date: "2018-10-10"
+    date: "2018-11-19"
     output: github_document
     ---
 ```
@@ -195,4 +195,4 @@ Drop these commands into R chunks to check the above:
 
 __Don't try to change working directory within an R Markdown document__. Just don't. See [knitr FAQ #5](https://yihui.name/knitr/faq/). That is all.
 
-__Don't be in a hurry to create a complicated sub-directory structure.__ RStudio/`knitr`/`rmarkdown` (which bring you the "Knit HTML" button) are rather opinionated about the working directory being set to the `.Rmd` file's location and about all files living together in one big happy directory. This can all be worked around. For example, I [recommend the here package](https://github.com/jennybc/here_here#readme) for building file paths, once you requires sub-directories. But don't do this until you really need it.
+__Don't be in a hurry to create a complicated sub-directory structure.__ RStudio/`knitr`/`rmarkdown` (which bring you the "Knit HTML" button) are rather opinionated about the working directory being set to the `.Rmd` file's location and about all files living together in one big happy directory. This can all be worked around. For example, I [recommend the here package](https://github.com/jennybc/here_here#readme) for building file paths, once you require sub-directories. But don't do this until you really need it.

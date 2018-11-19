@@ -25,7 +25,7 @@
 <meta name="author" content="Jenny Bryan, the STAT 545 TAs, Jim Hester">
 
 
-<meta name="date" content="2018-10-10">
+<meta name="date" content="2018-11-19">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -470,16 +470,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>After you click “Generate token”, the token will be displayed. It’s a string of 40 random letters and digits. This is the last time you will see it SO COPY IT TO THE CLIPBOARD. Leave this window open until you’re done. If you somehow goof this up, just generate a new one and try again.</p>
 <p>Put your PAT in your <code>.Renviron</code> file. Have a line that looks like this:</p>
 <pre><code>GITHUB_PAT=8c70fd8419398999c9ac5bacf3192882193cadf2</code></pre>
-<p>but with <em>your</em> PAT instead of mine. Don’t worry, I’ve revoked this one! This file should live in your home directory. Not sure what that is? In R, do:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">normalizePath</span>(<span class="st">&quot;~/&quot;</span>)</code></pre>
-<p>If you have no idea how to do any of this, here’s one way from R:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="st">&quot;GITHUB_PAT=8c70fd8419398999c9ac5bacf3192882193cadf2</span><span class="ch">\n</span><span class="st">&quot;</span>,
-    <span class="dt">file =</span> <span class="kw">file.path</span>(<span class="kw">normalizePath</span>(<span class="st">&quot;~/&quot;</span>), <span class="st">&quot;.Renviron&quot;</span>), <span class="dt">append =</span> <span class="ot">TRUE</span>)</code></pre>
-<p>but with <em>your</em> PAT instead of mine.</p>
-<p>Here’s another way with RStudio (or other text editor): Do <em>File &gt; New File &gt; Text file</em>. Create a line like this:</p>
-<pre><code>GITHUB_PAT=8c70fd8419398999c9ac5bacf3192882193cadf2</code></pre>
+<p>but with <em>your</em> PAT instead of mine. Don’t worry, I’ve revoked this one!</p>
+<p><code>.Renviron</code> is a hidden file that lives in your home directory. Not sure where that is? The easiest way to find and edit <code>.Renviron</code> is with a function from the <strong>usethis</strong> package. In R, do:</p>
+<pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">edit_r_environ</span>()</code></pre>
+<p>Your <code>.Renviron</code> file should pop up in your editor. Add your <code>GITHUB_PAT</code> as above, save and close it.</p>
 <p>Put a line break at the end! If you’re using an editor that shows line numbers, there should be two lines, where the second one is empty.</p>
-<p>Save in your home directory with the filename <code>.Renviron</code>. If questioned, YES you do want to use a filename that begins with a dot <code>.</code>. Note that, by default, dotfiles are hidden in RStudio, but <code>.Renviron</code> should always be visible and therefore easy to edit in the future.</p>
+<p>If questioned, YES you do want to use a filename that begins with a dot <code>.</code>. Note that, by default, most dotfiles are hidden in the RStudio file browser, but <code>.Renviron</code> should always be visible.</p>
 <p>Restart R (<em>Session &gt; Restart R</em> in the RStudio menu bar), as environment variables are loaded from <code>.Renviron</code> only <a href="http://stat.ethz.ch/R-manual/R-patched/library/base/html/Startup.html">at the start of an R session</a>. Check that the PAT is now available like so:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.getenv</span>(<span class="st">&quot;GITHUB_PAT&quot;</span>)</code></pre>
 <p>You should see your PAT print to screen.</p>
@@ -523,7 +519,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
@@ -535,6 +531,10 @@ gitbook.start({
 "edit": {
 "link": "https://github.com/jennybc/happy-git-with-r/edit/master/81_github-api-tokens.Rmd",
 "text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
 },
 "download": null,
 "toc": {
