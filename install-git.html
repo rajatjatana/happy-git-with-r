@@ -25,7 +25,7 @@
 <meta name="author" content="Jenny Bryan, the STAT 545 TAs, Jim Hester">
 
 
-<meta name="date" content="2018-12-28">
+<meta name="date" content="2018-12-29">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -171,7 +171,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="install-git.html"><a href="install-git.html"><i class="fa fa-check"></i><b>7</b> Install Git</a><ul>
 <li class="chapter" data-level="7.1" data-path="install-git.html"><a href="install-git.html#git-already-installed"><i class="fa fa-check"></i><b>7.1</b> Git already installed?</a></li>
 <li class="chapter" data-level="7.2" data-path="install-git.html"><a href="install-git.html#install-git-windows"><i class="fa fa-check"></i><b>7.2</b> Windows</a></li>
-<li class="chapter" data-level="7.3" data-path="install-git.html"><a href="install-git.html#mac-os"><i class="fa fa-check"></i><b>7.3</b> Mac OS</a></li>
+<li class="chapter" data-level="7.3" data-path="install-git.html"><a href="install-git.html#macos"><i class="fa fa-check"></i><b>7.3</b> macOS</a></li>
 <li class="chapter" data-level="7.4" data-path="install-git.html"><a href="install-git.html#linux"><i class="fa fa-check"></i><b>7.4</b> Linux</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="hello-git.html"><a href="hello-git.html"><i class="fa fa-check"></i><b>8</b> Introduce yourself to Git</a><ul>
@@ -454,7 +454,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="co">## git version 2.15.1</span></code></pre>
 <p>If you are successful, that’s great! You have Git already. No need to install! Move on.</p>
 <p>If, instead, you see something more like <code>git: command not found</code>, keep reading.</p>
-<p>Mac OS users might get an immediate offer to install command line developer tools. Yes, you should accept! Click “Install” and read more below.</p>
+<p>macOS users might get an immediate offer to install command line developer tools. Yes, you should accept! Click “Install” and read more below.</p>
 </div>
 <div id="install-git-windows" class="section level2">
 <h2><span class="header-section-number">7.2</span> Windows</h2>
@@ -462,18 +462,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We like this because Git for Windows leaves the Git executable in a conventional location, which will help you and other programs, e.g. RStudio, find it and use it. This also supports a transition to more expert use, because the “Git Bash” shell will be useful as you venture outside of R/RStudio.</p>
 <ul>
 <li><strong>NOTE:</strong> Select “Use Git from the Windows Command Prompt” during installation. Otherwise, we believe it’s OK to accept the defaults.</li>
-<li>Note that RStudio for Windows prefers for Git to be installed below <code>C:/Program Files</code>, for example the Git executable on my Windows system is found at <code>C:/Program Files/Git/bin/git.exe</code>. Unless you have specific reasons to otherwise, follow this convention.</li>
+<li>Note that RStudio for Windows prefers for Git to be installed below <code>C:/Program Files</code> and this appears to be the default. This implies, for example, that the Git executable on my Windows system is found at <code>C:/Program Files/Git/bin/git.exe</code>. Unless you have specific reasons to otherwise, follow this convention.</li>
 </ul>
 <p>This also leaves you with a Git client, though not a very good one. So check out Git clients we recommend (chapter <a href="git-client.html#git-client">9</a>).</p>
-<p><strong>Option 2</strong> (<em>NOT recommended</em>): The GitHub hosting site offers <a href="https://desktop.github.com/">GitHub Desktop for Windows</a> that provides Git itself, a client, and smooth integration with GitHub.</p>
+<p>FYI, this appears to be equivalent to what you would download from here: <a href="https://git-scm.com/download/win" class="uri">https://git-scm.com/download/win</a>.</p>
+<p><strong>Option 2</strong> (<em>recommended</em>): Install <a href="https://git-for-windows.github.io/">Git for Windows</a> via the <a href="https://chocolatey.org">Chocolatey</a> package manager. If this means anything to you, Chocolatey is like <a href="https://en.wikipedia.org/wiki/APT_(Debian)"><code>apt-get</code></a> or <a href="https://brew.sh">Homebrew</a>, but for Windows instead of Debian/Ubuntu Linux or macOS. As far as I can tell, using Chocolatey to install Git for Windows is pretty equivalent to installing it yourself.</p>
+<p>This obviously requires that you already have <a href="https://chocolatey.org">Chocolatey</a> installed or that you are up for installing it. It is not hard and the <a href="https://chocolatey.org/install">instructions are here</a>. This may be worthwhile if it seems likely you will be installing more open source software in the future.</p>
+<p>After you install Chocolatey, in a shell (Appendix <a href="shell.html#shell">A</a>), do:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">choco</span> install git.install</code></pre>
+<p>This installs the most current <a href="https://chocolatey.org/packages/git.install">Git (Install) X.Y.Z</a> Chocolatey package. At the time of writing, that is “Git (Install) 2.20.1”, but that version number will increment over time.</p>
+<p>If you <a href="https://chocolatey.org/packages">search Chocolatey packages</a> yourself, you might see two packages that install Git – “Git (Install) 2.20.1” and “Git 2.20.1”, at the time of writing. I believe “Git (Install) 2.20.1” is technically the more correct, but I also think it doesn’t really matter which one you use. A rather confusing explanation is found <a href="https://chocolatey.org/faq#what-is-the-difference-between-packages-no-suffix-as-compared-to-install-portable">here</a>. Don’t worry too much about whether you do <code>choco install git.install</code> or <code>choco install git</code>.</p>
+<p><strong>Option 3</strong> (<em>NOT recommended</em>): The GitHub hosting site offers <a href="https://desktop.github.com/">GitHub Desktop for Windows</a> that provides Git itself, a client, and smooth integration with GitHub.</p>
 <ul>
 <li><a href="https://help.github.com/articles/set-up-git#platform-windows">Their Windows set-up instructions</a> recommend this method of Git installation.</li>
-<li>Why don’t we like it? We’ve seen GitHub Desktop for Windows lead to Git installation in suboptimal locations, such as <code>~/AppData/Local</code>, and in other places we could never find. If you were <strong>only</strong> going to interact with GitHub via this app, maybe that’s OK, but that does not apply to you. Therefore, we recommend option 1 instead.</li>
+<li>Why don’t we like it? We’ve seen GitHub Desktop for Windows lead to Git installation in suboptimal locations, such as <code>~/AppData/Local</code>, and in other places we could never find. If you were <strong>only</strong> going to interact with GitHub via this app, maybe that’s OK, but that does not apply to you. We are also not very fond of the GitHub Desktop client for using using Git and prefer other clients. Therefore, we strongly recommend options 1 and 2 instead.</li>
 </ul>
 </div>
-<div id="mac-os" class="section level2">
-<h2><span class="header-section-number">7.3</span> Mac OS</h2>
-<p><strong>Option 1</strong> (<em>highly recommended</em>): Install the Xcode command line tools (<strong>not all of Xcode</strong>), which includes Git. If your OS is older than 10.11 El Capitan, it is possible that you <strong>must</strong> install the Xcode command line tools in order for RStudio to find and use Git.</p>
+<div id="macos" class="section level2">
+<h2><span class="header-section-number">7.3</span> macOS</h2>
+<p><strong>Option 1</strong> (<em>highly recommended</em>): Install the Xcode command line tools (<strong>not all of Xcode</strong>), which includes Git.</p>
 <p>Go to the shell and enter one of these commands to elicit an offer to install developer command line tools:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> --version
 <span class="fu">git</span> config</code></pre>
@@ -481,20 +488,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Here’s another way to request this installation, more directly:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">xcode-select</span> --install</code></pre>
 <p>We just happen to find this Git-based trigger apropos.</p>
-<p>Note also that, after upgrading your Mac OS, you might need to re-do the above and/or re-agree to the Xcode license agreement. We have seen this cause the RStudio Git pane to disappear on a system where it was previously working. Use commands like those above to tickle Xcode into prompting you for what it needs, then restart RStudio.</p>
+<p>Note also that, after upgrading macOS, you might need to re-do the above and/or re-agree to the Xcode license agreement. We have seen this cause the RStudio Git pane to disappear on a system where it was previously working. Use commands like those above to tickle Xcode into prompting you for what it needs, then restart RStudio.</p>
 <p><strong>Option 2</strong> (<em>recommended</em>): Install Git from here: <a href="http://git-scm.com/downloads" class="uri">http://git-scm.com/downloads</a>.</p>
 <ul>
 <li>This arguably sets you up the best for the future. It will certainly get you the latest version of Git of all approaches described here.</li>
-<li>The GitHub home for this project is here: <a href="https://github.com/timcharper/git_osx_installer" class="uri">https://github.com/timcharper/git_osx_installer</a>.
+<li>The GitHub home for the macOS installer is here: <a href="https://github.com/timcharper/git_osx_installer" class="uri">https://github.com/timcharper/git_osx_installer</a>.
 <ul>
-<li>At that link, there is a list of maintained builds for various combinations of Git and Mac OS version. If you’re running 10.7 Lion and struggling, we’ve had success in September 2015 with binaries found here: <a href="https://www.wandisco.com/git/download" class="uri">https://www.wandisco.com/git/download</a>.</li>
+<li>At that link, you can find more info if something goes wrong or you are working on an old version of macOS.</li>
 </ul></li>
 </ul>
-<p><strong>Option 3</strong> (<em>recommended</em>): If you anticipate getting heavily into scientific computing, you’re going to be installing and updating lots of software. You should check out <a href="http://brew.sh">homebrew</a>, “the missing package manager for OS X”. Among many other things, it can install Git for you. Once you have Homebrew installed, do this in the shell:</p>
+<p><strong>Option 3</strong> (<em>recommended</em>): If you anticipate getting heavily into scientific computing, you’re going to be installing and updating lots of software. You should check out <a href="http://brew.sh">Homebrew</a>, “the missing package manager for OS X”. Among many other things, it can install Git for you. Once you have Homebrew installed, do this in the shell:</p>
 <pre><code>brew install git</code></pre>
 <p><strong>Option 4</strong> (<em>NOT recommended</em>): The GitHub hosting site offers <a href="https://desktop.github.com/">GitHub Desktop for Mac</a> that provides <em>the option</em> to install Git itself, a client, and smooth integration with GitHub..</p>
 <ul>
-<li><a href="https://help.github.com/articles/set-up-git#platform-mac">Their Mac set-up instructions</a> recommend this method of Git installation.</li>
+<li><a href="https://help.github.com/articles/set-up-git#platform-mac">Their macOS set-up instructions</a> recommend this method of Git installation.</li>
 <li>We don’t like GitHub Desktop as a Git client, so this is a very cumbersome way to install Git. Consider this option a last resort.</li>
 </ul>
 </div>
