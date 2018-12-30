@@ -82,6 +82,7 @@ Drawing on the workflow tips in [Rmd test drive](#rmd-test-drive), let's add som
 #' ---
 #' title: "R scripts can be rendered!"
 #' author: "Jenny Bryan"
+#' date: "April 1, 2014"
 #' output: github_document
 #' ---
 #'
